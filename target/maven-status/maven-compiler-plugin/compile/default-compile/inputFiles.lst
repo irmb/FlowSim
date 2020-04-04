@@ -1,8 +1,8 @@
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/factory/PaintableShapeFactory.java
-/home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/model/TwoPointShape.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/lbm/numerics/lbm/testcases/TestCase.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/simulation/visualization/GridNodeStyle.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/factory/PaintableShapeBuilderFactoryImpl.java
+/home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/factory/MultiPointShapeFactory.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/view/graphics/PaintablePolyLine.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/simulation/SimulationFactory.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/lbm/numerics/lbm/testcases/acm/SonjasTestCase.java
@@ -64,11 +64,9 @@
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/simulation/jflowsim/adapters/JFlowSimNavierStokesSolverAdapter.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/strategy/StrategyEventArgs.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/model/Shape.java
-/home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/App.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/command/ZoomCommand.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/simulation/visualization/ArrowGridNodeStyle.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/lbm/numerics/acm/AcmGridNode.java
-/home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/factory/ShapeFactory.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/view/graphics/PaintableLine.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/simulation/LBMChannelFlowSimulation.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/lbm/numerics/lbm/shallowwater/LBMEquilibriumExtrapolBC.java
@@ -117,7 +115,6 @@
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/command/MoveShapeCommand.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/view/graphics/Paintable.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/lbm/numerics/lbm/shallowwater/LBMEquilibriumBC.java
-/home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/builder/TwoPointShapeBuilder.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/simulation/SimulationFactoryImpl.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/Painter.java
 /home/marcus/Projects/FlowSimIrmb/src/main/java/irmb/flowsim/presentation/builder/PaintableLineBuilder.java

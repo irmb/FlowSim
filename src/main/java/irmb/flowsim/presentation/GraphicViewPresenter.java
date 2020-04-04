@@ -24,13 +24,13 @@ public class GraphicViewPresenter {
     protected List<PaintableShape> shapeList;
     protected CommandStack commandStack;
 
-
-    public GraphicViewPresenter(MouseStrategyFactory strategyFactory, CommandStack commandStack, List<PaintableShape> shapeList) {
+    public GraphicViewPresenter(MouseStrategyFactory strategyFactory, CommandStack commandStack,
+            List<PaintableShape> shapeList) {
         this.factory = strategyFactory;
         this.commandStack = commandStack;
         this.shapeList = shapeList;
         attachObserverToCommandStack();
-        makeStrategy("Move");
+        makeMoveStrategy();
     }
 
     protected void attachObserverToCommandStack() {
@@ -42,7 +42,7 @@ public class GraphicViewPresenter {
     }
 
     public void beginPaint(String objectType) {
-        makeStrategy(objectType);
+        makeBuildStrategy(objectType);
     }
 
     public void handleLeftClick(double x, double y) {
@@ -88,15 +88,20 @@ public class GraphicViewPresenter {
         graphicView.update();
     }
 
-    protected void makeStrategy(String objectType) {
-        strategy = factory.makeStrategy(objectType);
+    protected void makeMoveStrategy() {
+        strategy = factory.makeMoveStrategy();
+        addStrategyObserver();
+    }
+
+    protected void makeBuildStrategy(String objectType) {
+        strategy = factory.makeBuildStrategy(objectType);
         addStrategyObserver();
     }
 
     protected void addStrategyObserver() {
         strategy.addObserver((arg) -> {
             if (arg.getState() == StrategyState.FINISHED)
-                makeStrategy("Move");
+                makeMoveStrategy();
             if (arg.getCommand() != null)
                 commandStack.add(arg.getCommand());
             graphicView.update();
@@ -106,6 +111,5 @@ public class GraphicViewPresenter {
     public List<Paintable> getPaintableList() {
         return new ArrayList<>(shapeList);
     }
-
 
 }

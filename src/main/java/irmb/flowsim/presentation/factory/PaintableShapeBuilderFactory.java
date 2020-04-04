@@ -7,4 +7,5 @@ import irmb.flowsim.presentation.builder.PaintableShapeBuilder;
  */
 public interface PaintableShapeBuilderFactory {
     PaintableShapeBuilder makeShapeBuilder(String type);
+    String[] getShapeChoices();
 }

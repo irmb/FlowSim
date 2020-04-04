@@ -18,6 +18,7 @@ irmb/flowsim/presentation/factory/MouseStrategyFactoryImpl.class
 irmb/flowsim/lbm/numerics/lbm/testcases/navierstokes/ChannelFlowTestCase.class
 irmb/flowsim/presentation/factory/PaintableShapeFactoryImpl.class
 irmb/flowsim/presentation/strategy/MouseStrategy.class
+irmb/flowsim/presentation/factory/MultiPointShapeFactory.class
 irmb/flowsim/presentation/factory/PaintableShapeBuilderFactoryImpl.class
 irmb/flowsim/lbm/numerics/lbm/temperature/LBMTemperatureSolver.class
 irmb/flowsim/lbm/numerics/utilities/Scalar.class
@@ -45,9 +46,6 @@ irmb/flowsim/presentation/Zoom.class
 irmb/flowsim/lbm/numerics/lbm/LBMNoSlipBC.class
 irmb/flowsim/view/graphics/PaintableBezierCurve.class
 irmb/flowsim/util/ObservableImpl.class
-flowsim/App.class
-irmb/flowsim/model/TwoPointShape.class
-irmb/flowsim/presentation/builder/TwoPointShapeBuilder.class
 irmb/flowsim/model/PolyLine.class
 irmb/flowsim/lbm/numerics/UniformGrid.class
 irmb/flowsim/util/Observable.class
@@ -70,7 +68,6 @@ irmb/flowsim/model/Line.class
 irmb/flowsim/model/Rectangle.class
 irmb/flowsim/lbm/numerics/lbm/LBMUniformGrid.class
 irmb/flowsim/presentation/strategy/MoveMouseStrategy.class
-irmb/flowsim/presentation/factory/ShapeFactory.class
 irmb/flowsim/simulation/Simulation.class
 irmb/flowsim/lbm/numerics/lbm/testcases/navierstokes/CouetteFlowTestCase.class
 irmb/flowsim/lbm/numerics/lbm/freesurface/LBMFreeSurfaceSolver$LBMFreeSurfaceThread.class

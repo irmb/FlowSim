@@ -20,4 +20,13 @@ public class GridNodeStyleFactory {
 
     }
 
+    public String[] getGridNodeStyleChoices() {
+        String[] choices = new String[PlotStyle.values().length];
+        for(int i = 0; i<PlotStyle.values().length; i++) {
+            choices[i] = PlotStyle.values()[i].toString();
+        }
+
+        return choices;
+    }
+
 }

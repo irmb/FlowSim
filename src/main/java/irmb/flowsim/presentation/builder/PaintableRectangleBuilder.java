@@ -2,7 +2,6 @@ package irmb.flowsim.presentation.builder;
 
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.Rectangle;
-import irmb.flowsim.presentation.factory.ShapeFactory;
 import irmb.flowsim.view.graphics.PaintableRectangle;
 import irmb.flowsim.view.graphics.PaintableShape;
 
@@ -15,9 +14,8 @@ public class PaintableRectangleBuilder extends PaintableShapeBuilder {
     private int pointsAdded;
     private PaintableShape paintable;
 
-    public PaintableRectangleBuilder(ShapeFactory factory) {
-        super(factory);
-        rectangle = (Rectangle) factory.makeShape("Rectangle");
+    public PaintableRectangleBuilder() {
+        rectangle = new Rectangle();
     }
 
     @Override
@@ -54,6 +52,6 @@ public class PaintableRectangleBuilder extends PaintableShapeBuilder {
 
     @Override
     public boolean isObjectPaintable() {
-        return false;
+        return pointsAdded >= 2;
     }
 }

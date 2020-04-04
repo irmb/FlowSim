@@ -19,28 +19,21 @@ public class MouseStrategyFactoryImpl implements MouseStrategyFactory {
     private final CoordinateTransformer transformer;
     private int toleranceRadius = 3;
 
-    public MouseStrategyFactoryImpl(List<PaintableShape> shapeList, PaintableShapeBuilderFactory factory, CoordinateTransformer transformer) {
+    public MouseStrategyFactoryImpl(List<PaintableShape> shapeList, PaintableShapeBuilderFactory factory,
+            CoordinateTransformer transformer) {
         this.shapeList = shapeList;
         this.factory = factory;
         this.transformer = transformer;
     }
 
     @Override
-    public MouseStrategy makeStrategy(String type) {
-        switch (type) {
-            case "Line":
-                return makeBuildObjectMouseStrategy(type);
-            case "Rectangle":
-                return makeBuildObjectMouseStrategy(type);
-            case "PolyLine":
-                return makeBuildObjectMouseStrategy(type);
-            case "Bezier":
-                return makeBuildObjectMouseStrategy(type);
-            case "Move":
-                return makeMoveMouseStrategy();
-            default:
-                return makeMoveMouseStrategy();
-        }
+    public MouseStrategy makeBuildStrategy(String type) {
+        return makeBuildObjectMouseStrategy(type);
+    }
+
+    @Override
+    public MouseStrategy makeMoveStrategy() {
+        return makeMoveMouseStrategy();
     }
 
     private MouseStrategy makeMoveMouseStrategy() {

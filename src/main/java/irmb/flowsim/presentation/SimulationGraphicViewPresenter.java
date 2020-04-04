@@ -51,7 +51,7 @@ public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
     protected void addStrategyObserver() {
         strategy.addObserver((arg) -> {
             if (arg.getState() == StrategyState.FINISHED)
-                makeStrategy("Move");
+                makeMoveStrategy();
             if (arg.getCommand() != null)
                 commandStack.add(arg.getCommand());
             updateGraphicViewAndSimulation();

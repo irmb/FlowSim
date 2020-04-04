@@ -2,7 +2,6 @@ package irmb.flowsim.presentation.builder;
 
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.PolyLine;
-import irmb.flowsim.presentation.factory.ShapeFactory;
 import irmb.flowsim.view.graphics.PaintablePolyLine;
 import irmb.flowsim.view.graphics.PaintableShape;
 
@@ -14,9 +13,8 @@ public class PaintablePolyLineBuilder extends PaintableShapeBuilder {
     private PolyLine polyLine;
     private PaintableShape paintable;
 
-    public PaintablePolyLineBuilder(ShapeFactory factory) {
-        super(factory);
-        polyLine = (PolyLine) factory.makeShape("PolyLine");
+    public PaintablePolyLineBuilder() {
+        polyLine = new PolyLine();
     }
 
     @Override

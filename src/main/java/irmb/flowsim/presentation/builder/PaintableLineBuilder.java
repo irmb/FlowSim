@@ -2,9 +2,8 @@ package irmb.flowsim.presentation.builder;
 
 import irmb.flowsim.model.Line;
 import irmb.flowsim.model.Point;
-import irmb.flowsim.view.graphics.PaintableShape;
-import irmb.flowsim.presentation.factory.ShapeFactory;
 import irmb.flowsim.view.graphics.PaintableLine;
+import irmb.flowsim.view.graphics.PaintableShape;
 
 /**
  * Created by Sven on 14.12.2016.
@@ -15,9 +14,8 @@ public class PaintableLineBuilder extends PaintableShapeBuilder {
     private int pointsAdded;
     private PaintableShape paintable;
 
-    public PaintableLineBuilder(ShapeFactory factory) {
-        super(factory);
-        this.line = (Line) factory.makeShape("Line");
+    public PaintableLineBuilder() {
+        this.line = new Line();
     }
 
     @Override
@@ -54,6 +52,6 @@ public class PaintableLineBuilder extends PaintableShapeBuilder {
 
     @Override
     public boolean isObjectPaintable() {
-        return false;
+        return pointsAdded >= 2;
     }
 }
