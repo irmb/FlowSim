@@ -1,10 +1,10 @@
 package irmb.flowsim.simulation.visualization;
 
+import java.text.DecimalFormat;
+
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.Color;
 import irmb.flowsim.presentation.Painter;
-
-import java.text.DecimalFormat;
 
 /**
  * Created by sven on 15.04.17.

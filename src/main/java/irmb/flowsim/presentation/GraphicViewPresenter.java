@@ -1,5 +1,8 @@
 package irmb.flowsim.presentation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import irmb.flowsim.presentation.command.ClearAllCommand;
 import irmb.flowsim.presentation.command.Command;
 import irmb.flowsim.presentation.factory.MouseStrategyFactory;
@@ -7,9 +10,6 @@ import irmb.flowsim.presentation.strategy.MouseStrategy;
 import irmb.flowsim.presentation.strategy.StrategyState;
 import irmb.flowsim.view.graphics.Paintable;
 import irmb.flowsim.view.graphics.PaintableShape;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Sven on 13.12.2016.

@@ -4,6 +4,8 @@ import irmb.flowsim.view.graphics.PaintableShape;
 
 import java.util.List;
 
+import irmb.flowsim.view.graphics.PaintableShape;
+
 /**
  * Created by Sven on 03.01.2017.
  */

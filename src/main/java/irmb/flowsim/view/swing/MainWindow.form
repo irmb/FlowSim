@@ -42,11 +42,25 @@
                   <text value="Line"/>
                 </properties>
               </component>
+              <component id="f97fd" class="javax.swing.JButton" binding="circleButton">
+                <constraints/>
+                <properties>
+                  <icon value="irmb/flowsim/view/resources/Circle2D.gif"/>
+                  <text value="Circle"/>
+                </properties>
+              </component>
               <component id="d82e4" class="javax.swing.JButton" binding="rectangleButton" default-binding="true">
                 <constraints/>
                 <properties>
                   <icon value="irmb/flowsim/view/resources/Rectangle2D.gif"/>
                   <text value="Rectangle"/>
+                </properties>
+              </component>
+              <component id="53711" class="javax.swing.JButton" binding="triangleButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <icon value="irmb/flowsim/view/resources/Triangle2D.gif"/>
+                  <text value="Triangle"/>
                 </properties>
               </component>
               <component id="89690" class="javax.swing.JButton" binding="polyLineButton" default-binding="true">
@@ -61,6 +75,13 @@
                 <properties>
                   <icon value="irmb/flowsim/view/resources/Bezier2D.gif"/>
                   <text value="Bezier Curve"/>
+                </properties>
+              </component>
+              <component id="29651" class="javax.swing.JButton" binding="splineButton">
+                <constraints/>
+                <properties>
+                  <icon value="irmb/flowsim/view/resources/Spline2D.png"/>
+                  <text value="Spline"/>
                 </properties>
               </component>
               <component id="de267" class="javax.swing.JButton" binding="addSimulationButton">

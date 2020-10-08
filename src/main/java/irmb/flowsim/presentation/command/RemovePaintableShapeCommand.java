@@ -1,8 +1,8 @@
 package irmb.flowsim.presentation.command;
 
-import irmb.flowsim.view.graphics.PaintableShape;
-
 import java.util.List;
+
+import irmb.flowsim.view.graphics.PaintableShape;
 
 /**
  * Created by sven on 16.02.17.

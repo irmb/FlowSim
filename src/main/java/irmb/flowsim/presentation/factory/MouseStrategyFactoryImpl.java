@@ -1,13 +1,13 @@
 package irmb.flowsim.presentation.factory;
 
+import java.util.List;
+
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.builder.PaintableShapeBuilder;
 import irmb.flowsim.presentation.strategy.BuildObjectMouseStrategy;
 import irmb.flowsim.presentation.strategy.MouseStrategy;
 import irmb.flowsim.presentation.strategy.MoveMouseStrategy;
 import irmb.flowsim.view.graphics.PaintableShape;
-
-import java.util.List;
 
 /**
  * Created by Sven on 10.01.2017.

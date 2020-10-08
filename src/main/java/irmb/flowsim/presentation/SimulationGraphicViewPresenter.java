@@ -1,16 +1,21 @@
 package irmb.flowsim.presentation;
 
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.factory.MouseStrategyFactory;
 import irmb.flowsim.presentation.strategy.StrategyState;
 import irmb.flowsim.simulation.Simulation;
 import irmb.flowsim.simulation.SimulationFactory;
-import irmb.flowsim.simulation.visualization.*;
+import irmb.flowsim.simulation.visualization.GridNodeStyle;
+import irmb.flowsim.simulation.visualization.GridNodeStyleFactory;
+import irmb.flowsim.simulation.visualization.PlotStyle;
 import irmb.flowsim.view.graphics.Paintable;
 import irmb.flowsim.view.graphics.PaintableShape;
-
-import java.lang.ref.WeakReference;
-import java.util.*;
 
 /**
  * Created by sven on 03.03.17.

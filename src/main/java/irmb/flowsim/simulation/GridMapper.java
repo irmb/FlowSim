@@ -1,9 +1,15 @@
 package irmb.flowsim.simulation;
 
-import irmb.flowsim.model.*;
-import irmb.flowsim.view.graphics.PaintableShape;
-
 import java.util.List;
+
+import irmb.flowsim.model.BezierCurve;
+import irmb.flowsim.model.Line;
+import irmb.flowsim.model.Point;
+import irmb.flowsim.model.PolyLine;
+import irmb.flowsim.model.Rectangle;
+import irmb.flowsim.model.Shape;
+import irmb.flowsim.model.ShapeVisitor;
+import irmb.flowsim.view.graphics.PaintableShape;
 
 /**
  * Created by sven on 16.03.17.

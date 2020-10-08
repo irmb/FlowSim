@@ -1,7 +1,5 @@
 package irmb.flowsim.presentation;
 
-import irmb.flowsim.model.util.CoordinateTransformer;
-
 /**
  * Created by Sven on 13.12.2016.
  */

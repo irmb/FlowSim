@@ -1,13 +1,13 @@
 package irmb.flowsim.presentation.strategy;
 
+import java.util.List;
+
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.Shape;
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.command.MoveShapeCommand;
 import irmb.flowsim.presentation.command.RemovePaintableShapeCommand;
 import irmb.flowsim.view.graphics.PaintableShape;
-
-import java.util.List;
 
 import static irmb.flowsim.presentation.strategy.StrategyState.UPDATE;
 

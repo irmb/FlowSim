@@ -1,14 +1,19 @@
 package irmb.flowsim.view.swing;
 
+import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
+
+import javax.swing.JPanel;
+
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.GraphicView;
 import irmb.flowsim.presentation.GraphicViewPresenter;
 import irmb.flowsim.view.RepaintScheduler;
 import irmb.flowsim.view.graphics.Paintable;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
 
 /**
  * Created by Sven on 13.12.2016.

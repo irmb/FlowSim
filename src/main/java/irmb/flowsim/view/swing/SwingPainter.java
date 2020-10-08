@@ -1,9 +1,9 @@
 package irmb.flowsim.view.swing;
 
-import irmb.flowsim.presentation.*;
-import irmb.flowsim.presentation.Color;
+import java.awt.Graphics;
 
-import java.awt.*;
+import irmb.flowsim.presentation.Color;
+import irmb.flowsim.presentation.Painter;
 
 /**
  * Created by Sven on 15.12.2016.

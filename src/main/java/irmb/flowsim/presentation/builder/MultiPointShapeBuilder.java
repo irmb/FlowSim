@@ -1,7 +1,7 @@
 package irmb.flowsim.presentation.builder;
 
-import irmb.flowsim.model.Point;
 import irmb.flowsim.model.MultiPointShape;
+import irmb.flowsim.model.Point;
 import irmb.flowsim.presentation.factory.PaintableShapeFactory;
 import irmb.flowsim.view.graphics.PaintableShape;
 

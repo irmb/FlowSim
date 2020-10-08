@@ -1,7 +1,15 @@
 package irmb.flowsim.presentation.factory;
 
-import irmb.flowsim.model.*;
-import irmb.flowsim.view.graphics.*;
+import irmb.flowsim.model.BezierCurve;
+import irmb.flowsim.model.Line;
+import irmb.flowsim.model.PolyLine;
+import irmb.flowsim.model.Rectangle;
+import irmb.flowsim.model.Shape;
+import irmb.flowsim.view.graphics.PaintableBezierCurve;
+import irmb.flowsim.view.graphics.PaintableLine;
+import irmb.flowsim.view.graphics.PaintablePolyLine;
+import irmb.flowsim.view.graphics.PaintableRectangle;
+import irmb.flowsim.view.graphics.PaintableShape;
 
 /**
  * Created by sven on 18.03.17.

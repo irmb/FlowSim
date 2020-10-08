@@ -1,5 +1,23 @@
 package irmb.flowsim.view.swing;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JToolBar;
+import javax.swing.WindowConstants;
+
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.GraphicView;
 import irmb.flowsim.presentation.SimulationGraphicViewPresenter;
@@ -25,6 +43,8 @@ public class MainWindow extends JFrame {
     private JButton removeSimulationButton;
     private JPanel topPanel;
     private JToolBar mainToolBar;
+    private JButton circleButton;
+    private JButton triangleButton;
 
     private JMenuItem undo;
     private JMenuItem redo;
@@ -37,7 +57,7 @@ public class MainWindow extends JFrame {
         this.transformer = transformer;
         setupUI(shapes);
         setTitle("FlowSim 2.0");
-        setSize(1150, 800);
+        setSize(1250, 800);
         add(contentPanel);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -217,4 +237,5 @@ public class MainWindow extends JFrame {
     public JComponent $$$getRootComponent$$$() {
         return contentPanel;
     }
+
 }

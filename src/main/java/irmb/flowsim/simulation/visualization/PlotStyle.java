@@ -5,5 +5,7 @@ package irmb.flowsim.simulation.visualization;
  */
 public enum PlotStyle {
     Color,
-    Info, Arrow
+    Info,
+    Arrow,
+    Isoline
 }
