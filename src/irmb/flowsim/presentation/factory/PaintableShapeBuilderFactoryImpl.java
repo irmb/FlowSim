@@ -23,11 +23,17 @@ public class PaintableShapeBuilderFactoryImpl implements PaintableShapeBuilderFa
         switch (type) {
             case "Line":
                 return new TwoPointShapeBuilder((TwoPointShape) factory.makeShape(type), paintableShapeFactory);
+            case "Circle":
+                return new TwoPointShapeBuilder((TwoPointShape) factory.makeShape(type), paintableShapeFactory);
+            case "Triangle":
+                return new TwoPointShapeBuilder((TwoPointShape) factory.makeShape(type), paintableShapeFactory);
             case "Rectangle":
                 return new TwoPointShapeBuilder((TwoPointShape) factory.makeShape(type), paintableShapeFactory);
             case "PolyLine":
                 return new MultiPointShapeBuilder((MultiPointShape) factory.makeShape(type), paintableShapeFactory);
             case "Bezier":
+                return new MultiPointShapeBuilder((MultiPointShape) factory.makeShape(type), paintableShapeFactory);
+            case "Spline":
                 return new MultiPointShapeBuilder((MultiPointShape) factory.makeShape(type), paintableShapeFactory);
             default:
                 return null;

@@ -33,6 +33,13 @@ public class JavaFXPainter implements Painter {
     }
 
     @Override
+    public void paintCircle(double x, double y, double radius) {
+        jfxColor = javafx.scene.paint.Color.BLACK;
+        graphicsContext.setLineWidth(1);
+        graphicsContext.strokeOval((int) x, (int) y, (int) (radius), (int) (radius));
+    }
+
+    @Override
     public void setColor(Color color) {
         double r, g, b;
         r = color.r / 255.;

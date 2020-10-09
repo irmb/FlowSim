@@ -8,6 +8,8 @@ public interface Painter {
 
     void paintRectangle(double x, double y, double width, double height);
 
+    void paintCircle(double x, double y, double radius);
+
     void setColor(Color color);
 
     void fillRectangle(double x, double y, double width, double height);

@@ -12,10 +12,6 @@ import irmb.flowsim.presentation.Painter;
  */
 public class PaintableLine extends PaintableShape {
 
-
-    private Point maxPoint;
-    private Point minPoint;
-
     private Line line;
 
     public PaintableLine(Line line) {
@@ -32,8 +28,8 @@ public class PaintableLine extends PaintableShape {
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
-        double maxX = line.getFirst().getX() < line.getSecond().getX() ? line.getSecond().getX() : line.getFirst().getX();
-        double minX = line.getFirst().getX() < line.getSecond().getX() ? line.getFirst().getX() : line.getSecond().getX();
+        double maxX = Math.max(line.getFirst().getX(), line.getSecond().getX());
+        double minX = Math.min(line.getFirst().getX(), line.getSecond().getX());
         if (point.getX() >= minX - radius && point.getX() <= maxX + radius)
             return getDistanceToLine(line.getFirst(), line.getSecond(), point) <= radius;
         return false;

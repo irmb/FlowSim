@@ -6,6 +6,10 @@ package irmb.flowsim.model;
 public interface ShapeVisitor {
     void visit(Line line);
 
+    void visit(Circle circle);
+
+    void visit(Triangle triangle);
+
     void visit(Rectangle rectangle);
 
     void visit(PolyLine polyLine);
@@ -13,4 +17,6 @@ public interface ShapeVisitor {
     void visit(Point point);
 
     void visit(BezierCurve bezierCurve);
+
+    void visit(Spline spline);
 }

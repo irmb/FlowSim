@@ -30,6 +30,12 @@ public class SwingPainter implements Painter {
     }
 
     @Override
+    public void paintCircle(double x, double y, double radius) {
+        System.out.println("X: " + x + ", Y: " + y + ", radius: " + radius);
+        graphics.drawOval((int) x, (int) y, (int) (radius), (int) (radius));
+    }
+
+    @Override
     public void setColor(Color color) {
         int r, g, b;
         r = color.r;

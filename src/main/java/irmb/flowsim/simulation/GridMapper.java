@@ -3,12 +3,15 @@ package irmb.flowsim.simulation;
 import java.util.List;
 
 import irmb.flowsim.model.BezierCurve;
+import irmb.flowsim.model.Circle;
 import irmb.flowsim.model.Line;
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.PolyLine;
 import irmb.flowsim.model.Rectangle;
 import irmb.flowsim.model.Shape;
 import irmb.flowsim.model.ShapeVisitor;
+import irmb.flowsim.model.Spline;
+import irmb.flowsim.model.Triangle;
 import irmb.flowsim.view.graphics.PaintableShape;
 
 /**
@@ -37,6 +40,16 @@ public class GridMapper implements ShapeVisitor {
         if (!grid.isPointInside(first) || !grid.isPointInside(second))
             return;
         mapLineSegment(first, second);
+    }
+
+    @Override
+    public void visit(Circle circle) {
+
+    }
+
+    @Override
+    public void visit(Triangle triangle) {
+
     }
 
     private void mapLineSegment(Point first, Point second) {
@@ -114,6 +127,11 @@ public class GridMapper implements ShapeVisitor {
             Point second = bezierCurve.calculatePointWithBernstein(t2);
             mapLineSegment(first, second);
         }
+    }
+
+    @Override
+    public void visit(Spline spline) {
+
     }
 
     private void bresenham(int xStart, int yStart, int xEnd, int yEnd) {
