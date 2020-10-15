@@ -21,9 +21,7 @@ public class PaintableCircle extends PaintableShape {
         painter.setColor(Color.BLACK);
         this.transformer = transformer;
         Point center = transformer.transformToPointOnScreen(this.circle.getCenter());
-        Point center2 = transformer.transformToPointOnScreen(this.circle.getCentralCenter());
         painter.paintCircle(center.getX(), center.getY(), transformer.scaleToScreenLength(this.circle.getRadius()));
-        painter.paintCircle(center2.getX(), center2.getY(), 10);
     }
 
     @Override

@@ -40,6 +40,11 @@ public class JavaFXPainter implements Painter {
     }
 
     @Override
+    public void paintTriangle(double x, double y, double width, double height) {
+
+    }
+
+    @Override
     public void setColor(Color color) {
         double r, g, b;
         r = color.r / 255.;

@@ -1,6 +1,7 @@
 package irmb.flowsim.view.swing;
 
 import java.awt.Graphics;
+import java.awt.Polygon;
 
 import irmb.flowsim.presentation.Color;
 import irmb.flowsim.presentation.Painter;
@@ -31,8 +32,16 @@ public class SwingPainter implements Painter {
 
     @Override
     public void paintCircle(double x, double y, double radius) {
-        System.out.println("X: " + x + ", Y: " + y + ", radius: " + radius);
         graphics.drawOval((int) x, (int) y, (int) (radius), (int) (radius));
+    }
+
+    @Override
+    public void paintTriangle(double x, double y, double width, double height) {
+        Polygon polygon = new Polygon();
+        polygon.addPoint((int) x, (int) y);
+        polygon.addPoint((int) (x - width), (int) (y + height));
+        polygon.addPoint((int) (x + width), (int) (y + height));
+        graphics.drawPolygon(polygon);
     }
 
     @Override
