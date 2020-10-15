@@ -17,7 +17,12 @@ public class PaintableTriangle extends PaintableShape {
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
-        return false;
+        Point[] points = this.triangle.getPoints();
+        double distance1 = getDistanceToLine(points[0], points[1], point);
+        double distance2 = getDistanceToLine(points[1], points[2], point);
+        double distance3 = getDistanceToLine(points[2], points[0], point);
+        double minDistance = Math.min(Math.min(distance1, distance2), distance3);
+        return minDistance <= radius;
     }
 
     @Override

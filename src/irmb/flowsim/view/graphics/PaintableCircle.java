@@ -10,7 +10,6 @@ import irmb.flowsim.presentation.Painter;
 public class PaintableCircle extends PaintableShape {
 
     private Circle circle;
-    private CoordinateTransformer transformer;
 
     public PaintableCircle(Circle circle) {
         this.circle = circle;
