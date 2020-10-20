@@ -1,5 +1,6 @@
 package irmb.flowsim.simulation;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import irmb.flowsim.model.BezierCurve;
@@ -49,7 +50,13 @@ public class GridMapper implements ShapeVisitor {
 
     @Override
     public void visit(Triangle triangle) {
-
+        LinkedList<Point> points = triangle.getPoints();
+        Point first = points.get(0);
+        Point secondAdjusted = new Point(first.getX() - Math.abs(first.getX() - points.get(1).getX()), first.getY() - Math.abs(first.getY() - points.get(1).getY()));
+        Point thirdAdjusted = new Point(first.getX() + Math.abs(first.getX() - points.get(2).getX()), first.getY() - Math.abs(first.getY() - points.get(2).getY()));
+        mapLineSegment(first, secondAdjusted);
+        mapLineSegment(first, thirdAdjusted);
+        mapLineSegment(secondAdjusted, thirdAdjusted);
     }
 
     private void mapLineSegment(Point first, Point second) {

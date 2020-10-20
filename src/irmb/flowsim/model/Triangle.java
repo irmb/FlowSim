@@ -1,5 +1,7 @@
 package irmb.flowsim.model;
 
+import java.util.LinkedList;
+
 public class Triangle implements TwoPointShape {
 
     private Point center;
@@ -29,11 +31,11 @@ public class Triangle implements TwoPointShape {
         return height;
     }
 
-    public Point[] getPoints() {
-        Point[] points = new Point[3];
-        points[0] = new Point(center.getX(), center.getY());
-        points[1] = new Point(center.getX() - width, center.getY() + height);
-        points[2] = new Point(center.getX() + width, center.getY() + height);
+    public LinkedList<Point> getPoints() {
+        LinkedList<Point> points = new LinkedList<>();
+        points.add(new Point(center.getX(), center.getY()));
+        points.add(new Point(center.getX() - width, center.getY() + height));
+        points.add(new Point(center.getX() + width, center.getY() + height));
         return points;
     }
 
