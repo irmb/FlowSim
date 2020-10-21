@@ -1,11 +1,11 @@
 package irmb.flowsim.simulation.jflowsim.adapters;
 
-import java.util.Observable;
-import java.util.Observer;
-
-import irmb.flowsim.simulation.LBMSolver;
 import irmb.flowsim.lbm.numerics.lbm.navierstokes.LBMNavierStokesGrid;
 import irmb.flowsim.lbm.numerics.lbm.navierstokes.LBMNavierStokesSolver;
+import irmb.flowsim.simulation.LBMSolver;
+
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by sven on 09.03.17.

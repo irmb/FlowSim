@@ -1,12 +1,13 @@
 package irmb.flowsim.lbm.numerics.lbm.navierstokes;
 
 
-import java.util.concurrent.CyclicBarrier;
 import irmb.flowsim.lbm.numerics.Solver;
 import irmb.flowsim.lbm.numerics.UniformGrid;
 import irmb.flowsim.lbm.numerics.lbm.LBMSolver;
 import irmb.flowsim.lbm.numerics.lbm.LBMSolverThread;
 import irmb.flowsim.lbm.numerics.lbm.LBMUniformGrid;
+
+import java.util.concurrent.CyclicBarrier;
 
 public class LBMNavierStokesSolver extends LBMSolver {
 
@@ -36,7 +37,7 @@ public class LBMNavierStokesSolver extends LBMSolver {
         /* ======================================================================================= */
         public void run() {
 
-            try {               
+            try {
 
                 long timer = 0;
                 long counter = 0;

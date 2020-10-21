@@ -1,13 +1,13 @@
 package irmb.flowsim.view.graphics;
 
-import java.util.List;
-
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.PolyLine;
 import irmb.flowsim.model.Shape;
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.Color;
 import irmb.flowsim.presentation.Painter;
+
+import java.util.List;
 
 /**
  * Created by Sven on 15.12.2016.

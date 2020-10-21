@@ -69,9 +69,9 @@ public class ArrowGridNodeStyle extends GridNodeStyle {
                 painter.paintLine(x1, y1, xC, yC);
                 painter.paintLine(x1, y1, xD, yD);
             }
-    }
+        }
 
-}
+    }
 
     private void getInitialMinMax() {
         if (firstRun) {

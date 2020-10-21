@@ -1,6 +1,5 @@
 package irmb.flowsim.lbm.numerics.lbm.navierstokes;
 
-import java.text.DecimalFormat;
 import irmb.flowsim.lbm.numerics.lbm.LBMUniformGrid;
 import irmb.flowsim.lbm.numerics.lbm.LbEQ;
 import irmb.flowsim.lbm.numerics.utilities.GridNodeType;

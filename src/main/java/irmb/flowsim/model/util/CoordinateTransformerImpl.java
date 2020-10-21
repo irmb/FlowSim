@@ -32,7 +32,7 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
         pointMatrix.set(0, 0, point.getX());
         pointMatrix.set(0, 1, point.getY());
         pointMatrix.set(0, 2, 1);
-        
+
         pointMatrix = pointMatrix.times(transformationMatrix);
 
         double x = pointMatrix.get(0, 0);

@@ -20,10 +20,10 @@ public class PaintableCircle extends PaintableShape {
         double radius = circle.getRadius();
         double min_x = transformer.transformToPointOnScreen(new Point(center.getX() - radius, center.getY() - radius)).getX();
         double max_x = transformer.transformToPointOnScreen(new Point(center.getX() + radius, center.getY() + radius)).getX();
-        double view_radius = 0.5*(max_x - min_x);
+        double view_radius = 0.5 * (max_x - min_x);
         Point view = transformer.transformToPointOnScreen(center);
         painter.setColor(Color.BLACK);
-        painter.paintCircle(view.getX()-view_radius, view.getY()-view_radius, 2*view_radius);
+        painter.paintCircle(view.getX() - view_radius, view.getY() - view_radius, 2 * view_radius);
     }
 
     @Override

@@ -44,7 +44,7 @@ public class FlatPlateTestCase extends TestCase {
         // 3. Initial conditions
         for (int i = 0; i < grid.nx; i++) {
             for (int j = 0; j < grid.ny; j++) {
-                grid.init(i,j,1./3.,inflowVelo,0.0);
+                grid.init(i, j, 1. / 3., inflowVelo, 0.0);
             }
         }
         return grid;

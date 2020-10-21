@@ -1,10 +1,10 @@
 package irmb.flowsim.presentation;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import irmb.flowsim.presentation.command.Command;
 import irmb.flowsim.util.ObservableImpl;
+
+import java.util.LinkedList;
+import java.util.List;
 
 
 /**

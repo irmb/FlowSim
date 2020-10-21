@@ -10,18 +10,17 @@ public abstract class TestCase {
     protected void initCircle(UniformGrid grid, double centerX, double centerY, double radius) {
         for (int i = 0; i < grid.nx; i++) {
             for (int j = 0; j < grid.ny; j++) {
-                
-                double x = i*grid.dx;
-                double y = j*grid.dx;
 
-                double dx = x-centerX;
-                double dy = y-centerY;
+                double x = i * grid.dx;
+                double y = j * grid.dx;
 
-                double dist = Math.sqrt(dx*dx+dy*dy);
+                double dx = x - centerX;
+                double dy = y - centerY;
 
-                if( dist < radius )
-                {
-                    grid.setType(i,j,GridNodeType.BOUNDARY);
+                double dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < radius) {
+                    grid.setType(i, j, GridNodeType.BOUNDARY);
                 }
             }
         }

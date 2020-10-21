@@ -54,7 +54,6 @@ public class LBMGeneralSWBC extends BoundaryCondition {
                 }
 
 
-
                 myGrid.f[nodeIndex + LbEQ.W] = myGrid.f[nodeIndex + LbEQ.E] - 2.0f * fluxX / 3.0f / e;
                 myGrid.f[nodeIndex + LbEQ.NW] = myGrid.f[nodeIndex + LbEQ.SE] - fluxX / 6.0f / e + 0.5f * (myGrid.f[nodeIndex + LbEQ.S] - myGrid.f[nodeIndex + LbEQ.N]);
                 myGrid.f[nodeIndex + LbEQ.SW] = myGrid.f[nodeIndex + LbEQ.NE] - fluxX / 6.0f / e + 0.5f * (myGrid.f[nodeIndex + LbEQ.N] - myGrid.f[nodeIndex + LbEQ.S]);
@@ -90,7 +89,6 @@ public class LBMGeneralSWBC extends BoundaryCondition {
                 } else {
                     fluxX = this.bcValue;
                 }
-
 
 
                 myGrid.f[nodeIndex + LbEQ.E] = myGrid.f[nodeIndex + LbEQ.W] + 2.0f * fluxX / 3.0f / e;

@@ -1,9 +1,10 @@
 package irmb.flowsim.lbm.numerics.lbm;
 
-import irmb.flowsim.lbm.numerics.UniformGrid;
-import java.util.ArrayList;
 import irmb.flowsim.lbm.numerics.Solver;
+import irmb.flowsim.lbm.numerics.UniformGrid;
 import irmb.flowsim.lbm.numerics.utilities.GridNodeType;
+
+import java.util.ArrayList;
 
 public abstract class LBMSolver extends Solver {
 

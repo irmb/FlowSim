@@ -32,7 +32,7 @@ public abstract class LBMUniformGrid extends UniformGrid {
         this.dv = this.dx / this.dt;
     }
 
-//    public void adjustMachNumber(double _targetValue) {
+    //    public void adjustMachNumber(double _targetValue) {
 //
 //        double min = Double.MAX_VALUE;
 //        double max = -Double.MAX_VALUE;

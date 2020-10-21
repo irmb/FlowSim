@@ -1,14 +1,14 @@
 package irmb.flowsim.simulation;
 
-import irmb.flowsim.model.Point;
-import irmb.flowsim.simulation.jflowsim.adapters.JFlowSimNavierStokesGridAdapter;
-import irmb.flowsim.simulation.jflowsim.adapters.JFlowSimNavierStokesSolverAdapter;
 import irmb.flowsim.lbm.numerics.BoundaryCondition;
 import irmb.flowsim.lbm.numerics.lbm.LBMNoSlipBC;
 import irmb.flowsim.lbm.numerics.lbm.LBMPressureBC;
 import irmb.flowsim.lbm.numerics.lbm.LBMVelocityBC;
 import irmb.flowsim.lbm.numerics.lbm.navierstokes.LBMNavierStokesGrid;
 import irmb.flowsim.lbm.numerics.lbm.navierstokes.LBMNavierStokesSolver;
+import irmb.flowsim.model.Point;
+import irmb.flowsim.simulation.jflowsim.adapters.JFlowSimNavierStokesGridAdapter;
+import irmb.flowsim.simulation.jflowsim.adapters.JFlowSimNavierStokesSolverAdapter;
 
 /**
  * Created by sven on 09.03.17.

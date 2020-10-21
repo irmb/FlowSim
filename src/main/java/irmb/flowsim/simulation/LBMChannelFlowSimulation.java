@@ -1,15 +1,15 @@
 package irmb.flowsim.simulation;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.Painter;
 import irmb.flowsim.simulation.visualization.GridNodeStyle;
 import irmb.flowsim.util.Observer;
 import irmb.flowsim.view.graphics.PaintableShape;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 
 /**

@@ -8,6 +8,7 @@ public class LBMNoSlipBC extends BoundaryCondition {
         this.myGrid = _grid;
         this.type = _type;
     }
+
     LBMUniformGrid myGrid;
 
     public void apply() {

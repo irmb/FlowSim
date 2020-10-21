@@ -30,7 +30,7 @@ public class CargoDeckTestCase extends TestCase {
         for (int i = 0; i < grid.nx; i++) {
             for (int j = 0; j < grid.ny; j++) {
                 //grid.init(i, j, h0, 0.0, 0.0);
-                grid.init(i, j, h0*(1.+0.2*Math.sin(Math.PI*i/grid.nx)), 0.0, 0.0);
+                grid.init(i, j, h0 * (1. + 0.2 * Math.sin(Math.PI * i / grid.nx)), 0.0, 0.0);
             }
         }
 

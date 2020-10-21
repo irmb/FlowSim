@@ -1,9 +1,10 @@
 package irmb.flowsim.lbm.numerics.lbm;
 
-import java.util.concurrent.CyclicBarrier;
 import irmb.flowsim.lbm.numerics.BoundaryCondition;
 import irmb.flowsim.lbm.numerics.Solver;
 import irmb.flowsim.lbm.numerics.utilities.GridNodeType;
+
+import java.util.concurrent.CyclicBarrier;
 
 /* ======================================================================================= */
 /* ======================================================================================= */
@@ -42,6 +43,7 @@ public abstract class LBMSolverThread extends Thread {
         }
 
     }
+
     /* ======================================================================================= */
     protected void collision(double s_nu) {
         double[] feq = new double[9];

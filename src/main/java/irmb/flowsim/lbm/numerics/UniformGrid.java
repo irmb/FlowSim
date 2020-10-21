@@ -1,7 +1,8 @@
 package irmb.flowsim.lbm.numerics;
 
-import java.util.ArrayList;
 import irmb.flowsim.lbm.numerics.utilities.Rounding;
+
+import java.util.ArrayList;
 
 public abstract class UniformGrid {
 
@@ -52,7 +53,7 @@ public abstract class UniformGrid {
 
     public abstract void refineGrid(double scaleFactor);
 
-//    public void map2Grid(ModelManager model) {
+    //    public void map2Grid(ModelManager model) {
 //
 //        for (int x = 0; x < nx; x++) {
 //            for (int y = 0; y < ny; y++) {
@@ -70,7 +71,7 @@ public abstract class UniformGrid {
         bcList.add(bc);
     }
 
-//    public void updateHeadUpDisplay(HeadUpDisplay hud) {
+    //    public void updateHeadUpDisplay(HeadUpDisplay hud) {
 //    }
     public abstract double getScalar(int x, int y, int scalar_name);
 

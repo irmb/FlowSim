@@ -51,7 +51,11 @@ public class ColorFactoryImpl implements ColorFactory {
                 g = 255 - Y;
                 b = 255;
                 break;
-            case 4: r=0;g=0;b=255;break;
+            case 4:
+                r = 0;
+                g = 0;
+                b = 255;
+                break;
         }
 
         r = r < 0 ? 0 : r;

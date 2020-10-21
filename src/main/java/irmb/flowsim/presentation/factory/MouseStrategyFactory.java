@@ -7,5 +7,6 @@ import irmb.flowsim.presentation.strategy.MouseStrategy;
  */
 public interface MouseStrategyFactory {
     MouseStrategy makeBuildStrategy(String type);
+
     MouseStrategy makeMoveStrategy();
 }

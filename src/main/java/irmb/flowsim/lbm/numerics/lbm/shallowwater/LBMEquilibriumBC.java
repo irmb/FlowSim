@@ -7,7 +7,7 @@ import irmb.flowsim.lbm.numerics.lbm.LbEQ;
 public class LBMEquilibriumBC extends BoundaryCondition {
 
     LBMUniformGrid myGrid;
-    double h,vx, vy;
+    double h, vx, vy;
 
     public LBMEquilibriumBC(LBMUniformGrid _grid, int _type, double _h, double _vx, double _vy) {
         this.myGrid = _grid;
@@ -60,7 +60,7 @@ public class LBMEquilibriumBC extends BoundaryCondition {
             for (int i = 0; i < myGrid.nx; i++) {
 
                 LbEQ.getBGKEquilibriumShallowWater(h, vx, vy, feq, myGrid.dv, myGrid.gravity);
-                
+
                 nodeIndex = (i) * 9;
 
                 for (int dir = 0; dir < 9; dir++) {

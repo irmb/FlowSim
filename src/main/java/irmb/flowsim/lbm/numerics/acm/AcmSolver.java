@@ -12,8 +12,8 @@ public class AcmSolver extends Solver {
         this.grid = (AcmGrid) grid;
     }
 
-    public void interrupt(){
-        
+    public void interrupt() {
+
     }
 
     public void run() {
@@ -24,9 +24,9 @@ public class AcmSolver extends Solver {
             grid.timestep++;
 
             this.checkerboard_cure(0);
-            eulerForward(0,1,grid.dt);
-            eulerBackward(0,1,grid.dt);
-            applyBCs(0,1);
+            eulerForward(0, 1, grid.dt);
+            eulerBackward(0, 1, grid.dt);
+            applyBCs(0, 1);
             calc_turbvisc(0);
 
             grid.timestep++;
@@ -36,7 +36,7 @@ public class AcmSolver extends Solver {
             eulerBackward(1, 0, grid.dt);
             calc_turbvisc(1);
 
-            applyBCs(1,0);
+            applyBCs(1, 0);
 //            try {
 //                Thread.currentThread().sleep(10000);
 //            }
@@ -68,8 +68,8 @@ public class AcmSolver extends Solver {
 
                 AcmGridNode node = grid.get(i, j);
 
-                node.setU(node.getU(in) + step * grid.getDtU(i,j,in), out);
-                node.setV(node.getV(in) + step * grid.getDtV(i,j,in), out);
+                node.setU(node.getU(in) + step * grid.getDtU(i, j, in), out);
+                node.setV(node.getV(in) + step * grid.getDtV(i, j, in), out);
             }
         }
     }
@@ -80,7 +80,7 @@ public class AcmSolver extends Solver {
 
                 AcmGridNode node = grid.get(i, j);
 
-                node.setP(node.getP(in) + step * grid.getDtP(i,j,out), out);
+                node.setP(node.getP(in) + step * grid.getDtP(i, j, out), out);
             }
         }
     }
@@ -92,66 +92,61 @@ public class AcmSolver extends Solver {
             for (int j = 0; j < grid.ny; j++) {
 
                 AcmGridNode node = grid.get(i, j);
-                nodeBC=node.getType();
-                if (nodeBC==GridNodeType.SOLIDN)
-                {
-                    AcmGridNode neighNode = grid.get(i, j-1); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
-                    neuerdruck=neighNode.getP(in);
-                    node.setP(neuerdruck,out);
-                    neighU=node.getU(in);
-                    neuesU=neighU*0.5;
+                nodeBC = node.getType();
+                if (nodeBC == GridNodeType.SOLIDN) {
+                    AcmGridNode neighNode = grid.get(i, j - 1); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
+                    neuerdruck = neighNode.getP(in);
+                    node.setP(neuerdruck, out);
+                    neighU = node.getU(in);
+                    neuesU = neighU * 0.5;
                     //neighV=node.getV(in);
-                    neuesV=0.0;
-                    node.setU(neuesU,out);
-                    node.setV(neuesV,out);
+                    neuesV = 0.0;
+                    node.setU(neuesU, out);
+                    node.setV(neuesV, out);
                 }
-                 if (nodeBC==GridNodeType.SOLIDS)
-                {
-                    AcmGridNode neighNode = grid.get(i, j+1); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
-                    neuerdruck=neighNode.getP(in);
-                    node.setP(neuerdruck,out);
-                    neighU=node.getU(in);
-                    neuesU=neighU*0.5;
+                if (nodeBC == GridNodeType.SOLIDS) {
+                    AcmGridNode neighNode = grid.get(i, j + 1); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
+                    neuerdruck = neighNode.getP(in);
+                    node.setP(neuerdruck, out);
+                    neighU = node.getU(in);
+                    neuesU = neighU * 0.5;
                     //neighV=node.getV(in);
-                    neuesV=0.0;
-                    node.setU(neuesU,out);
-                    node.setV(neuesV,out);
+                    neuesV = 0.0;
+                    node.setU(neuesU, out);
+                    node.setV(neuesV, out);
                 }
-                 if (nodeBC==GridNodeType.SOLIDE)
-                {
-                    AcmGridNode neighNode = grid.get(i-1, j); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
-                    neuerdruck=neighNode.getP(in);
-                    node.setP(neuerdruck,out);
+                if (nodeBC == GridNodeType.SOLIDE) {
+                    AcmGridNode neighNode = grid.get(i - 1, j); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
+                    neuerdruck = neighNode.getP(in);
+                    node.setP(neuerdruck, out);
                     //neighU=node.getU(in);
-                    neuesU=0.0;//neighU*0.5;
-                    neighV=node.getV(in);
-                    neuesV=neighV*0.5;
-                    node.setU(neuesU,out);
-                    node.setV(neuesV,out);
+                    neuesU = 0.0;//neighU*0.5;
+                    neighV = node.getV(in);
+                    neuesV = neighV * 0.5;
+                    node.setU(neuesU, out);
+                    node.setV(neuesV, out);
                 }
-                 if (nodeBC==GridNodeType.SOLIDN)
-                {
-                   AcmGridNode neighNode = grid.get(i+1, j); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
-                    neuerdruck=neighNode.getP(in);
-                    node.setP(neuerdruck,out);
+                if (nodeBC == GridNodeType.SOLIDN) {
+                    AcmGridNode neighNode = grid.get(i + 1, j); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
+                    neuerdruck = neighNode.getP(in);
+                    node.setP(neuerdruck, out);
                     //neighU=node.getU(in);
-                    neuesU=0.0;//neighU*0.5;
-                    neighV=node.getV(in);
-                    neuesV=neighV*0.5;
-                    node.setU(neuesU,out);
-                    node.setV(neuesV,out);
+                    neuesU = 0.0;//neighU*0.5;
+                    neighV = node.getV(in);
+                    neuesV = neighV * 0.5;
+                    node.setU(neuesU, out);
+                    node.setV(neuesV, out);
                 }
-                 if (nodeBC==GridNodeType.SOLID)
-                {
-                   AcmGridNode neighNode = grid.get(i, j); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
-                    neuerdruck=neighNode.getP(in);
-                    node.setP(neuerdruck,out);
+                if (nodeBC == GridNodeType.SOLID) {
+                    AcmGridNode neighNode = grid.get(i, j); //bc in N-Richtung heißt, dass in S-Richtung (nach unten) ein FluidKnoten da ist
+                    neuerdruck = neighNode.getP(in);
+                    node.setP(neuerdruck, out);
                     //neighU=node.getU(in);
-                    neuesU=0.0;//neighU*0.5;
-                    neighV=0.0;//node.getV(in);
-                    neuesV=neighV*0.5;
-                    node.setU(neuesU,out);
-                    node.setV(neuesV,out);
+                    neuesU = 0.0;//neighU*0.5;
+                    neighV = 0.0;//node.getV(in);
+                    neuesV = neighV * 0.5;
+                    node.setU(neuesU, out);
+                    node.setV(neuesV, out);
                 }
             }
         }
@@ -173,36 +168,35 @@ public class AcmSolver extends Solver {
                 dpxx = grid.getDxxP(i, j, in);
                 dpyy = grid.getDyyP(i, j, in);
 
-                node.setMedicine( dpxx + dpyy + 2.0 * (vx * uy - ux * vy) );
+                node.setMedicine(dpxx + dpyy + 2.0 * (vx * uy - ux * vy));
             }
         }
     }
 
-     void calc_turbvisc(int in) {
-        double dux, duy, dvx, dvy,S;
+    void calc_turbvisc(int in) {
+        double dux, duy, dvx, dvy, S;
 
         for (int i = 0; i < grid.nx; i++) {
             for (int j = 0; j < grid.ny; j++) {
 
                 AcmGridNode node = grid.get(i, j);
 
-                AcmGridNode nodeN = grid.get(i,Math.min(j+1,grid.ny));
-                AcmGridNode nodeS = grid.get(i,Math.max(j-1,0));
-                AcmGridNode nodeE = grid.get(Math.min(i+1,grid.nx), j);
-                AcmGridNode nodeW = grid.get(Math.max(i-1,0), j);
+                AcmGridNode nodeN = grid.get(i, Math.min(j + 1, grid.ny));
+                AcmGridNode nodeS = grid.get(i, Math.max(j - 1, 0));
+                AcmGridNode nodeE = grid.get(Math.min(i + 1, grid.nx), j);
+                AcmGridNode nodeW = grid.get(Math.max(i - 1, 0), j);
 
                 dux = grid.getDxU(i, j, in);
                 dvx = grid.getDxV(i, j, in);
                 duy = grid.getDyU(i, j, in);
                 dvy = grid.getDyV(i, j, in);
 
-               S=grid.dx*grid.dx*0.18*0.18*Math.sqrt(dux*dux+(dvx+duy)*(dvx+duy)*2.0*0.5*0.5+dvy*dvy);
+                S = grid.dx * grid.dx * 0.18 * 0.18 * Math.sqrt(dux * dux + (dvx + duy) * (dvx + duy) * 2.0 * 0.5 * 0.5 + dvy * dvy);
 
                 node.setturbvisc(S);
             }
         }
     }
-
 
 
 }

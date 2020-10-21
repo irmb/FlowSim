@@ -1,25 +1,18 @@
 package irmb.flowsim.view.swing;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.model.util.CoordinateTransformerImpl;
 import irmb.flowsim.presentation.CommandStack;
 import irmb.flowsim.presentation.SimulationGraphicViewPresenter;
-import irmb.flowsim.presentation.factory.MouseStrategyFactory;
-import irmb.flowsim.presentation.factory.MouseStrategyFactoryImpl;
-import irmb.flowsim.presentation.factory.PaintableShapeBuilderFactory;
-import irmb.flowsim.presentation.factory.PaintableShapeBuilderFactoryImpl;
-import irmb.flowsim.presentation.factory.PaintableShapeFactoryImpl;
-import irmb.flowsim.presentation.factory.ShapeFactoryImpl;
+import irmb.flowsim.presentation.factory.*;
 import irmb.flowsim.simulation.SimulationFactory;
 import irmb.flowsim.simulation.SimulationFactoryImpl;
 import irmb.flowsim.view.graphics.PaintableShape;
+
+import javax.swing.*;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Sven on 15.12.2016.

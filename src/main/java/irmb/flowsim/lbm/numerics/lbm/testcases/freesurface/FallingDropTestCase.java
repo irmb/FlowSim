@@ -58,7 +58,6 @@ public class FallingDropTestCase extends TestCase {
         }
 
 
-
         // Boundary conditions
         for (int x = 0; x < grid.nx; x++) {
             grid.type[x] = GridNodeType.BOUNDARY;

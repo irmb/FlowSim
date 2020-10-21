@@ -1,10 +1,10 @@
 package irmb.flowsim.simulation.jflowsim.adapters;
 
-import irmb.flowsim.model.Point;
-import irmb.flowsim.simulation.UniformGrid;
 import irmb.flowsim.lbm.numerics.lbm.navierstokes.LBMNavierStokesGrid;
 import irmb.flowsim.lbm.numerics.utilities.GridNodeType;
 import irmb.flowsim.lbm.numerics.utilities.Scalar;
+import irmb.flowsim.model.Point;
+import irmb.flowsim.simulation.UniformGrid;
 
 /**
  * Created by sven on 09.03.17.

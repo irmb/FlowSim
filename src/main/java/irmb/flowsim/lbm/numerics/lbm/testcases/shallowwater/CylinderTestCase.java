@@ -21,7 +21,7 @@ public class CylinderTestCase extends TestCase {
         double flux = 0.248 / 2.0;
         double initialVelo = flux / h0;
 
-        double targetMacVelo = 10*initialVelo;
+        double targetMacVelo = 10 * initialVelo;
 
         double targetTimeStep = grid.dx / targetMacVelo;
 
@@ -30,7 +30,7 @@ public class CylinderTestCase extends TestCase {
         // use Reynolds number to determine flow viscosity
         double Re = 10;
 
-        double nue = initialVelo*2*radius / Re;
+        double nue = initialVelo * 2 * radius / Re;
 
         grid.setGravity(0.0, 0.0 /* m/s^2 */);
         grid.setViscosity(nue /* m^2/s */);
@@ -43,8 +43,8 @@ public class CylinderTestCase extends TestCase {
 
         // Output the parameters and check the stability range
         System.out.println("V_scale = " + grid.dv);
-        System.out.println("Re (real) = " + initialVelo*2*radius/nue);
-        System.out.println("Re (LBM)  = " + initialVeloLB*(2*radius/grid.dx)/grid.nue_lbm);
+        System.out.println("Re (real) = " + initialVelo * 2 * radius / nue);
+        System.out.println("Re (LBM)  = " + initialVeloLB * (2 * radius / grid.dx) / grid.nue_lbm);
 
         this.initCircle(grid, 2.0, 2.0, radius);
 
@@ -58,7 +58,7 @@ public class CylinderTestCase extends TestCase {
         System.out.println("Celerity = " + grid.gravity * h0 / (grid.dv * grid.dv));
         System.out.println("Nue real = " + grid.dv * grid.dv * grid.dt * grid.nue_lbm);
         System.out.println("initialVelo = " + initialVeloLB);
-        
+
         // INFLOW BOUNDARY
         //grid.addBC(new LBMHeightSWBC(grid, BoundaryCondition.WEST, h0));
         grid.addBC(new LBMGeneralSWBC(grid, BoundaryCondition.WEST, h0 * initialVeloLB * grid.dv, false));
@@ -72,7 +72,7 @@ public class CylinderTestCase extends TestCase {
         //NORTH and SOUTH
         grid.addBC(new LBMBounceForwardBC(grid, BoundaryCondition.NORTH));
         grid.addBC(new LBMBounceForwardBC(grid, BoundaryCondition.SOUTH));
-        
+
 
         //grid.periodicX = true;
         //grid.periodicY = true;
@@ -80,7 +80,7 @@ public class CylinderTestCase extends TestCase {
         // Initial conditions
         for (int i = 0; i < grid.nx; i++) {
             for (int j = 0; j < grid.ny; j++) {
-                grid.init(i,j,h0,initialVelo,0.0);
+                grid.init(i, j, h0, initialVelo, 0.0);
             }
         }
 

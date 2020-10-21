@@ -1,8 +1,6 @@
 package irmb.flowsim.presentation.strategy;
 
 
-import java.util.List;
-
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.MouseButton;
@@ -11,6 +9,8 @@ import irmb.flowsim.presentation.command.PanWindowCommand;
 import irmb.flowsim.presentation.command.ZoomCommand;
 import irmb.flowsim.util.ObservableImpl;
 import irmb.flowsim.view.graphics.PaintableShape;
+
+import java.util.List;
 
 /**
  * Created by Sven on 05.01.2017.

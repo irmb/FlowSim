@@ -1,6 +1,5 @@
 package irmb.flowsim.lbm.numerics.lbm.temperature;
 
-import java.util.concurrent.CyclicBarrier;
 import irmb.flowsim.lbm.numerics.Solver;
 import irmb.flowsim.lbm.numerics.UniformGrid;
 import irmb.flowsim.lbm.numerics.lbm.LBMSolver;
@@ -8,6 +7,8 @@ import irmb.flowsim.lbm.numerics.lbm.LBMSolverThread;
 import irmb.flowsim.lbm.numerics.lbm.LBMUniformGrid;
 import irmb.flowsim.lbm.numerics.lbm.LbEQ;
 import irmb.flowsim.lbm.numerics.utilities.GridNodeType;
+
+import java.util.concurrent.CyclicBarrier;
 
 public class LBMTemperatureSolver extends LBMSolver {
 

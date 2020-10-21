@@ -30,7 +30,7 @@ public class CouetteFlowTestCase extends TestCase {
         // Initial conditions
         for (int i = 0; i < grid.nx; i++) {
             for (int j = 0; j < grid.ny; j++) {
-                grid.init(i,j,1./3.,0.0,0.0);
+                grid.init(i, j, 1. / 3., 0.0, 0.0);
             }
         }
 

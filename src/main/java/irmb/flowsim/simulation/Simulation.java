@@ -1,11 +1,11 @@
 package irmb.flowsim.simulation;
 
-import java.util.List;
-
 import irmb.flowsim.simulation.visualization.GridNodeStyle;
 import irmb.flowsim.util.ObservableImpl;
 import irmb.flowsim.view.graphics.Paintable;
 import irmb.flowsim.view.graphics.PaintableShape;
+
+import java.util.List;
 
 /**
  * Created by sven on 03.03.17.

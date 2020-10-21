@@ -1,8 +1,8 @@
 package irmb.flowsim.view.swing;
 
-import javax.swing.Timer;
-
 import irmb.flowsim.view.RepaintScheduler;
+
+import javax.swing.*;
 
 /**
  * Created by sven on 22.04.17.

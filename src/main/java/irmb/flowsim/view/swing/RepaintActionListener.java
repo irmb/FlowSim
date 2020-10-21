@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 /**
  * Created by sven on 22.04.17.
  */
-public class RepaintActionListener implements ActionListener{
+public class RepaintActionListener implements ActionListener {
 
     private Runnable runnable;
     private boolean shouldUpdate;
@@ -17,7 +17,7 @@ public class RepaintActionListener implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(shouldUpdate) {
+        if (shouldUpdate) {
             runnable.run();
             shouldUpdate = false;
         }
