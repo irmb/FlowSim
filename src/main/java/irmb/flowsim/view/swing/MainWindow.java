@@ -26,6 +26,7 @@ import irmb.flowsim.simulation.visualization.PlotStyle;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 /**
  * Created by Sven on 15.12.2016.
@@ -182,18 +183,19 @@ public class MainWindow extends JFrame {
 
         for (String shape : shapes) {
             JButton button = new JButton();
-//            button.setIcon(new ImageIcon(getClass().getResource("/" + shape + ".gif")));
+            System.out.println(shape);
+            button.setIcon(getImageIcon(shape));
             button.setText(shape);
             ActionListener listener = e -> presenter.beginPaint(shape);
             button.addActionListener(listener);
             mainToolBar.add(button);
 
-//            ImageIcon buttonIcon = (ImageIcon) button.getIcon();
-//            buttonIcon = new ImageIcon(buttonIcon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
-//            button.setIcon(buttonIcon);
+            ImageIcon buttonIcon = (ImageIcon) button.getIcon();
+            buttonIcon = new ImageIcon(buttonIcon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH));
+            button.setIcon(buttonIcon);
 
             JMenuItem item = new JMenuItem(shape);
-//            item.setIcon(buttonIcon);
+            item.setIcon(buttonIcon);
             item.addActionListener(listener);
             shapesMenu.add(item);
         }
@@ -228,6 +230,13 @@ public class MainWindow extends JFrame {
         clearButton.setIcon(new ImageIcon(getClass().getResource("/edit-clear.png")));
         clearButton.setText("Clear");
         mainToolBar.add(clearButton);
+    }
+
+    private ImageIcon getImageIcon(String shape) {
+        Class<? extends MainWindow> clazz = getClass();
+        URL resource = clazz.getResource("/" + shape + ".gif");
+        if (resource == null) resource = clazz.getResource("/" + shape + ".png");
+        return new ImageIcon(resource);
     }
 
     /**
