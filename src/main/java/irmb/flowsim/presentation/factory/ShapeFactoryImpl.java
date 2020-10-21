@@ -8,23 +8,15 @@ import irmb.flowsim.model.*;
 public class ShapeFactoryImpl implements ShapeFactory {
     @Override
     public Shape makeShape(String type) {
-        switch (type) {
-            case "Line":
-                return new Line();
-            case "Circle":
-                return new Circle();
-            case "Triangle":
-                return new Triangle();
-            case "Rectangle":
-                return new Rectangle();
-            case "PolyLine":
-                return new PolyLine();
-            case "Bezier":
-                return new BezierCurve();
-            case "Spline":
-                return new Spline();
-            default:
-                return null;
-        }
+        return switch (type) {
+            case "Line" -> new Line();
+            case "Circle" -> new Circle();
+            case "Triangle" -> new Triangle();
+            case "Rectangle" -> new Rectangle();
+            case "PolyLine" -> new PolyLine();
+            case "Bezier" -> new BezierCurve();
+            case "Spline" -> new Spline();
+            default -> null;
+        };
     }
 }

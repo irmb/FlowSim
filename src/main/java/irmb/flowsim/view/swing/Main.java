@@ -4,6 +4,7 @@ import irmb.flowsim.model.Point;
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.model.util.CoordinateTransformerImpl;
 import irmb.flowsim.presentation.CommandStack;
+import irmb.flowsim.presentation.CommandStackImpl;
 import irmb.flowsim.presentation.SimulationGraphicViewPresenter;
 import irmb.flowsim.presentation.factory.*;
 import irmb.flowsim.simulation.SimulationFactory;
@@ -22,7 +23,7 @@ public class Main {
         setLookAndFeel();
         ShapeFactoryImpl paintableFactory = new ShapeFactoryImpl();
         PaintableShapeBuilderFactory builderFactory = new PaintableShapeBuilderFactoryImpl(paintableFactory, new PaintableShapeFactoryImpl());
-        CommandStack commandStack = new CommandStack();
+        CommandStack commandStack = new CommandStackImpl();
         List<PaintableShape> shapeList = new LinkedList<>();
         CoordinateTransformer transformer = new CoordinateTransformerImpl();
 

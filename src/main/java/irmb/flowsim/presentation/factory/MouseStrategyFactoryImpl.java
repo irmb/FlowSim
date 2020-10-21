@@ -36,29 +36,6 @@ public class MouseStrategyFactoryImpl implements MouseStrategyFactory {
         return makeMoveMouseStrategy();
     }
 
-    public MouseStrategy makeStrategy(String type) {
-        switch (type) {
-            case "Line":
-                return makeBuildObjectMouseStrategy(type);
-            case "Circle":
-                return makeBuildObjectMouseStrategy(type);
-            case "Triangle":
-                return makeBuildObjectMouseStrategy(type);
-            case "Rectangle":
-                return makeBuildObjectMouseStrategy(type);
-            case "PolyLine":
-                return makeBuildObjectMouseStrategy(type);
-            case "Bezier":
-                return makeBuildObjectMouseStrategy(type);
-            case "Spline":
-                return makeBuildObjectMouseStrategy(type);
-            case "Move":
-                return makeMoveMouseStrategy();
-            default:
-                return makeMoveMouseStrategy();
-        }
-    }
-
     private MouseStrategy makeMoveMouseStrategy() {
         MoveMouseStrategy moveMouseStrategy = new MoveMouseStrategy(shapeList, transformer);
         moveMouseStrategy.setToleranceRadius(toleranceRadius);

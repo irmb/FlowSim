@@ -18,7 +18,7 @@ public class GraphicViewPresenter {
 
     protected GraphicView graphicView;
 
-    private MouseStrategyFactory factory;
+    private final MouseStrategyFactory factory;
     protected MouseStrategy strategy;
 
     protected List<PaintableShape> shapeList;

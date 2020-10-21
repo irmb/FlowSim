@@ -143,7 +143,6 @@ public class MainWindow extends JFrame {
 
         for (String shape : shapes) {
             JButton button = new JButton();
-            System.out.println(shape);
             button.setIcon(getImageIcon(shape));
             button.setText(shape);
             ActionListener listener = e -> presenter.beginPaint(shape);
