@@ -9,6 +9,7 @@ import irmb.flowsim.view.graphics.Paintable;
 import irmb.flowsim.view.graphics.PaintableShape;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -108,8 +109,8 @@ public class GraphicViewPresenter {
         });
     }
 
-    public List<Paintable> getPaintableList() {
-        return new ArrayList<>(shapeList);
+    public Iterator<? extends Paintable> getPaintableList() {
+        return shapeList.iterator();
     }
 
 }

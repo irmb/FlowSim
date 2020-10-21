@@ -3,9 +3,7 @@ package irmb.flowsim.model.util;
 import Jama.Matrix;
 import irmb.flowsim.model.Point;
 
-/**
- * Created by Sven on 10.01.2017.
- */
+/** Created by Sven on 10.01.2017. */
 public class CoordinateTransformerImpl implements CoordinateTransformer {
 
     protected Point worldTopLeft;
@@ -27,55 +25,65 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
     @Override
     public Point transformToPointOnScreen(Point point) {
         makeTransformationMatrix();
-
-        Matrix pointMatrix = new Matrix(1, 3);
-        pointMatrix.set(0, 0, point.getX());
-        pointMatrix.set(0, 1, point.getY());
-        pointMatrix.set(0, 2, 1);
-
-        pointMatrix = pointMatrix.times(transformationMatrix);
+        var pointMatrix = makePointMatrix(point).times(transformationMatrix);
 
         double x = pointMatrix.get(0, 0);
         double y = pointMatrix.get(0, 1);
         return new Point(x, y);
     }
 
+    private Matrix makePointMatrix(Point point) {
+        Matrix pointMatrix = new Matrix(1, 3);
+        pointMatrix.set(0, 0, point.getX());
+        pointMatrix.set(0, 1, point.getY());
+        pointMatrix.set(0, 2, 1);
+        return pointMatrix;
+    }
+
     private double getScaleFactor() {
-        double Vx = getDelta(viewTopLeft.getX(), viewBottomRight.getX()) / getDelta(worldTopLeft.getX(), worldBottomRight.getX());
-        double Vy = getDelta(viewTopLeft.getY(), viewBottomRight.getY()) / getDelta(worldTopLeft.getY(), worldBottomRight.getY());
+        double viewDx = getDelta(viewTopLeft.getX(), viewBottomRight.getX());
+        double worldDx = getDelta(worldTopLeft.getX(), worldBottomRight.getX());
+        double Vx = viewDx / worldDx;
+
+        double viewDy = getDelta(viewTopLeft.getY(), viewBottomRight.getY());
+        double worldDy = getDelta(worldTopLeft.getY(), worldBottomRight.getY());
+        double Vy = viewDy / worldDy;
         return Math.min(Vx, Vy);
     }
 
     private void makeTransformationMatrix() {
-        if (needsUpdate) {
-            calculateMiddleValues();
-            double s = getScaleFactor();
-            double tx = viewMidX - worldMidX;
-            double ty = viewMidY - worldMidY;
+        if (!needsUpdate) return;
+        calculateMiddleValues();
+        double s = getScaleFactor();
+        double tx = viewMidX - worldMidX;
+        double ty = viewMidY - worldMidY;
 
-            transformationMatrix = makeTranslation(-worldMidX, -worldMidY);
-            transformationMatrix = transformationMatrix.times(makeScaling(s));
-            transformationMatrix = transformationMatrix.times(makeTranslation(worldMidX, worldMidY));
-            transformationMatrix = transformationMatrix.times(makeTranslation(tx, ty));
-            inverse = transformationMatrix.inverse();
-            needsUpdate = false;
-        }
+        transformationMatrix =
+                makeTranslation(-worldMidX, -worldMidY)
+                        .times(makeScaling(s))
+                        .times(makeTranslation(worldMidX, worldMidY))
+                        .times(makeTranslation(tx, ty));
+
+        inverse = transformationMatrix.inverse();
+        needsUpdate = false;
     }
 
     private Matrix makeScaling(double s) {
-        return new Matrix(new double[][]{
-                {s, 0, 0},
-                {0, -s, 0},
-                {0, 0, 1},
-        });
+        return new Matrix(
+                new double[][] {
+                    {s, 0, 0},
+                    {0, -s, 0},
+                    {0, 0, 1},
+                });
     }
 
     private Matrix makeTranslation(double tx, double ty) {
-        return new Matrix(new double[][]{
-                {1, 0, 0},
-                {0, 1, 0},
-                {tx, ty, 1}
-        });
+        return new Matrix(
+                new double[][] {
+                    {1, 0, 0},
+                    {0, 1, 0},
+                    {tx, ty, 1}
+                });
     }
 
     private double getDelta(double min, double max) {
@@ -90,13 +98,7 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
     public Point transformToWorldPoint(Point point) {
         makeTransformationMatrix();
 
-        Matrix pointMatrix = new Matrix(1, 3);
-        pointMatrix.set(0, 0, point.getX());
-        pointMatrix.set(0, 1, point.getY());
-        pointMatrix.set(0, 2, 1);
-
-
-        pointMatrix = pointMatrix.times(inverse);
+        var pointMatrix = makePointMatrix(point).times(inverse);
 
         double x = pointMatrix.get(0, 0);
         double y = pointMatrix.get(0, 1);
@@ -157,5 +159,4 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
         worldBottomRight.setY(worldBottomRight.getY() * zoom + deltaY);
         this.needsUpdate = true;
     }
-
 }

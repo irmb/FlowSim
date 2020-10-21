@@ -1,6 +1,5 @@
 package irmb.flowsim.presentation;
 
-import irmb.flowsim.presentation.CommandStack;
 import irmb.flowsim.presentation.command.Command;
 import irmb.flowsim.util.ObservableImpl;
 

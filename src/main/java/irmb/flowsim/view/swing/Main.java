@@ -35,7 +35,7 @@ public class Main {
         SimulationFactory simulationFactory = new SimulationFactoryImpl();
 
 
-        SimulationGraphicViewPresenter presenter = new SimulationGraphicViewPresenter(mouseStrategyFactory, commandStack, shapeList, transformer, simulationFactory);
+        SimulationGraphicViewPresenter presenter = new SimulationGraphicViewPresenter(mouseStrategyFactory, commandStack, shapeList, simulationFactory);
         window.setPresenter(presenter);
         presenter.setGraphicView(window.getGraphicView());
         window.setVisible(true);

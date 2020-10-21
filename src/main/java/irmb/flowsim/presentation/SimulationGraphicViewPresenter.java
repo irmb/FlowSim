@@ -1,6 +1,5 @@
 package irmb.flowsim.presentation;
 
-import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.factory.MouseStrategyFactory;
 import irmb.flowsim.presentation.strategy.StrategyState;
 import irmb.flowsim.simulation.Simulation;
@@ -12,41 +11,40 @@ import irmb.flowsim.view.graphics.Paintable;
 import irmb.flowsim.view.graphics.PaintableShape;
 
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-/**
- * Created by sven on 03.03.17.
- */
+/** Created by sven on 03.03.17. */
 public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
 
     private final SimulationFactory simulationFactory;
     private WeakReference<Simulation> simulationWeakReference;
-    private GridNodeStyleFactory gridNodeStyleFactory = new GridNodeStyleFactory();
-    private Map<PlotStyle, GridNodeStyle> plotStyleMap = new HashMap<>();
+    private final GridNodeStyleFactory gridNodeStyleFactory = new GridNodeStyleFactory();
+    private final Map<PlotStyle, GridNodeStyle> plotStyleMap = new HashMap<>();
 
     private ArrayList<Paintable> paintables = new ArrayList<>();
     private boolean needsUpdate;
     private boolean running;
 
-    public SimulationGraphicViewPresenter(MouseStrategyFactory strategyFactory, CommandStack commandStack, List<PaintableShape> shapeList, CoordinateTransformer transformer, SimulationFactory simulationFactory) {
+    public SimulationGraphicViewPresenter(
+            MouseStrategyFactory strategyFactory,
+            CommandStack commandStack,
+            List<PaintableShape> shapeList,
+            SimulationFactory simulationFactory) {
         super(strategyFactory, commandStack, shapeList);
         this.simulationFactory = simulationFactory;
     }
 
     protected void attachObserverToCommandStack() {
-        commandStack.addObserver(args -> {
-            updateGraphicViewAndSimulation();
-        });
+        commandStack.addObserver(
+                args -> {
+                    updateGraphicViewAndSimulation();
+                });
     }
 
     private void updateGraphicViewAndSimulation() {
         needsUpdate = true;
         graphicView.update();
-        if (hasSimulation())
-            simulationWeakReference.get().setShapes(shapeList);
+        if (hasSimulation()) simulationWeakReference.get().setShapes(shapeList);
     }
 
     private boolean hasSimulation() {
@@ -54,13 +52,12 @@ public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
     }
 
     protected void addStrategyObserver() {
-        strategy.addObserver((arg) -> {
-            if (arg.getState() == StrategyState.FINISHED)
-                makeMoveStrategy();
-            if (arg.getCommand() != null)
-                commandStack.add(arg.getCommand());
-            updateGraphicViewAndSimulation();
-        });
+        strategy.addObserver(
+                (arg) -> {
+                    if (arg.getState() == StrategyState.FINISHED) makeMoveStrategy();
+                    if (arg.getCommand() != null) commandStack.add(arg.getCommand());
+                    updateGraphicViewAndSimulation();
+                });
     }
 
     public void addSimulation() {
@@ -70,19 +67,17 @@ public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
         simulation.addObserver(args -> graphicView.update());
         simulation.setShapes(shapeList);
         running = false;
-        for (GridNodeStyle style : plotStyleMap.values())
-            simulation.addPlotStyle(style);
+        for (GridNodeStyle style : plotStyleMap.values()) simulation.addPlotStyle(style);
         graphicView.update();
     }
 
     @Override
-    public List<Paintable> getPaintableList() {
-        if (needsUpdate) {
-            paintables = new ArrayList<>(shapeList);
-            if (hasSimulation())
-                paintables.add(0, simulationWeakReference.get());
-        }
-        return paintables;
+    public Iterator<? extends Paintable> getPaintableList() {
+        if (!needsUpdate) return paintables.iterator();
+        paintables = new ArrayList<>(shapeList);
+        if (hasSimulation()) paintables.add(0, simulationWeakReference.get());
+
+        return paintables.iterator();
     }
 
     public void runSimulation() {
@@ -101,15 +96,12 @@ public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
 
     public void clearAll() {
         super.clearAll();
-        if (hasSimulation())
-            simulationWeakReference.get().setShapes(shapeList);
+        if (hasSimulation()) simulationWeakReference.get().setShapes(shapeList);
     }
 
     public void togglePlotStyle(PlotStyle plotStyle) {
-        if (!isPlotStyleActive(plotStyle))
-            addPlotStyle(plotStyle);
-        else
-            removePlotStyle(plotStyle);
+        if (!isPlotStyleActive(plotStyle)) addPlotStyle(plotStyle);
+        else removePlotStyle(plotStyle);
     }
 
     private boolean isPlotStyleActive(PlotStyle plotStyle) {
