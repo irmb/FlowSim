@@ -8,12 +8,10 @@ public class Triangle implements TwoPointShape {
     private double width;
     private double height;
 
-    @Override
     public void setFirst(Point point) {
         this.center = point;
     }
 
-    @Override
     public void setSecond(Point point) {
         this.width = Math.abs(this.center.getX() - point.getX());
         this.height = Math.abs(this.center.getY() - point.getY());

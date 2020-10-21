@@ -1,18 +1,19 @@
 package irmb.flowsim.presentation.factory;
 
+import irmb.flowsim.model.MultiPointShape;
+import irmb.flowsim.model.TwoPointShape;
 import irmb.flowsim.presentation.builder.MultiPointShapeBuilder;
-import irmb.flowsim.presentation.builder.PaintableLineBuilder;
-import irmb.flowsim.presentation.builder.PaintableRectangleBuilder;
 import irmb.flowsim.presentation.builder.PaintableShapeBuilder;
+import irmb.flowsim.presentation.builder.TwoPointShapeBuilder;
 
 /**
  * Created by Sven on 14.12.2016.
  */
 public class PaintableShapeBuilderFactoryImpl implements PaintableShapeBuilderFactory {
-    private MultiPointShapeFactory factory;
+    private ShapeFactory factory;
     private PaintableShapeFactory paintableShapeFactory;
 
-    public PaintableShapeBuilderFactoryImpl(MultiPointShapeFactory factory, PaintableShapeFactory paintableShapeFactory) {
+    public PaintableShapeBuilderFactoryImpl(ShapeFactory factory, PaintableShapeFactory paintableShapeFactory) {
         this.factory = factory;
         this.paintableShapeFactory = paintableShapeFactory;
     }
@@ -21,13 +22,14 @@ public class PaintableShapeBuilderFactoryImpl implements PaintableShapeBuilderFa
     public PaintableShapeBuilder makeShapeBuilder(String type) {
         switch (type) {
             case "Line":
-                return new PaintableLineBuilder();
+            case "Circle":
+            case "Triangle":
             case "Rectangle":
-                return new PaintableRectangleBuilder();
+                return new TwoPointShapeBuilder((TwoPointShape) factory.makeShape(type), paintableShapeFactory);
             case "PolyLine":
-                return new MultiPointShapeBuilder(factory.makeShape(type), paintableShapeFactory);
             case "Bezier":
-                return new MultiPointShapeBuilder(factory.makeShape(type), paintableShapeFactory);
+            case "Spline":
+                return new MultiPointShapeBuilder((MultiPointShape) factory.makeShape(type), paintableShapeFactory);
             default:
                 return null;
         }
@@ -35,6 +37,6 @@ public class PaintableShapeBuilderFactoryImpl implements PaintableShapeBuilderFa
 
     @Override
     public String[] getShapeChoices() {
-        return new String[] {"Line", "Rectangle", "PolyLine", "Bezier"};
+        return new String[]{"Line", "Circle", "Triangle", "Rectangle", "PolyLine", "Bezier", "Spline"};
     }
 }

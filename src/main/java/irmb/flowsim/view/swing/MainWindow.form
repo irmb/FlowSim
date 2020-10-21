@@ -35,59 +35,10 @@
             </clientProperties>
             <border type="none"/>
             <children>
-              <component id="936c" class="javax.swing.JButton" binding="lineButton" default-binding="true">
-                <constraints/>
-                <properties>
-                  <icon value="irmb/flowsim/view/resources/Line2D.gif"/>
-                  <text value="Line"/>
-                </properties>
-              </component>
-              <component id="f97fd" class="javax.swing.JButton" binding="circleButton">
-                <constraints/>
-                <properties>
-                  <icon value="irmb/flowsim/view/resources/Circle2D.gif"/>
-                  <text value="Circle"/>
-                </properties>
-              </component>
-              <component id="d82e4" class="javax.swing.JButton" binding="rectangleButton" default-binding="true">
-                <constraints/>
-                <properties>
-                  <icon value="irmb/flowsim/view/resources/Rectangle2D.gif"/>
-                  <text value="Rectangle"/>
-                </properties>
-              </component>
-              <component id="53711" class="javax.swing.JButton" binding="triangleButton" default-binding="true">
-                <constraints/>
-                <properties>
-                  <icon value="irmb/flowsim/view/resources/Triangle2D.gif"/>
-                  <text value="Triangle"/>
-                </properties>
-              </component>
-              <component id="89690" class="javax.swing.JButton" binding="polyLineButton" default-binding="true">
-                <constraints/>
-                <properties>
-                  <icon value="irmb/flowsim/view/resources/Polyline2D.gif"/>
-                  <text value="PolyLine"/>
-                </properties>
-              </component>
-              <component id="fc06d" class="javax.swing.JButton" binding="bezierButton">
-                <constraints/>
-                <properties>
-                  <icon value="irmb/flowsim/view/resources/Bezier2D.gif"/>
-                  <text value="Bezier Curve"/>
-                </properties>
-              </component>
-              <component id="29651" class="javax.swing.JButton" binding="splineButton">
-                <constraints/>
-                <properties>
-                  <icon value="irmb/flowsim/view/resources/Spline2D.png"/>
-                  <text value="Spline"/>
-                </properties>
-              </component>
               <component id="de267" class="javax.swing.JButton" binding="addSimulationButton">
                 <constraints/>
                 <properties>
-                  <icon value="irmb/flowsim/view/resources/add-simulation.png"/>
+                  <icon value="add-simulation.png"/>
                   <text value="Add Simulation"/>
                 </properties>
               </component>
@@ -100,42 +51,42 @@
               <component id="4d7a5" class="javax.swing.JButton" binding="runSimulationButton" default-binding="true">
                 <constraints/>
                 <properties>
-                  <icon value="irmb/flowsim/view/resources/continue.png"/>
+                  <icon value="continue.png"/>
                   <text value="Run Simulation"/>
                 </properties>
               </component>
               <component id="43f45" class="javax.swing.JButton" binding="pauseSimulationButton" default-binding="true">
                 <constraints/>
                 <properties>
-                  <icon value="irmb/flowsim/view/resources/pause.png"/>
+                  <icon value="pause.png"/>
                   <text value="Pause Simulation"/>
                 </properties>
               </component>
               <component id="f52d0" class="javax.swing.JButton" binding="removeSimulationButton" default-binding="true">
                 <constraints/>
                 <properties>
-                  <icon value="irmb/flowsim/view/resources/remove-simulation.png"/>
+                  <icon value="remove-simulation.png"/>
                   <text value="Remove Simulation"/>
                 </properties>
               </component>
               <component id="beabd" class="javax.swing.JButton" binding="undoButton">
                 <constraints/>
                 <properties>
-                  <icon value="irmb/flowsim/view/resources/edit-undo.png"/>
+                  <icon value="edit-undo.png"/>
                   <text value="Undo"/>
                 </properties>
               </component>
               <component id="909e3" class="javax.swing.JButton" binding="redoButton">
                 <constraints/>
                 <properties>
-                  <icon value="irmb/flowsim/view/resources/edit-redo.png"/>
+                  <icon value="edit-redo.png"/>
                   <text value="Redo"/>
                 </properties>
               </component>
               <component id="8e975" class="javax.swing.JButton" binding="clearButton">
                 <constraints/>
                 <properties>
-                  <icon value="irmb/flowsim/view/resources/edit-clear.png"/>
+                  <icon value="edit-clear.png"/>
                   <text value="Clear"/>
                 </properties>
               </component>

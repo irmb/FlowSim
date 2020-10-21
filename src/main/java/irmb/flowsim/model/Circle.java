@@ -15,13 +15,11 @@ public class Circle implements TwoPointShape {
         this.center = center;
     }
 
-    @Override
     public void setFirst(Point point) {
         this.center.setX(point.getX());
         this.center.setY(point.getY());
     }
 
-    @Override
     public void setSecond(Point point) {
         this.radius = Math.sqrt(Math.pow(center.getX() - point.getX(), 2) + Math.pow(center.getY() - point.getY(), 2));
     }
