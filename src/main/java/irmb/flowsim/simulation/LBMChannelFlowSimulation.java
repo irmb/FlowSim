@@ -1,7 +1,5 @@
 package irmb.flowsim.simulation;
 
-import irmb.flowsim.model.Point;
-import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.Painter;
 import irmb.flowsim.simulation.visualization.GridNodeStyle;
 import irmb.flowsim.util.Observer;
@@ -18,12 +16,9 @@ import java.util.List;
 public class LBMChannelFlowSimulation extends Simulation implements Observer<String> {
     private final UniformGrid grid;
     private final LBMSolver solver;
-    private double min;
-    private double max;
     private GridMapper gridMapper;
-    private boolean firstRun = true;
 
-    private List<GridNodeStyle> styleList = new ArrayList<>();
+    private final List<GridNodeStyle> styleList = new ArrayList<>();
 
     public LBMChannelFlowSimulation(UniformGrid grid, LBMSolver solver) {
         this.grid = grid;
@@ -32,17 +27,14 @@ public class LBMChannelFlowSimulation extends Simulation implements Observer<Str
     }
 
     @Override
-    public void paint(Painter painter, CoordinateTransformer transformer) {
-        paintSurroundingRectangle(painter, transformer);
+    public void paint(Painter painter) {
+        paintSurroundingRectangle(painter);
         for (GridNodeStyle style : styleList)
-            style.paintGridNode(painter, transformer);
+            style.paintGridNode(painter);
     }
 
-    private void paintSurroundingRectangle(Painter painter, CoordinateTransformer transformer) {
-        Point topLeft = transformer.transformToPointOnScreen(grid.getTopLeft());
-        double width = transformer.scaleToScreenLength(grid.getWidth());
-        double height = transformer.scaleToScreenLength(grid.getHeight());
-        painter.paintRectangle(topLeft.getX(), topLeft.getY(), width, height);
+    private void paintSurroundingRectangle(Painter painter) {
+        painter.paintRectangle(grid.getTopLeft(), grid.getWidth(), grid.getHeight());
 
     }
 

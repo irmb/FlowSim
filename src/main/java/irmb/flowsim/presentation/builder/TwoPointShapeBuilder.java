@@ -12,13 +12,11 @@ public class TwoPointShapeBuilder extends PaintableShapeBuilder {
 
 
     private final TwoPointShape shape;
-    private final PaintableShapeFactory paintableShapeFactory;
     private int pointsAdded;
-    private PaintableShape paintableShape;
+    private final PaintableShape paintableShape;
 
     public TwoPointShapeBuilder(TwoPointShape shape, PaintableShapeFactory paintableShapeFactory) {
         this.shape = shape;
-        this.paintableShapeFactory = paintableShapeFactory;
         paintableShape = paintableShapeFactory.makePaintableShape(shape);
     }
 

@@ -17,13 +17,13 @@ public class ArrowGridNodeStyle extends GridNodeStyle {
     private double currentMin;
     private double currentMax;
 
-    public ArrowGridNodeStyle(int offset) {
-        super(1);
+    public ArrowGridNodeStyle(int offset, CoordinateTransformer transformer) {
+        super(1, transformer);
         this.offset = offset;
     }
 
     @Override
-    public void paintGridNode(Painter painter, CoordinateTransformer transformer) {
+    public void paintGridNode(Painter painter) {
         painter.setColor(Color.BLACK);
         double viewDelta, viewX, viewY;
         viewDelta = transformer.scaleToScreenLength(grid.getDelta());

@@ -10,19 +10,19 @@ import irmb.flowsim.presentation.factory.ColorFactory;
  */
 public class ColorGridNodeStyle extends GridNodeStyle {
 
-    private ColorFactory colorFactory;
+    private final ColorFactory colorFactory;
     private boolean firstRun = true;
     private double min;
     private double max;
 
 
-    public ColorGridNodeStyle(ColorFactory colorFactory) {
-        super(0);
+    public ColorGridNodeStyle(ColorFactory colorFactory, CoordinateTransformer transformer) {
+        super(0, transformer);
         this.colorFactory = colorFactory;
     }
 
     @Override
-    public void paintGridNode(Painter painter, CoordinateTransformer transformer) {
+    public void paintGridNode(Painter painter) {
         double viewDelta, viewX, viewY;
         viewDelta = transformer.scaleToScreenLength(grid.getDelta());
         Point topLeft = transformer.transformToPointOnScreen(grid.getTopLeft());

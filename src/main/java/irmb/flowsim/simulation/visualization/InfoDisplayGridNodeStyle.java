@@ -6,27 +6,24 @@ import irmb.flowsim.presentation.Painter;
 
 import java.text.DecimalFormat;
 
-/**
- * Created by sven on 15.04.17.
- */
+/** Created by sven on 15.04.17. */
 public class InfoDisplayGridNodeStyle extends GridNodeStyle {
 
-    private static int horizontalMargin = 10;
-    private static int verticalMargin = 20;
-    private static DecimalFormat exponentialFormat = new DecimalFormat("0.00E0");
-    private static DecimalFormat secondsFormat = new DecimalFormat("0.0000");
+    private static final DecimalFormat exponentialFormat = new DecimalFormat("0.00E0");
+    private static final DecimalFormat secondsFormat = new DecimalFormat("0.0000");
     private int tempFps;
     private long lastTime;
     private int fps;
 
-    protected InfoDisplayGridNodeStyle() {
-        super(2);
+    protected InfoDisplayGridNodeStyle(CoordinateTransformer transformer) {
+        super(2, transformer);
     }
 
     @Override
-    public void paintGridNode(Painter painter, CoordinateTransformer transformer) {
+    public void paintGridNode(Painter painter) {
         painter.setColor(Color.BLACK);
-        int verticalPosition = verticalMargin;
+        int verticalPosition = 20;
+        int horizontalMargin = 10;
         painter.paintString(gridName(), horizontalMargin, verticalPosition);
         verticalPosition += 20;
         painter.paintString(width(), horizontalMargin, verticalPosition);
@@ -64,11 +61,19 @@ public class InfoDisplayGridNodeStyle extends GridNodeStyle {
     }
 
     private String gravity() {
-        return "Gravity: " + grid.getHorizontalGravity() + " " + grid.getVerticalGravity() + " [m/s^2]" + newLine();
+        return "Gravity: "
+                + grid.getHorizontalGravity()
+                + " "
+                + grid.getVerticalGravity()
+                + " [m/s^2]"
+                + newLine();
     }
 
     private String viscosity() {
-        return "Viscosity: " + exponentialFormat.format(grid.getViscosity()) + " [m^2/s]" + newLine();
+        return "Viscosity: "
+                + exponentialFormat.format(grid.getViscosity())
+                + " [m^2/s]"
+                + newLine();
     }
 
     private String MNUPS() {
@@ -87,7 +92,8 @@ public class InfoDisplayGridNodeStyle extends GridNodeStyle {
                 + " | "
                 + grid.getHorizontalNodes() * grid.getVerticalNodes()
                 + " | delta:"
-                + grid.getDelta() + newLine();
+                + grid.getDelta()
+                + newLine();
     }
 
     private String height() {
@@ -105,6 +111,4 @@ public class InfoDisplayGridNodeStyle extends GridNodeStyle {
     private static String newLine() {
         return "\n";
     }
-
-
 }

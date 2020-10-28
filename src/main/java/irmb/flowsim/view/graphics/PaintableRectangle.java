@@ -3,7 +3,6 @@ package irmb.flowsim.view.graphics;
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.Rectangle;
 import irmb.flowsim.model.Shape;
-import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.Color;
 import irmb.flowsim.presentation.Painter;
 
@@ -16,7 +15,7 @@ public class PaintableRectangle extends PaintableShape {
     private double minX;
     private double maxY;
     private double minY;
-    private Rectangle rectangle;
+    private final Rectangle rectangle;
 
 
     public PaintableRectangle(Rectangle rectangle) {
@@ -24,23 +23,18 @@ public class PaintableRectangle extends PaintableShape {
     }
 
     @Override
-    public void paint(Painter painter, CoordinateTransformer transformer) {
+    public void paint(Painter painter) {
         painter.setColor(Color.BLACK);
         Point first = rectangle.getFirst();
         Point second = rectangle.getSecond();
 
-        minX = first.getX() < second.getX() ? first.getX() : second.getX();
-        maxY = first.getY() > second.getY() ? first.getY() : second.getY();
+        minX = Math.min(first.getX(), second.getX());
+        maxY = Math.max(first.getY(), second.getY());
 
         double width = Math.abs(first.getX() - second.getX());
         double height = Math.abs(first.getY() - second.getY());
 
-        Point topLeftView = transformer.transformToPointOnScreen(new Point(minX, maxY));
-
-        int widthView = (int) Math.round(transformer.scaleToScreenLength(width));
-        int heightView = (int) Math.round(transformer.scaleToScreenLength(height));
-
-        painter.paintRectangle((int) Math.round(topLeftView.getX()), (int) Math.round(topLeftView.getY()), widthView, heightView);
+        painter.paintRectangle(new Point(minX, maxY), width, height);
     }
 
     @Override

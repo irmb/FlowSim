@@ -18,7 +18,7 @@ public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
 
     private final SimulationFactory simulationFactory;
     private WeakReference<Simulation> simulationWeakReference;
-    private final GridNodeStyleFactory gridNodeStyleFactory = new GridNodeStyleFactory();
+    private final GridNodeStyleFactory gridNodeStyleFactory;
     private final Map<PlotStyle, GridNodeStyle> plotStyleMap = new HashMap<>();
 
     private ArrayList<Paintable> paintables = new ArrayList<>();
@@ -29,9 +29,11 @@ public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
             MouseStrategyFactory strategyFactory,
             CommandStack commandStack,
             List<PaintableShape> shapeList,
-            SimulationFactory simulationFactory) {
+            SimulationFactory simulationFactory,
+            GridNodeStyleFactory gridNodeStyleFactory) {
         super(strategyFactory, commandStack, shapeList);
         this.simulationFactory = simulationFactory;
+        this.gridNodeStyleFactory = gridNodeStyleFactory;
     }
 
     protected void attachObserverToCommandStack() {

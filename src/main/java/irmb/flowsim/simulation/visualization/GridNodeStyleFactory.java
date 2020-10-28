@@ -1,19 +1,26 @@
 package irmb.flowsim.simulation.visualization;
 
+import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.factory.ColorFactoryImpl;
 
 /**
  * Created by sven on 24.03.17.
  */
 public class GridNodeStyleFactory {
+    private final CoordinateTransformer transformer;
+
+    public GridNodeStyleFactory(CoordinateTransformer transformer) {
+        this.transformer = transformer;
+    }
+
     public GridNodeStyle makeGridNodeStyle(PlotStyle style) {
         switch (style) {
             case Color:
-                return new ColorGridNodeStyle(new ColorFactoryImpl());
+                return new ColorGridNodeStyle(new ColorFactoryImpl(), transformer);
             case Arrow:
-                return new ArrowGridNodeStyle(5);
+                return new ArrowGridNodeStyle(5, transformer);
             case Info:
-                return new InfoDisplayGridNodeStyle();
+                return new InfoDisplayGridNodeStyle(transformer);
             default:
                 return null;
         }

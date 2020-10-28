@@ -3,7 +3,6 @@ package irmb.flowsim.view.graphics;
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.Shape;
 import irmb.flowsim.model.Spline;
-import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.Painter;
 
 public class PaintableSpline extends PaintableShape {
@@ -30,7 +29,7 @@ public class PaintableSpline extends PaintableShape {
     }
 
     @Override
-    public void paint(Painter painter, CoordinateTransformer transformer) {
+    public void paint(Painter painter) {
 
     }
 }

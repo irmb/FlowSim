@@ -23,8 +23,8 @@ public class SwingGraphicView extends JPanel
         addMouseListener(this);
         addMouseMotionListener(this);
         addMouseWheelListener(this);
-        painter = new SwingPainter();
-        Runnable runnable = () -> repaint();
+        painter = new SwingPainter(transformer);
+        Runnable runnable = this::repaint;
         repaintScheduler = new SwingRepaintScheduler(runnable);
         repaintScheduler.setDelay(16);
         repaintScheduler.start();
@@ -45,7 +45,7 @@ public class SwingGraphicView extends JPanel
             painter.setGraphics(g);
             presenter
                     .getPaintableList()
-                    .forEachRemaining(paintable -> paintable.paint(painter, transformer));
+                    .forEachRemaining(paintable -> paintable.paint(painter));
         }
     }
 

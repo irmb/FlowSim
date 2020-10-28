@@ -3,7 +3,6 @@ package irmb.flowsim.view.graphics;
 import irmb.flowsim.model.Line;
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.Shape;
-import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.Color;
 import irmb.flowsim.presentation.Painter;
 
@@ -12,18 +11,18 @@ import irmb.flowsim.presentation.Painter;
  */
 public class PaintableLine extends PaintableShape {
 
-    private Line line;
+    private final Line line;
 
     public PaintableLine(Line line) {
         this.line = line;
     }
 
     @Override
-    public void paint(Painter painter, CoordinateTransformer transformer) {
+    public void paint(Painter painter) {
         painter.setColor(Color.BLACK);
-        Point start = transformer.transformToPointOnScreen(line.getFirst());
-        Point end = transformer.transformToPointOnScreen(line.getSecond());
-        painter.paintLine(Math.round(start.getX()), Math.round(start.getY()), Math.round(end.getX()), Math.round(end.getY()));
+        painter.paintLine(line.getFirst(), line.getSecond());
+        painter.paintPoint(line.getFirst());
+        painter.paintPoint(line.getSecond());
     }
 
     @Override

@@ -3,7 +3,6 @@ package irmb.flowsim.view.graphics;
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.Shape;
 import irmb.flowsim.model.Triangle;
-import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.Color;
 import irmb.flowsim.presentation.Painter;
 
@@ -11,7 +10,7 @@ import java.util.LinkedList;
 
 public class PaintableTriangle extends PaintableShape {
 
-    private Triangle triangle;
+    private final Triangle triangle;
 
     public PaintableTriangle(Triangle triangle) {
         this.triangle = triangle;
@@ -38,9 +37,15 @@ public class PaintableTriangle extends PaintableShape {
     }
 
     @Override
-    public void paint(Painter painter, CoordinateTransformer transformer) {
+    public void paint(Painter painter) {
+        var points = triangle.getPoints();
+        if (points.size() < 2) return;
         painter.setColor(Color.BLACK);
-        Point center = transformer.transformToPointOnScreen(this.triangle.getCenter());
-        painter.paintTriangle(center.getX(), center.getY(), transformer.scaleToScreenLength(this.triangle.getWidth()), transformer.scaleToScreenLength(this.triangle.getHeight()));
+
+        painter.paintLine(points.get(0), points.get(1));
+        if (points.size() < 3) return;
+
+        painter.paintLine(points.get(1), points.get(2));
+        painter.paintLine(points.get(0), points.get(2));
     }
 }

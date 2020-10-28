@@ -1,61 +1,64 @@
 package irmb.flowsim.view.swing;
 
 import irmb.flowsim.model.Point;
-import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.model.util.CoordinateTransformerImpl;
-import irmb.flowsim.presentation.CommandStack;
 import irmb.flowsim.presentation.CommandStackImpl;
 import irmb.flowsim.presentation.SimulationGraphicViewPresenter;
-import irmb.flowsim.presentation.factory.*;
-import irmb.flowsim.simulation.SimulationFactory;
+import irmb.flowsim.presentation.factory.MouseStrategyFactoryImpl;
+import irmb.flowsim.presentation.factory.PaintableShapeBuilderFactoryImpl;
+import irmb.flowsim.presentation.factory.PaintableShapeFactoryImpl;
+import irmb.flowsim.presentation.factory.ShapeFactoryImpl;
 import irmb.flowsim.simulation.SimulationFactoryImpl;
+import irmb.flowsim.simulation.visualization.GridNodeStyleFactory;
 import irmb.flowsim.view.graphics.PaintableShape;
 
 import javax.swing.*;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Sven on 15.12.2016.
- */
+/** Created by Sven on 15.12.2016. */
 public class Main {
     public static void main(String[] args) {
         setLookAndFeel();
-        ShapeFactoryImpl paintableFactory = new ShapeFactoryImpl();
-        PaintableShapeBuilderFactory builderFactory = new PaintableShapeBuilderFactoryImpl(paintableFactory, new PaintableShapeFactoryImpl());
-        CommandStack commandStack = new CommandStackImpl();
         List<PaintableShape> shapeList = new LinkedList<>();
-        CoordinateTransformer transformer = new CoordinateTransformerImpl();
-
+        var commandStack = new CommandStackImpl();
+        var transformer = new CoordinateTransformerImpl();
         transformer.setWorldBounds(new Point(0, 0.5), new Point(1, 0));
         transformer.setViewBounds(new Point(0, 0), new Point(800, 600));
 
-        MainWindow window = new MainWindow(transformer, builderFactory.getShapeChoices());
-        MouseStrategyFactory mouseStrategyFactory = new MouseStrategyFactoryImpl(shapeList, builderFactory, transformer);
-        SimulationFactory simulationFactory = new SimulationFactoryImpl();
+        var paintableFactory = new ShapeFactoryImpl();
+        var paintableShapeFactory = new PaintableShapeFactoryImpl(transformer);
+        var builderFactory =
+                new PaintableShapeBuilderFactoryImpl(paintableFactory, paintableShapeFactory);
 
 
-        SimulationGraphicViewPresenter presenter = new SimulationGraphicViewPresenter(mouseStrategyFactory, commandStack, shapeList, simulationFactory);
+        var window = new MainWindow(transformer, builderFactory.getShapeChoices());
+        var mouseStrategyFactory =
+                new MouseStrategyFactoryImpl(shapeList, builderFactory, transformer);
+        var simulationFactory = new SimulationFactoryImpl();
+
+        var gridNodeStyleFactory = new GridNodeStyleFactory(transformer);
+        var presenter =
+                new SimulationGraphicViewPresenter(
+                        mouseStrategyFactory,
+                        commandStack,
+                        shapeList,
+                        simulationFactory,
+                        gridNodeStyleFactory);
+
         window.setPresenter(presenter);
         presenter.setGraphicView(window.getGraphicView());
         window.setVisible(true);
     }
 
     private static void setLookAndFeel() {
-        System.setProperty("apple.laf.useScreenMenuBar", "true");
         try {
-//            System.setProperty("apple.laf.useScreenMenuBar", "true");
-//            System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Test");
-            UIManager.setLookAndFeel(
-                    UIManager.getSystemLookAndFeelClassName());
-        } catch (UnsupportedLookAndFeelException e) {
-            // handle exception
-        } catch (ClassNotFoundException e) {
-            // handle exception
-        } catch (InstantiationException e) {
-            // handle exception
-        } catch (IllegalAccessException e) {
-            // handle exception
+
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException
+                | ClassNotFoundException
+                | InstantiationException
+                | IllegalAccessException ignored) {
         }
     }
 }

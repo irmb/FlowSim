@@ -9,22 +9,22 @@ import irmb.flowsim.presentation.Painter;
 
 import java.util.List;
 
-/**
- * Created by sven on 19.03.17.
- */
+/** Created by sven on 19.03.17. */
 public class PaintableBezierCurve extends PaintableShape {
-    private BezierCurve bezierCurve;
+    private final BezierCurve bezierCurve;
+    private CoordinateTransformer transformer;
     private Point first;
     private Point second;
 
-    public PaintableBezierCurve(BezierCurve bezierCurve) {
+    public PaintableBezierCurve(BezierCurve bezierCurve, CoordinateTransformer transformer) {
         this.bezierCurve = bezierCurve;
+        this.transformer = transformer;
     }
 
     @Override
-    public void paint(Painter painter, CoordinateTransformer transformer) {
+    public void paint(Painter painter) {
         painter.setColor(Color.BLACK);
-        recursivePaint(painter, transformer, bezierCurve.getPointList());
+        recursivePaint(painter, bezierCurve.getPointList());
 
         for (Point point : bezierCurve.getPointList()) {
             Point viewPoint = transformer.transformToPointOnScreen(point);
@@ -32,28 +32,26 @@ public class PaintableBezierCurve extends PaintableShape {
         }
     }
 
-    private void recursivePaint(Painter painter, CoordinateTransformer transformer, List<Point> pointList) {
+    private void recursivePaint(Painter painter, List<Point> pointList) {
         Point first = pointList.get(0);
         Point last = pointList.get(pointList.size() - 1);
-        Point viewFirst = transformer.transformToPointOnScreen(first);
-        Point viewLast = transformer.transformToPointOnScreen(last);
-        if (getDistance(viewFirst, viewLast) <= 5) {
-            painter.paintLine(viewFirst.getX(), viewFirst.getY(), viewLast.getX(), viewLast.getY());
-        } else {
-            List<Point> left, right;
-            List<Point> casteljauSublist = bezierCurve.calculateCasteljau(pointList, 0.5);
-            left = casteljauSublist.subList(0, casteljauSublist.size() / 2 + 1);
-            right = casteljauSublist.subList(casteljauSublist.size() / 2, casteljauSublist.size());
-            recursivePaint(painter, transformer, left);
-            recursivePaint(painter, transformer, right);
+        var screenDistance = transformer.scaleToScreenLength(getDistance(first, last));
+        if (screenDistance <= 5) {
+            painter.paintLine(first, last);
+            return;
         }
-    }
 
+        List<Point> left, right;
+        List<Point> casteljauSublist = bezierCurve.calculateCasteljau(pointList, 0.5);
+        left = casteljauSublist.subList(0, casteljauSublist.size() / 2 + 1);
+        right = casteljauSublist.subList(casteljauSublist.size() / 2, casteljauSublist.size());
+        recursivePaint(painter, left);
+        recursivePaint(painter, right);
+    }
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
-        if (getDefinedPoint(point, radius) != null)
-            return true;
+        if (getDefinedPoint(point, radius) != null) return true;
         int numPoints = 100;
         for (int i = 0; i < numPoints - 1; i++) {
             double t1, t2;
@@ -63,8 +61,7 @@ public class PaintableBezierCurve extends PaintableShape {
             second = bezierCurve.calculatePointWithBernstein(t2);
             if (isInXBounds(point)) {
                 double distanceToLine = getDistanceToLine(first, second, point);
-                if (distanceToLine <= radius)
-                    return true;
+                if (distanceToLine <= radius) return true;
             }
         }
         return false;
@@ -85,8 +82,7 @@ public class PaintableBezierCurve extends PaintableShape {
     public Point getDefinedPoint(Point point, double radius) {
         List<Point> pointList = bezierCurve.getPointList();
         for (Point p : pointList) {
-            if (getDistance(p, point) <= radius)
-                return p;
+            if (getDistance(p, point) <= radius) return p;
         }
         return null;
     }
