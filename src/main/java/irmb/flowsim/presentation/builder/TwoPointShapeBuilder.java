@@ -62,4 +62,9 @@ public class TwoPointShapeBuilder extends PaintableShapeBuilder {
     public boolean isObjectPaintable() {
         return pointsAdded >= 2;
     }
+
+    @Override
+    public boolean isInfinite() {
+        return false;
+    }
 }

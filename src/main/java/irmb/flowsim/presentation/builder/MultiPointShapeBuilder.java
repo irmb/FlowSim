@@ -51,4 +51,9 @@ public class MultiPointShapeBuilder extends PaintableShapeBuilder {
     public boolean isObjectPaintable() {
         return shape.getPointList().size() >= 2;
     }
+
+    @Override
+    public boolean isInfinite() {
+        return true;
+    }
 }

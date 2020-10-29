@@ -8,7 +8,6 @@ import irmb.flowsim.presentation.strategy.StrategyState;
 import irmb.flowsim.view.graphics.Paintable;
 import irmb.flowsim.view.graphics.PaintableShape;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 

@@ -3,7 +3,6 @@ package irmb.flowsim.simulation;
 import irmb.flowsim.model.*;
 import irmb.flowsim.view.graphics.PaintableShape;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -41,7 +40,7 @@ public class GridMapper implements ShapeVisitor {
 
     @Override
     public void visit(Triangle triangle) {
-        LinkedList<Point> points = triangle.getPoints();
+        List<Point> points = triangle.getPointsAsList();
         Point first = points.get(0);
         Point secondAdjusted = new Point(first.getX() - Math.abs(first.getX() - points.get(1).getX()), first.getY() - Math.abs(first.getY() - points.get(1).getY()));
         Point thirdAdjusted = new Point(first.getX() + Math.abs(first.getX() - points.get(2).getX()), first.getY() - Math.abs(first.getY() - points.get(2).getY()));

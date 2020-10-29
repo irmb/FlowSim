@@ -1,46 +1,51 @@
 package irmb.flowsim.model;
 
 import java.util.LinkedList;
+import java.util.List;
 
-public class Triangle implements TwoPointShape {
+public class Triangle implements Shape {
 
-    private Point center;
-    private double width;
-    private double height;
+    private Point firstPoint;
+    private Point secondPoint;
+    private Point thirdPoint;
 
-    public void setFirst(Point point) {
-        this.center = point;
+    public Point getFirstPoint() {
+        return firstPoint;
     }
 
-    public void setSecond(Point point) {
-        this.width = Math.abs(this.center.getX() - point.getX());
-        this.height = Math.abs(this.center.getY() - point.getY());
+    public void setFirstPoint(Point firstPoint) {
+        this.firstPoint = firstPoint;
     }
 
-    public Point getCenter() {
-        return this.center;
+    public Point getSecondPoint() {
+        return secondPoint;
     }
 
-    public double getWidth() {
-        return width;
+    public void setSecondPoint(Point secondPoint) {
+        this.secondPoint = secondPoint;
     }
 
-    public double getHeight() {
-        return height;
+    public Point getThirdPoint() {
+        return thirdPoint;
     }
 
-    public LinkedList<Point> getPoints() {
-        LinkedList<Point> points = new LinkedList<>();
-        points.add(new Point(center.getX(), center.getY()));
-        points.add(new Point(center.getX() - width, center.getY() + height));
-        points.add(new Point(center.getX() + width, center.getY() + height));
+    public void setThirdPoint(Point thirdPoint) {
+        this.thirdPoint = thirdPoint;
+    }
+
+    public List<Point> getPointsAsList() {
+        List<Point> points = new LinkedList<>();
+        if (firstPoint != null) points.add(firstPoint);
+        if (secondPoint != null) points.add(secondPoint);
+        if (thirdPoint != null) points.add(thirdPoint);
         return points;
     }
 
     @Override
     public void moveBy(double dx, double dy) {
-        this.center.setX(this.center.getX() + dx);
-        this.center.setY(this.center.getY() + dy);
+        firstPoint.moveBy(dx, dy);
+        secondPoint.moveBy(dx, dy);
+        thirdPoint.moveBy(dx, dy);
     }
 
     @Override

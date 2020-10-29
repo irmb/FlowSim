@@ -4,6 +4,7 @@ import irmb.flowsim.model.MultiPointShape;
 import irmb.flowsim.model.TwoPointShape;
 import irmb.flowsim.presentation.builder.MultiPointShapeBuilder;
 import irmb.flowsim.presentation.builder.PaintableShapeBuilder;
+import irmb.flowsim.presentation.builder.PaintableTriangleBuilder;
 import irmb.flowsim.presentation.builder.TwoPointShapeBuilder;
 
 /**
@@ -20,19 +21,12 @@ public class PaintableShapeBuilderFactoryImpl implements PaintableShapeBuilderFa
 
     @Override
     public PaintableShapeBuilder makeShapeBuilder(String type) {
-        switch (type) {
-            case "Line":
-            case "Circle":
-            case "Triangle":
-            case "Rectangle":
-                return new TwoPointShapeBuilder((TwoPointShape) factory.makeShape(type), paintableShapeFactory);
-            case "PolyLine":
-            case "Bezier":
-            case "Spline":
-                return new MultiPointShapeBuilder((MultiPointShape) factory.makeShape(type), paintableShapeFactory);
-            default:
-                return null;
-        }
+        return switch (type) {
+            case "Line", "Circle", "Rectangle" -> new TwoPointShapeBuilder((TwoPointShape) factory.makeShape(type), paintableShapeFactory);
+            case "PolyLine", "Bezier", "Spline" -> new MultiPointShapeBuilder((MultiPointShape) factory.makeShape(type), paintableShapeFactory);
+            case "Triangle" -> new PaintableTriangleBuilder();
+            default -> null;
+        };
     }
 
     @Override

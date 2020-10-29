@@ -6,7 +6,7 @@ import irmb.flowsim.model.Triangle;
 import irmb.flowsim.presentation.Color;
 import irmb.flowsim.presentation.Painter;
 
-import java.util.LinkedList;
+import java.util.List;
 
 public class PaintableTriangle extends PaintableShape {
 
@@ -18,7 +18,7 @@ public class PaintableTriangle extends PaintableShape {
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
-        LinkedList<Point> points = this.triangle.getPoints();
+        List<Point> points = this.triangle.getPointsAsList();
         double distance1 = getDistanceToLine(points.get(0), points.get(1), point);
         double distance2 = getDistanceToLine(points.get(1), points.get(2), point);
         double distance3 = getDistanceToLine(points.get(2), points.get(0), point);
@@ -33,12 +33,15 @@ public class PaintableTriangle extends PaintableShape {
 
     @Override
     public Point getDefinedPoint(Point point, double radius) {
+        for (var trianglePoint : triangle.getPointsAsList())
+            if (trianglePoint.distanceTo(point) <= radius) return trianglePoint;
+
         return null;
     }
 
     @Override
     public void paint(Painter painter) {
-        var points = triangle.getPoints();
+        var points = triangle.getPointsAsList();
         if (points.size() < 2) return;
         painter.setColor(Color.BLACK);
 
