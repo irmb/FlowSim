@@ -35,7 +35,25 @@ public class GridMapper implements ShapeVisitor {
 
     @Override
     public void visit(Circle circle) {
-
+        System.out.println();
+        Point center = circle.getCenter();
+        double radius = circle.getRadius();
+        double minX = center.getX() - radius;
+        double maxX = center.getX() + radius;
+        double maxY = center.getY() + radius;
+        double minY = center.getY() - radius;
+        LinkedList<Point> points = new LinkedList<>();
+        double y = center.getY();
+        int steps = 20;
+        double stepSize = (maxX - minX) / steps;
+        points.add(new Point(minX, center.getY())); //first point
+        for (double i = minX; i <= maxX; i += stepSize) {
+            double distance = Math.abs(i - center.getX());
+            double multiplier = distance / radius;
+            System.out.printf("Radius: %f, CenterX: %f, distance: %f, multiplied: %f \n", radius, center.getX(), Math.abs(i - center.getX()), multiplier);
+            points.add(new Point(i, maxY - (radius * multiplier))); //next point
+        }
+        //mapPolyLineToGrid(points);
     }
 
     @Override
