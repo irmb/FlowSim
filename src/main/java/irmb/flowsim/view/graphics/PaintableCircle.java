@@ -15,22 +15,13 @@ public class PaintableCircle extends PaintableShape {
     }
 
     public void paint(Painter painter) {
-        var center = circle.getCenter();
-        var radius = circle.getRadius();
-        painter.setColor(Color.BLACK);
-        painter.paintCircle(center, radius);
+        //TODO
     }
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
-        var min_distance = circle.getRadius() - radius;
-        var max_distance = circle.getRadius() + radius;
-        var center = circle.getCenter();
-        var dx = center.getX() - point.getX();
-        var dy = center.getY() - point.getY();
-        var distance = Math.sqrt(dx * dx + dy * dy);
-
-        return (distance >= min_distance && distance <= max_distance);
+        //TODO
+        return false;
     }
 
     @Override

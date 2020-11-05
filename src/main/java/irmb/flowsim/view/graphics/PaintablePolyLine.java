@@ -19,25 +19,12 @@ public class PaintablePolyLine extends PaintableShape {
 
     @Override
     public void paint(Painter painter) {
-        painter.setColor(Color.BLACK);
-        List<Point> pointList = polyLine.getPointList();
-        for (int i = 0; i < pointList.size() - 1; i++)
-            painter.paintLine(pointList.get(i), pointList.get(i + 1));
+        //TODO
     }
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
-        List<Point> pointList = polyLine.getPointList();
-        for (int i = 0; i < pointList.size() - 1; i++) {
-            Point first = pointList.get(i);
-            Point second = pointList.get(i + 1);
-            double minX = Math.min(first.getX(), second.getX());
-            double maxX = Math.max(first.getX(), second.getX());
-            if (point.getX() >= minX - radius && point.getX() <= maxX + radius) {
-                double distanceToLine = getDistanceToLine(first, second, point);
-                if (distanceToLine <= radius) return true;
-            }
-        }
+        //TODO
         return false;
     }
 

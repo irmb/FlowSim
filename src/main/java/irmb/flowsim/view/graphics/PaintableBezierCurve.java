@@ -23,47 +23,16 @@ public class PaintableBezierCurve extends PaintableShape {
 
     @Override
     public void paint(Painter painter) {
-        painter.setColor(Color.BLACK);
-        recursivePaint(painter, bezierCurve.getPointList());
-
-        for (Point point : bezierCurve.getPointList()) {
-            Point viewPoint = transformer.transformToPointOnScreen(point);
-            painter.paintPoint(viewPoint.getX(), viewPoint.getY());
-        }
+        //TODO
     }
 
     private void recursivePaint(Painter painter, List<Point> pointList) {
-        Point first = pointList.get(0);
-        Point last = pointList.get(pointList.size() - 1);
-        var screenDistance = transformer.scaleToScreenLength(getDistance(first, last));
-        if (screenDistance <= 5) {
-            painter.paintLine(first, last);
-            return;
-        }
-
-        List<Point> left, right;
-        List<Point> casteljauSublist = bezierCurve.calculateCasteljau(pointList, 0.5);
-        left = casteljauSublist.subList(0, casteljauSublist.size() / 2 + 1);
-        right = casteljauSublist.subList(casteljauSublist.size() / 2, casteljauSublist.size());
-        recursivePaint(painter, left);
-        recursivePaint(painter, right);
+        //TODO
     }
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
-        if (getDefinedPoint(point, radius) != null) return true;
-        int numPoints = 100;
-        for (int i = 0; i < numPoints - 1; i++) {
-            double t1, t2;
-            t1 = i / (double) (numPoints - 1);
-            t2 = (i + 1) / (double) (numPoints - 1);
-            first = bezierCurve.calculatePointWithBernstein(t1);
-            second = bezierCurve.calculatePointWithBernstein(t2);
-            if (isInXBounds(point)) {
-                double distanceToLine = getDistanceToLine(first, second, point);
-                if (distanceToLine <= radius) return true;
-            }
-        }
+        //TODO
         return false;
     }
 

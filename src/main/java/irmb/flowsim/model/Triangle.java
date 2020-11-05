@@ -10,27 +10,30 @@ public class Triangle implements Shape {
     private Point thirdPoint;
 
     public Point getFirstPoint() {
-        return firstPoint;
+        //TODO
+        return new Point(0,0);
     }
 
     public void setFirstPoint(Point firstPoint) {
-        this.firstPoint = firstPoint;
+        //TODO
     }
 
     public Point getSecondPoint() {
-        return secondPoint;
+        //TODO
+        return new Point(0,0);
     }
 
     public void setSecondPoint(Point secondPoint) {
-        this.secondPoint = secondPoint;
+        //TODO
     }
 
     public Point getThirdPoint() {
-        return thirdPoint;
+        //TODO
+        return new Point(0,0);
     }
 
     public void setThirdPoint(Point thirdPoint) {
-        this.thirdPoint = thirdPoint;
+        //TODO
     }
 
     public List<Point> getPointsAsList() {
@@ -43,9 +46,7 @@ public class Triangle implements Shape {
 
     @Override
     public void moveBy(double dx, double dy) {
-        firstPoint.moveBy(dx, dy);
-        secondPoint.moveBy(dx, dy);
-        thirdPoint.moveBy(dx, dy);
+        //TODO
     }
 
     @Override

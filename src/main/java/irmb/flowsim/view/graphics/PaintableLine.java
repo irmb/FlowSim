@@ -19,18 +19,12 @@ public class PaintableLine extends PaintableShape {
 
     @Override
     public void paint(Painter painter) {
-        painter.setColor(Color.BLACK);
-        painter.paintLine(line.getFirst(), line.getSecond());
-        painter.paintPoint(line.getFirst());
-        painter.paintPoint(line.getSecond());
+        //TODO
     }
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
-        double maxX = Math.max(line.getFirst().getX(), line.getSecond().getX());
-        double minX = Math.min(line.getFirst().getX(), line.getSecond().getX());
-        if (point.getX() >= minX - radius && point.getX() <= maxX + radius)
-            return getDistanceToLine(line.getFirst(), line.getSecond(), point) <= radius;
+        //TODO
         return false;
     }
 

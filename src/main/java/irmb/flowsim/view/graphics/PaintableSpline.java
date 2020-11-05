@@ -15,6 +15,7 @@ public class PaintableSpline extends PaintableShape {
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
+        //TODO
         return false;
     }
 
@@ -30,6 +31,6 @@ public class PaintableSpline extends PaintableShape {
 
     @Override
     public void paint(Painter painter) {
-
+        //TODO
     }
 }

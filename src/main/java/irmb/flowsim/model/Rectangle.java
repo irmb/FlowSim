@@ -12,27 +12,26 @@ public class Rectangle implements TwoPointShape {
     }
 
     public void setFirst(Point first) {
-        this.first = first;
+        //TODO
     }
 
     public void setSecond(Point second) {
-        this.second = second;
+        //TODO
     }
 
     public Point getFirst() {
-        return first;
+        //TODO
+        return new Point(0,0);
     }
 
     public Point getSecond() {
-        return second;
+        //TODO
+        return new Point(0,0);
     }
 
     @Override
     public void moveBy(double dx, double dy) {
-        first.setX(first.getX() + dx);
-        first.setY(first.getY() + dy);
-        second.setX(second.getX() + dx);
-        second.setY(second.getY() + dy);
+        //TODO
     }
 
     @Override

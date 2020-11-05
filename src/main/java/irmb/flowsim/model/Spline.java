@@ -6,17 +6,17 @@ public class Spline implements MultiPointShape {
 
     @Override
     public void addPoint(Point point) {
-
+        //TODO
     }
 
     @Override
     public void setLastPoint(Point point) {
-
+        //TODO
     }
 
     @Override
     public void removeLastPoint() {
-
+        //TODO
     }
 
     @Override
@@ -26,7 +26,7 @@ public class Spline implements MultiPointShape {
 
     @Override
     public void moveBy(double dx, double dy) {
-
+        //TODO
     }
 
     @Override
