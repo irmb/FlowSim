@@ -12,26 +12,27 @@ public class Line implements TwoPointShape {
     }
 
     public void setFirst(Point first) {
-        //TODO
+        this.first = first;
     }
 
     public void setSecond(Point second) {
-        //TODO
+        this.second = second;
     }
 
     public Point getFirst() {
-        //TODO
-        return new Point(0,0);
+        return first;
     }
 
     public Point getSecond() {
-        //TODO
-        return new Point(0,0);
+        return second;
     }
 
     @Override
     public void moveBy(double dx, double dy) {
-        //TODO
+        first.setX(first.getX() + dx);
+        first.setY(first.getY() + dy);
+        second.setX(second.getX() + dx);
+        second.setY(second.getY() + dy);
     }
 
     @Override

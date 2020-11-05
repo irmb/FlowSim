@@ -19,17 +19,16 @@ public class RemovePaintableShapeCommand implements Command {
 
     @Override
     public void execute() {
-        shapeList.remove(paintableShape);
+        //TODO
     }
 
     @Override
     public void undo() {
-        if (!shapeList.contains(paintableShape))
-            shapeList.add(paintableShape);
+        //TODO
     }
 
     @Override
     public void redo() {
-        execute();
+        //TODO
     }
 }

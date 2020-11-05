@@ -24,12 +24,8 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
 
     @Override
     public Point transformToPointOnScreen(Point point) {
-        makeTransformationMatrix();
-        var pointMatrix = makePointMatrix(point).times(transformationMatrix);
-
-        double x = pointMatrix.get(0, 0);
-        double y = pointMatrix.get(0, 1);
-        return new Point(x, y);
+        //TODO
+        return new Point(0,0);
     }
 
     private Matrix makePointMatrix(Point point) {
@@ -41,48 +37,31 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
     }
 
     private double getScaleFactor() {
-        double viewDx = getDelta(viewTopLeft.getX(), viewBottomRight.getX());
-        double worldDx = getDelta(worldTopLeft.getX(), worldBottomRight.getX());
-        double Vx = viewDx / worldDx;
-
-        double viewDy = getDelta(viewTopLeft.getY(), viewBottomRight.getY());
-        double worldDy = getDelta(worldTopLeft.getY(), worldBottomRight.getY());
-        double Vy = viewDy / worldDy;
-        return Math.min(Vx, Vy);
+        //TODO
+        return 1.0;
     }
 
     private void makeTransformationMatrix() {
-        if (!needsUpdate) return;
-        calculateMiddleValues();
-        double s = getScaleFactor();
-        double tx = viewMidX - worldMidX;
-        double ty = viewMidY - worldMidY;
-
-        transformationMatrix =
-                makeTranslation(-worldMidX, -worldMidY)
-                        .times(makeScaling(s))
-                        .times(makeTranslation(worldMidX, worldMidY))
-                        .times(makeTranslation(tx, ty));
-
-        inverse = transformationMatrix.inverse();
-        needsUpdate = false;
+        //TODO
     }
 
     private Matrix makeScaling(double s) {
+        //TODO
         return new Matrix(
                 new double[][] {
-                    {s, 0, 0},
-                    {0, -s, 0},
-                    {0, 0, 1},
+                        {1, 0, 0},
+                        {0, 1, 0},
+                        {0, 0, 1},
                 });
     }
 
     private Matrix makeTranslation(double tx, double ty) {
+        //TODO
         return new Matrix(
                 new double[][] {
-                    {1, 0, 0},
-                    {0, 1, 0},
-                    {tx, ty, 1}
+                        {1, 0, 0},
+                        {0, 1, 0},
+                        {0, 0, 1}
                 });
     }
 
@@ -96,13 +75,8 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
 
     @Override
     public Point transformToWorldPoint(Point point) {
-        makeTransformationMatrix();
-
-        var pointMatrix = makePointMatrix(point).times(inverse);
-
-        double x = pointMatrix.get(0, 0);
-        double y = pointMatrix.get(0, 1);
-        return new Point(x, y);
+        //TODO
+        return new Point(0,0);
     }
 
     private void calculateMiddleValues() {
@@ -138,12 +112,14 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
 
     @Override
     public double scaleToScreenLength(double length) {
-        return getScaleFactor() * length;
+        //TODO
+        return 1.0;
     }
 
     @Override
     public double scaleToWorldLength(double length) {
-        return length / getScaleFactor();
+        //TODO
+        return 1.0;
     }
 
     @Override

@@ -11,23 +11,14 @@ public class CommandStackImpl extends ObservableImpl<String> implements CommandS
     private final Stack<Command> redoStack = new Stack<>();
 
     public void add(Command command) {
-        redoStack.clear();
-        undoStack.push(command);
+        //TODO
     }
 
     public void undo() {
-        if (undoStack.isEmpty()) return;
-        var command = undoStack.pop();
-        redoStack.push(command);
-        command.undo();
-        notifyObservers("undo");
+        //TODO
     }
 
     public void redo() {
-        if (redoStack.isEmpty()) return;
-        var command = redoStack.pop();
-        undoStack.push(command);
-        command.redo();
-        notifyObservers("redo");
+        //TODO
     }
 }

@@ -19,18 +19,16 @@ public class ClearAllCommand implements Command {
 
     @Override
     public void execute() {
-        backupList.clear();
-        shapeList.forEach(paintableShape -> backupList.add(paintableShape));
-        shapeList.clear();
+        //TODO
     }
 
     @Override
     public void undo() {
-        backupList.forEach(paintableShape -> shapeList.add(paintableShape));
+        //TODO
     }
 
     @Override
     public void redo() {
-        execute();
+        //TODO
     }
 }
