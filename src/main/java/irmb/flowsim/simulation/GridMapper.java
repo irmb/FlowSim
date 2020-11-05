@@ -58,13 +58,9 @@ public class GridMapper implements ShapeVisitor {
 
     @Override
     public void visit(Triangle triangle) {
-        List<Point> points = triangle.getPointsAsList();
-        Point first = points.get(0);
-        Point secondAdjusted = new Point(first.getX() - Math.abs(first.getX() - points.get(1).getX()), first.getY() - Math.abs(first.getY() - points.get(1).getY()));
-        Point thirdAdjusted = new Point(first.getX() + Math.abs(first.getX() - points.get(2).getX()), first.getY() - Math.abs(first.getY() - points.get(2).getY()));
-        mapLineSegment(first, secondAdjusted);
-        mapLineSegment(first, thirdAdjusted);
-        mapLineSegment(secondAdjusted, thirdAdjusted);
+        mapLineSegment(triangle.getFirstPoint(), triangle.getSecondPoint());
+        mapLineSegment(triangle.getSecondPoint(), triangle.getThirdPoint());
+        mapLineSegment(triangle.getThirdPoint(), triangle.getFirstPoint());
     }
 
     private void mapLineSegment(Point first, Point second) {
