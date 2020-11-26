@@ -22,15 +22,12 @@ public class PaintableShapeBuilderFactoryImpl implements PaintableShapeBuilderFa
     @Override
     public PaintableShapeBuilder makeShapeBuilder(String type) {
         return switch (type) {
-            case "Line", "Circle", "Rectangle" -> new TwoPointShapeBuilder((TwoPointShape) factory.makeShape(type), paintableShapeFactory);
-            case "PolyLine", "Bezier", "Spline" -> new MultiPointShapeBuilder((MultiPointShape) factory.makeShape(type), paintableShapeFactory);
-            case "Triangle" -> new PaintableTriangleBuilder();
             default -> null;
         };
     }
 
     @Override
     public String[] getShapeChoices() {
-        return new String[]{"Line", "Circle", "Triangle", "Rectangle", "PolyLine", "Bezier", "Spline"};
+        return new String[0];
     }
 }

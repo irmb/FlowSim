@@ -22,7 +22,7 @@ public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
     private final Map<PlotStyle, GridNodeStyle> plotStyleMap = new HashMap<>();
 
     private ArrayList<Paintable> paintables = new ArrayList<>();
-    private boolean needsUpdate;
+    private boolean needsUpdate = true;
     private boolean running;
 
     public SimulationGraphicViewPresenter(

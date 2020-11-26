@@ -1,5 +1,6 @@
 package irmb.flowsim.view.swing;
 
+import irmb.flowsim.model.Line;
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.util.CoordinateTransformerImpl;
 import irmb.flowsim.presentation.CommandStackImpl;
@@ -10,6 +11,7 @@ import irmb.flowsim.presentation.factory.PaintableShapeFactoryImpl;
 import irmb.flowsim.presentation.factory.ShapeFactoryImpl;
 import irmb.flowsim.simulation.SimulationFactoryImpl;
 import irmb.flowsim.simulation.visualization.GridNodeStyleFactory;
+import irmb.flowsim.view.graphics.PaintableLine;
 import irmb.flowsim.view.graphics.PaintableShape;
 
 import javax.swing.*;
@@ -21,6 +23,13 @@ public class Main {
     public static void main(String[] args) {
         setLookAndFeel();
         List<PaintableShape> shapeList = new LinkedList<>();
+        
+        // We're painting this line today
+        var line = new Line();
+        line.setFirst(new Point(0, 0));
+        line.setSecond(new Point(1, 0.5));
+        shapeList.add(new PaintableLine(line));
+
         var commandStack = new CommandStackImpl();
         var transformer = new CoordinateTransformerImpl();
         transformer.setWorldBounds(new Point(0, 0.5), new Point(1, 0));

@@ -19,17 +19,16 @@ public class AddPaintableShapeCommand implements Command {
 
     @Override
     public void execute() {
-        if (!paintableShapeList.contains(shape))
-            paintableShapeList.add(shape);
+        // TODO
     }
 
     @Override
     public void undo() {
-        paintableShapeList.remove(shape);
+        // TODO
     }
 
     @Override
     public void redo() {
-        execute();
+        // TODO
     }
 }

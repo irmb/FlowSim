@@ -20,26 +20,17 @@ public class PanWindowCommand implements Command {
 
     @Override
     public void execute() {
-        transformer.moveViewWindow(dx, dy);
-        totalDx += dx;
-        totalDy += dy;
-        calledExecute = true;
+        // TODO
     }
 
     @Override
     public void undo() {
-        if (calledExecute) {
-            transformer.moveViewWindow(-totalDx, -totalDy);
-            calledExecute = false;
-        }
+        // TODO
     }
 
     @Override
     public void redo() {
-        if (!calledExecute) {
-            transformer.moveViewWindow(totalDx, totalDy);
-            calledExecute = true;
-        }
+        // TODO
     }
 
     public void setDelta(double dx, double dy) {
