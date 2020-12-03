@@ -3,7 +3,9 @@ package irmb.flowsim.model.util;
 import Jama.Matrix;
 import irmb.flowsim.model.Point;
 
-/** Created by Sven on 10.01.2017. */
+/**
+ * Created by Sven on 10.01.2017.
+ */
 public class CoordinateTransformerImpl implements CoordinateTransformer {
 
     protected Point worldTopLeft;
@@ -24,45 +26,56 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
 
     @Override
     public Point transformToPointOnScreen(Point point) {
-        //TODO
-        return new Point(0,0);
-    }
+        makeTransformationMatrix();
 
-    private Matrix makePointMatrix(Point point) {
         Matrix pointMatrix = new Matrix(1, 3);
         pointMatrix.set(0, 0, point.getX());
         pointMatrix.set(0, 1, point.getY());
         pointMatrix.set(0, 2, 1);
-        return pointMatrix;
+        
+        pointMatrix = pointMatrix.times(transformationMatrix);
+
+        double x = pointMatrix.get(0, 0);
+        double y = pointMatrix.get(0, 1);
+        return new Point(x, y);
     }
 
     private double getScaleFactor() {
-        //TODO
-        return 1.0;
+        double Vx = getDelta(viewTopLeft.getX(), viewBottomRight.getX()) / getDelta(worldTopLeft.getX(), worldBottomRight.getX());
+        double Vy = getDelta(viewTopLeft.getY(), viewBottomRight.getY()) / getDelta(worldTopLeft.getY(), worldBottomRight.getY());
+        return Math.min(Vx, Vy);
     }
 
     private void makeTransformationMatrix() {
-        //TODO
+        if (needsUpdate) {
+            calculateMiddleValues();
+            double s = getScaleFactor();
+            double tx = viewMidX - worldMidX;
+            double ty = viewMidY - worldMidY;
+
+            transformationMatrix = makeTranslation(-worldMidX, -worldMidY);
+            transformationMatrix = transformationMatrix.times(makeScaling(s));
+            transformationMatrix = transformationMatrix.times(makeTranslation(worldMidX, worldMidY));
+            transformationMatrix = transformationMatrix.times(makeTranslation(tx, ty));
+            inverse = transformationMatrix.inverse();
+            needsUpdate = false;
+        }
     }
 
     private Matrix makeScaling(double s) {
-        //TODO
-        return new Matrix(
-                new double[][] {
-                        {1, 0, 0},
-                        {0, 1, 0},
-                        {0, 0, 1},
-                });
+        return new Matrix(new double[][]{
+                {s, 0, 0},
+                {0, -s, 0},
+                {0, 0, 1},
+        });
     }
 
     private Matrix makeTranslation(double tx, double ty) {
-        //TODO
-        return new Matrix(
-                new double[][] {
-                        {1, 0, 0},
-                        {0, 1, 0},
-                        {0, 0, 1}
-                });
+        return new Matrix(new double[][]{
+                {1, 0, 0},
+                {0, 1, 0},
+                {tx, ty, 1}
+        });
     }
 
     private double getDelta(double min, double max) {
@@ -75,8 +88,19 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
 
     @Override
     public Point transformToWorldPoint(Point point) {
-        //TODO
-        return new Point(0,0);
+        makeTransformationMatrix();
+
+        Matrix pointMatrix = new Matrix(1, 3);
+        pointMatrix.set(0, 0, point.getX());
+        pointMatrix.set(0, 1, point.getY());
+        pointMatrix.set(0, 2, 1);
+
+
+        pointMatrix = pointMatrix.times(inverse);
+
+        double x = pointMatrix.get(0, 0);
+        double y = pointMatrix.get(0, 1);
+        return new Point(x, y);
     }
 
     private void calculateMiddleValues() {
@@ -112,14 +136,12 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
 
     @Override
     public double scaleToScreenLength(double length) {
-        //TODO
-        return 1.0;
+        return getScaleFactor() * length;
     }
 
     @Override
     public double scaleToWorldLength(double length) {
-        //TODO
-        return 1.0;
+        return length / getScaleFactor();
     }
 
     @Override
@@ -135,4 +157,5 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
         worldBottomRight.setY(worldBottomRight.getY() * zoom + deltaY);
         this.needsUpdate = true;
     }
+
 }
