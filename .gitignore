@@ -3,7 +3,7 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
-# Package Files #
+# Package Files
 *.war
 *.ear
 
@@ -14,5 +14,11 @@ hs_err_pid*
 out/
 *.iml
 target/
+.classpath
+.project
 
+# vscode settings
+.settings/
+
+# macos
 .DS_STORE
