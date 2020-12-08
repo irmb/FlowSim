@@ -16,6 +16,8 @@
         <sonar.projectKey>irmb_FlowSim</sonar.projectKey>
         <sonar.organization>irmb</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.projectName>FlowSim</sonar.projectName>
+        <sonar.sources>src/main/java/</sonar.sources>
     </properties>
 
     <dependencies>
