@@ -17,12 +17,11 @@ jobs:
       with:
         java-version: 11.0.9
 
-
-   - name: test versions
-     run: |
-       mvn --version
-       java --version
-       printenv | grep 'JAVA'
+    - name: test versions
+      run: |
+        mvn --version
+        java --version
+        printenv | grep 'JAVA'
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
