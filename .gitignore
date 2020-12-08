@@ -19,6 +19,7 @@ target/
 
 # vscode settings
 .settings/
+.vscode/
 
 # macos
 .DS_STORE
