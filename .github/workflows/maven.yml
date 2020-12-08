@@ -19,10 +19,10 @@ jobs:
 
 
    - name: test versions
-        run: |
-          mvn --version
-          java --version
-          printenv | grep 'JAVA'
+     run: |
+       mvn --version
+       java --version
+       printenv | grep 'JAVA'
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
