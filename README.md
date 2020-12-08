@@ -1,4 +1,5 @@
 ![CI](<https://github.com/irmb/FlowSim/workflows/Java CI with Maven/badge.svg>)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=irmb_FlowSim&metric=alert_status)](https://sonarcloud.io/dashboard?id=irmb_FlowSim)
 
 # FlowSim
 
