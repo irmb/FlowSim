@@ -1,3 +1,5 @@
+![CI](<https://github.com/irmb/FlowSim/workflows/Java CI with Maven/badge.svg>)
+
 # FlowSim
 
 The FlowSim application allows its user to draw shapes and map them onto an interactive fluid dynamics simulation.
