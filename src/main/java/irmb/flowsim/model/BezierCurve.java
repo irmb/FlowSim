@@ -49,7 +49,7 @@ public class BezierCurve extends PolyLine {
         int size = pointList.size();
         double x = 0, y = 0;
         for (int i = 0; i < size; i++) {
-            double c = binomialCoefficient(size - 1, i) * Math.pow(t, i) * Math.pow(1.0 - t, size - 1 - i);
+            double c = binomialCoefficient(size - 1, i) * Math.pow(t, i) * Math.pow(1.0 - t, size - 1.0 - i);
             x += c * pointList.get(i).getX();
             y += c * pointList.get(i).getY();
         }
@@ -58,7 +58,7 @@ public class BezierCurve extends PolyLine {
 
     private double binomialCoefficient(int n, int k) {
         if (n >= k && n >= 0)
-            return factorial(n) / (factorial(k) * factorial(n - k));
+            return factorial(n) / (double)(factorial(k) * factorial(n - k));
         return -1;
     }
 

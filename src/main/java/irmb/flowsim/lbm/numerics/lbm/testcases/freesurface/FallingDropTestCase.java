@@ -27,7 +27,7 @@ public class FallingDropTestCase extends TestCase {
         for (int x = 0; x < grid.nx; x++) {
             for (int y = 0; y < grid.ny; y++) {
 
-                double distanceSquared = (dropCenterX - x) * (dropCenterX - x) + (dropCenterY - y) * (dropCenterY - y);
+                double distanceSquared = (double)(dropCenterX - x) * (double)(dropCenterX - x) + (double)(dropCenterY - y) * (double)(dropCenterY - y);
 
                 if (distanceSquared < dropRadius * dropRadius) {
                     grid.setType(x, y, GridNodeType.FLUID);

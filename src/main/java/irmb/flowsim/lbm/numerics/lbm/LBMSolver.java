@@ -29,6 +29,7 @@ public abstract class LBMSolver extends Solver {
                 threadList.get(i).join();
             }
         } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
             return;
         }
     }

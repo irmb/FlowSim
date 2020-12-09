@@ -47,7 +47,7 @@ public class AcmSolver extends Solver {
             if (grid.timestep % grid.updateInterval == 0) {
                 grid.real_time = grid.timestep * grid.dt;
 
-                grid.mnups = counter / ((System.currentTimeMillis() - timer)) * 1000;
+                grid.mnups = counter / ((double)(System.currentTimeMillis() - timer)) * 1000;
 
                 super.setChanged();
                 super.notifyObservers();
