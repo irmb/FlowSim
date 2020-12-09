@@ -1,5 +1,7 @@
 package irmb.flowsim.lbm.numerics.lbm.testcases.temperature;
 
+import java.security.SecureRandom;
+
 import irmb.flowsim.lbm.numerics.UniformGrid;
 import irmb.flowsim.lbm.numerics.lbm.LbEQ;
 import irmb.flowsim.lbm.numerics.lbm.temperature.LBMTemperatureGrid;
@@ -63,6 +65,8 @@ public class RayleighBenardTestCase extends TestCase {
         double[] feq = new double[9];
         double[] geq = new double[5];
 
+        SecureRandom random = new SecureRandom();
+
         for (int i = 0; i < grid.nx; i++) {
 
             LbEQ.getBGKEquilibrium(1.0, 0.0, 0.0, feq);
@@ -74,7 +78,7 @@ public class RayleighBenardTestCase extends TestCase {
                     LbEQ.getBGKEquilibriumTemperature(grid.Thot, 0.0, 0.0, geq);
                 } else if (j == 1) {
                     // random values at the bottom
-                    double randomTempValue = grid.Tcold + (grid.Thot - grid.Tcold) * Math.random();
+                    double randomTempValue = grid.Tcold + (grid.Thot - grid.Tcold) * random.nextDouble();
                     LbEQ.getBGKEquilibriumTemperature(randomTempValue, 0.0, 0.0, geq);
 
                 } else {
