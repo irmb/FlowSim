@@ -22,7 +22,7 @@ public class MultiPointShapeBuilder extends PaintableShapeBuilder {
 
     @Override
     public void addPoint(Point point) {
-        shape.addPoint(point);
+        // TODO
     }
 
     @Override

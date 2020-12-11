@@ -1,6 +1,5 @@
 package irmb.flowsim.model;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,8 +11,7 @@ public class PolyLine implements MultiPointShape {
     private List<Point> pointList = new LinkedList<>();
 
     public List<Point> getPointList() {
-        //TODO
-        return Collections.emptyList();
+        return pointList;
     }
 
     public void addPoint(Point point) {
@@ -33,6 +31,6 @@ public class PolyLine implements MultiPointShape {
     }
 
     public void accept(ShapeVisitor visitor) {
-        visitor.visit(this);
+        //TODO
     }
 }

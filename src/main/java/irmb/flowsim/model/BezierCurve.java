@@ -2,7 +2,6 @@ package irmb.flowsim.model;
 
 import irmb.flowsim.presentation.Painter;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -17,21 +16,13 @@ public class BezierCurve extends PolyLine {
     }
 
     private List<Point> getSubPointList(double t, List<Point> tempList) {
-        List<Point> subList;
-        subList = new ArrayList<>();
-        for (int i = 0; i < tempList.size() - 1; i++) {
-            Point first = tempList.get(i + 1);
-            Point second = tempList.get(i);
-            Point subPoint = getSubPoint(t, first, second);
-            subList.add(i, subPoint);
-        }
-        return subList;
+        // TODO
+        return Collections.emptyList();
     }
 
     private Point getSubPoint(double t, Point first, Point second) {
-        double dx = first.getX() - second.getX();
-        double dy = first.getY() - second.getY();
-        return new Point((second.getX() + t * dx), (second.getY() + t * dy));
+        // TODO
+        return new Point(0,0);
     }
 
     public Point calculatePointWithBernstein(double t) {

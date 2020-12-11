@@ -20,17 +20,26 @@ public class MoveShapeCommand implements Command {
 
     @Override
     public void execute() {
-        //TODO
+        shape.moveBy(dx, dy);
+        totalDx += dx;
+        totalDy += dy;
+        calledExecute = true;
     }
 
     @Override
     public void undo() {
-        //TODO
+        if (calledExecute) {
+            shape.moveBy(-totalDx, -totalDy);
+            calledExecute = false;
+        }
     }
 
     @Override
     public void redo() {
-        //TODO
+        if (!calledExecute) {
+            shape.moveBy(totalDx, totalDy);
+            calledExecute = true;
+        }
     }
 
     public void setDelta(double dx, double dy) {

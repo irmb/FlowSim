@@ -22,45 +22,35 @@ public class TwoPointShapeBuilder extends PaintableShapeBuilder {
 
     @Override
     public void addPoint(Point point) {
-        if (pointsAdded == 0)
-            shape.setFirst(point);
-        else if (pointsAdded == 1)
-            shape.setSecond(point);
-        pointsAdded++;
+        // TODO
     }
 
     @Override
     public PaintableShape getShape() {
+        // TODO
         return paintableShape;
     }
 
     @Override
     public boolean isObjectFinished() {
-        return pointsAdded >= 2;
+        // TODO
+        return false;
     }
 
     @Override
     public void setLastPoint(Point lastPoint) {
-        if (pointsAdded == 1)
-            shape.setFirst(lastPoint);
-        else
-            shape.setSecond(lastPoint);
+        // TODO
     }
 
     @Override
     public void removeLastPoint() {
-        if (pointsAdded == 1) {
-            shape.setFirst(null);
-            pointsAdded--;
-        } else if (pointsAdded == 2) {
-            shape.setSecond(null);
-            pointsAdded--;
-        }
+        // TODO
     }
 
     @Override
     public boolean isObjectPaintable() {
-        return pointsAdded >= 2;
+        // TODO
+        return false;
     }
 
     @Override
