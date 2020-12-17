@@ -30,16 +30,78 @@ public class BuildObjectMouseStrategy extends MouseStrategy {
 
     @Override
     public void onLeftClick(double x, double y) {
-        // TODO
+        Point point = getWorldPoint(x, y);
+        if (firstPoint()) addPointToShape(point);
+        needsNextPointOnMove = true;
+        notifyObserverWithMatchingArgs();
+    }
+
+    private boolean firstPoint() {
+        return pointsAdded == 0;
+    }
+
+    private void addPointToShape(Point point) {
+        shapeBuilder.addPoint(point);
+        pointsAdded++;
+    }
+
+    private void notifyObserverWithMatchingArgs() {
+        StrategyState state = shapeBuilder.isObjectFinished() ? FINISHED : UPDATE;
+        StrategyEventArgs args = makeStrategyEventArgs(state);
+        if (state == FINISHED) args.setCommand(addPaintableShapeCommand);
+        notifyObservers(args);
     }
 
     @Override
     public void onRightClick(double x, double y) {
-        // TODO
+        StrategyEventArgs args = makeStrategyEventArgs(FINISHED);
+        if (shapeBuilder.isObjectPaintable())
+            if (shapeBuilder.isInfinite()) finishObject(args);
+            else undoAddShape();
+        notifyObservers(args);
+    }
+
+    private void undoAddShape() {
+        addPaintableShapeCommand.undo();
+    }
+
+    private void finishObject(StrategyEventArgs args) {
+        shapeBuilder.removeLastPoint();
+        args.setCommand(addPaintableShapeCommand);
     }
 
     @Override
     public void onMouseMove(double x, double y) {
-        // TODO
+        adjustShapeOnMouseMove(x, y);
+        if (shapeBuilder.isObjectPaintable()) notifyObservers(makeStrategyEventArgs(UPDATE));
+    }
+
+    private void adjustShapeOnMouseMove(double x, double y) {
+        Point point = getWorldPoint(x, y);
+        if (needsNextPointOnMove) {
+            addPointToShape(point);
+            needsNextPointOnMove = false;
+        }
+
+        if (shapeReadyForPainting()) addShapeToList();
+        shapeBuilder.setLastPoint(point);
+    }
+
+    private boolean shapeReadyForPainting() {
+        return !shapeAdded && shapeBuilder.isObjectPaintable();
+    }
+
+    private void addShapeToList() {
+        shapeAdded = true;
+        addPaintableShapeCommand = new AddPaintableShapeCommand(shapeBuilder.getShape(), shapeList);
+        addPaintableShapeCommand.execute();
+    }
+
+    private Point getWorldPoint(double x, double y) {
+        return transformer.transformToWorldPoint(new Point(x, y));
+    }
+
+    private StrategyEventArgs makeStrategyEventArgs(StrategyState state) {
+        return new StrategyEventArgs(state);
     }
 }

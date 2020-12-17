@@ -32,24 +32,36 @@ public class MoveMouseStrategy extends MouseStrategy {
 
     @Override
     public void onLeftClick(double x, double y) {
-        //TODO
+        super.onLeftClick(x, y);
+        clickedPoint = new Point(x, y);
+        prepareShapeMove(getPaintableShapeAt(x, y));
     }
 
     private void prepareShapeMove(PaintableShape paintableShape) {
-        //TODO
+        if (paintableShape != null) {
+            double tolerance = getWorldLength(radius);
+            Point worldPoint = getWorldPoint(clickedPoint);
+            Point definedPoint = paintableShape.getDefinedPoint(worldPoint, tolerance);
+            makeMoveShapeCommand(paintableShape, definedPoint);
+        }
     }
 
     private void makeMoveShapeCommand(PaintableShape paintableShape, Point definedPoint) {
-        //TODO
+        Shape shape = definedPoint != null ? definedPoint : paintableShape.getShape();
+        moveShapeCommand = new MoveShapeCommand(shape);
     }
 
     @Override
     public void onRightClick(double x, double y) {
-        //TODO
+        PaintableShape shape = getPaintableShapeAt(x, y);
+        if (shape != null)
+            deleteShape(shape);
     }
 
     private void deleteShape(PaintableShape shape) {
-        //TODO
+        RemovePaintableShapeCommand command = makeRemoveCommand(shape);
+        command.execute();
+        notifyWithRemoveCommand(command);
     }
 
     private void notifyWithRemoveCommand(RemovePaintableShapeCommand command) {
@@ -69,17 +81,34 @@ public class MoveMouseStrategy extends MouseStrategy {
     @Override
     public void onMouseDrag(double x, double y) {
         super.onMouseDrag(x, y);
-        //TODO
+        if (moveShapeCommand != null) {
+            moveShape(x, y);
+            notifyObservers(new StrategyEventArgs(UPDATE));
+        }
     }
 
     private void moveShape(double x, double y) {
-        //TODO
+        double dx = x - clickedPoint.getX();
+        double dy = y - clickedPoint.getY();
+
+        double worldDx = getWorldLength(dx);
+        double worldDy = -getWorldLength(dy);
+        moveShapeCommand.setDelta(worldDx, worldDy);
+        moveShapeCommand.execute();
+
+        clickedPoint.setX(x);
+        clickedPoint.setY(y);
     }
 
     @Override
     public void onMouseRelease() {
         super.onMouseRelease();
-        //TODO
+        if (moveShapeCommand != null) {
+            StrategyEventArgs args = new StrategyEventArgs(UPDATE);
+            args.setCommand(moveShapeCommand);
+            notifyObservers(args);
+        }
+        moveShapeCommand = null;
     }
 
     private PaintableShape getPaintableShapeAt(double x, double y) {
