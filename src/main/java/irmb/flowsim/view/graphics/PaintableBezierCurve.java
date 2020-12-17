@@ -26,10 +26,6 @@ public class PaintableBezierCurve extends PaintableShape {
         //TODO
     }
 
-    private void recursivePaint(Painter painter, List<Point> pointList) {
-        //TODO
-    }
-
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
         //TODO
