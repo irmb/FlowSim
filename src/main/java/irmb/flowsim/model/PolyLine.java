@@ -15,22 +15,27 @@ public class PolyLine implements MultiPointShape {
     }
 
     public void addPoint(Point point) {
-        //TODO
+        pointList.add(point);
     }
 
     public void setLastPoint(Point point) {
-        //TODO
+        int size = pointList.size();
+        if (size > 0) pointList.set(size - 1, point);
     }
 
     public void removeLastPoint() {
-        //TODO
+        if (pointList.size() > 0)
+            pointList.remove(pointList.size() - 1);
     }
 
     public void moveBy(double dx, double dy) {
-        //TODO
+        for (Point p : getPointList()) {
+            p.setX(p.getX() + dx);
+            p.setY(p.getY() + dy);
+        }
     }
 
     public void accept(ShapeVisitor visitor) {
-        //TODO
+        visitor.visit(this);
     }
 }
