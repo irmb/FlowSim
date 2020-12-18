@@ -29,17 +29,75 @@ public class BuildObjectMouseStrategy extends MouseStrategy {
     }
 
     @Override
-    public void onLeftClick(double x, double y) {
-        // TODO
+    public void onRightClick(double x, double y) {
+        //TODO
     }
 
+
     @Override
-    public void onRightClick(double x, double y) {
-        // TODO
+    public void onLeftClick(double x, double y) {
+        //TODO
     }
+
 
     @Override
     public void onMouseMove(double x, double y) {
-        // TODO
+        //TODO
+    }
+
+
+    private boolean firstPoint() {
+        return false;
+    }
+
+    private void addPointToShape(Point point) {
+        //TODO
+    }
+
+    private void undoAddShape() {
+        //TODO
+    }
+
+
+
+    private void notifyObserverWithMatchingArgs() {
+        StrategyState state = shapeBuilder.isObjectFinished() ? FINISHED : UPDATE;
+        StrategyEventArgs args = makeStrategyEventArgs(state);
+        if (state == FINISHED) args.setCommand(addPaintableShapeCommand);
+        notifyObservers(args);
+    }
+
+    private void finishObject(StrategyEventArgs args) {
+        shapeBuilder.removeLastPoint();
+        args.setCommand(addPaintableShapeCommand);
+    }
+
+    private void adjustShapeOnMouseMove(double x, double y) {
+        Point point = getWorldPoint(x, y);
+        if (needsNextPointOnMove) {
+            addPointToShape(point);
+            needsNextPointOnMove = false;
+        }
+
+        if (shapeReadyForPainting()) addShapeToList();
+        shapeBuilder.setLastPoint(point);
+    }
+
+    private boolean shapeReadyForPainting() {
+        return !shapeAdded && shapeBuilder.isObjectPaintable();
+    }
+
+    private void addShapeToList() {
+        shapeAdded = true;
+        addPaintableShapeCommand = new AddPaintableShapeCommand(shapeBuilder.getShape(), shapeList);
+        addPaintableShapeCommand.execute();
+    }
+
+    private Point getWorldPoint(double x, double y) {
+        return transformer.transformToWorldPoint(new Point(x, y));
+    }
+
+    private StrategyEventArgs makeStrategyEventArgs(StrategyState state) {
+        return new StrategyEventArgs(state);
     }
 }

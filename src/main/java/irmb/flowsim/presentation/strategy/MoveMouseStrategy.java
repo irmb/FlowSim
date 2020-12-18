@@ -31,7 +31,18 @@ public class MoveMouseStrategy extends MouseStrategy {
     }
 
     @Override
+    public void onRightClick(double x, double y) {
+        //TODO
+    }
+
+    @Override
     public void onLeftClick(double x, double y) {
+        //TODO
+    }
+
+    @Override
+    public void onMouseDrag(double x, double y) {
+        super.onMouseDrag(x, y);
         //TODO
     }
 
@@ -43,13 +54,24 @@ public class MoveMouseStrategy extends MouseStrategy {
         //TODO
     }
 
-    @Override
-    public void onRightClick(double x, double y) {
+    private void moveShape(double x, double y) {
         //TODO
     }
 
     private void deleteShape(PaintableShape shape) {
         //TODO
+    }
+
+
+    @Override
+    public void onMouseRelease() {
+        super.onMouseRelease();
+        if (moveShapeCommand != null) {
+            StrategyEventArgs args = new StrategyEventArgs(UPDATE);
+            args.setCommand(moveShapeCommand);
+            notifyObservers(args);
+        }
+        moveShapeCommand = null;
     }
 
     private void notifyWithRemoveCommand(RemovePaintableShapeCommand command) {
@@ -66,21 +88,6 @@ public class MoveMouseStrategy extends MouseStrategy {
     public void onMouseMove(double x, double y) {
     }
 
-    @Override
-    public void onMouseDrag(double x, double y) {
-        super.onMouseDrag(x, y);
-        //TODO
-    }
-
-    private void moveShape(double x, double y) {
-        //TODO
-    }
-
-    @Override
-    public void onMouseRelease() {
-        super.onMouseRelease();
-        //TODO
-    }
 
     private PaintableShape getPaintableShapeAt(double x, double y) {
         Point worldPoint = getWorldPoint(new Point(x, y));
