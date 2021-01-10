@@ -7,6 +7,7 @@ import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.Color;
 import irmb.flowsim.presentation.Painter;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /** Created by sven on 19.03.17. */
@@ -23,12 +24,36 @@ public class PaintableBezierCurve extends PaintableShape {
 
     @Override
     public void paint(Painter painter) {
-        //TODO
+        List<Point> pointList = bezierCurve.getPointList();
+        int numOfPoints = 100;
+        if (pointList.size() >= 2) {
+            for (int i = 0; i < numOfPoints-1; i++) {
+                double t1 = (i) / (double) (numOfPoints - 1);
+                double t2 = (i + 1.0) / (double) (numOfPoints - 1);
+
+                Point p1 = bezierCurve.calculatePointWithBernstein(t1);
+                Point p2 = bezierCurve.calculatePointWithBernstein(t2);
+
+                painter.paintLine(new Point(p1.getX(), p1.getY()), new Point(p2.getX(), p2.getY()));
+            }
+        }
     }
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
-        //TODO
+        if (getDefinedPoint(point, radius) != null) return true;
+        int numPoints = 100;
+        for (int i = 0; i < numPoints - 1; i++) {
+            double t1, t2;
+            t1 = i / (double) (numPoints - 1);
+            t2 = (i + 1) / (double) (numPoints - 1);
+            first = bezierCurve.calculatePointWithBernstein(t1);
+            second = bezierCurve.calculatePointWithBernstein(t2);
+            if (isInXBounds(point)) {
+                double distanceToLine = getDistanceToLine(first, second, point);
+                if (distanceToLine <= radius) return true;
+            }
+        }
         return false;
     }
 

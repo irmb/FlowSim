@@ -11,17 +11,45 @@ import java.util.List;
 public class BezierCurve extends PolyLine {
 
 
-    public Point calculatePointWithBernstein(double t) {
+    public List<Point> calculateCasteljau(List<Point> pointList, double t) {
         //TODO
-        return new Point(0,0);
+        return null;
+    }
+
+    private List<Point> getSubPointList(double t, List<Point> tempList) {
+        //TODO
+        return null;
+    }
+
+    private Point getSubPoint(double t, Point first, Point second) {
+        //TODO
+        return null;
+    }
+
+
+    public Point calculatePointWithBernstein(double t) {
+        List<Point> pointList = getPointList();
+        int size = pointList.size();
+        double x = 0, y = 0;
+        for (int i = 0; i < size; i++) {
+            double c = binomialCoefficient(size - 1, i) * Math.pow(t, i) * Math.pow(1.0 - t, size - 1.0 - i);
+            x += c * pointList.get(i).getX();
+            y += c * pointList.get(i).getY();
+        }
+        return new Point(x, y);
     }
 
     private double binomialCoefficient(int n, int k) {
-        //TODO
+        if (n >= k && n >= 0)
+            return factorial(n) / (double)(factorial(k) * factorial(n - k));
+        return -1;
     }
 
     private long factorial(int n) {
-        //TODO
+        long sum = 1;
+        for (int i = n; i >= 1; i--)
+            sum *= i;
+        return sum;
     }
 
     @Override
