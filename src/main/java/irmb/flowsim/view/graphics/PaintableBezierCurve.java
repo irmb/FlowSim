@@ -33,8 +33,21 @@ public class PaintableBezierCurve extends PaintableShape {
         }
     }
 
-    private void recursivePaint(Painter painter, List<Point> pointList) { 
-    
+    private void recursivePaint(Painter painter, List<Point> pointList) {
+        Point first = pointList.get(0);
+        Point last = pointList.get(pointList.size() - 1);
+        var screenDistance = transformer.scaleToScreenLength(getDistance(first, last));
+        if (screenDistance <= 5) {
+            painter.paintLine(first, last);
+            return;
+        }
+
+        List<Point> left, right;
+        List<Point> casteljauSublist = bezierCurve.calculateCasteljau(pointList, 0.5);
+        left = casteljauSublist.subList(0, casteljauSublist.size() / 2 + 1);
+        right = casteljauSublist.subList(casteljauSublist.size() / 2, casteljauSublist.size());
+        recursivePaint(painter, left);
+        recursivePaint(painter, right);
     }
 
 
