@@ -122,6 +122,12 @@ public class Spline extends PolyLine {
     }
 
     @Override
+    public void setLastPoint(Point point) {
+        super.setLastPoint(point);
+        calculateCoefficients();
+    }
+
+    @Override
     public void accept(ShapeVisitor visitor) {
         visitor.visit(this);
     }
