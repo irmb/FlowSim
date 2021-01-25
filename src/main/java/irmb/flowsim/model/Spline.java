@@ -105,44 +105,22 @@ public class Spline extends PolyLine {
         }
     }
 
-
-    private void calculateValues() {
-        calculateCoefficients();
-
-        minX2 = minX1 = Double.MAX_VALUE;
-        maxX1 = maxX2 = -Double.MAX_VALUE;
-        for (Point p : getPointList()) {
-            if (p.getX() < minX1) {
-                minX1 = p.getX();
-            }
-            if (p.getY() < minX2) {
-                minX2 = p.getY();
-            }
-            if (p.getX() > maxX1) {
-                maxX1 = p.getX();
-            }
-            if (p.getY() > maxX2) {
-                maxX2 = p.getY();
-            }
-        }
-    }
-
     @Override
     public void addPoint(Point point) {
         super.addPoint(point);
-        calculateValues();
+        calculateCoefficients();
     }
 
     @Override
     public void removeLastPoint() {
         super.removeLastPoint();
-        calculateValues();
+        calculateCoefficients();
     }
 
     @Override
     public void moveBy(double dx, double dy) {
         super.moveBy(dx, dy);
-        calculateValues();
+        calculateCoefficients();
     }
 
     @Override
