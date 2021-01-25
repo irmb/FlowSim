@@ -39,6 +39,7 @@ public class PaintableSpline extends PaintableShape {
                 painter.paintLine(p1, p2);
             }
         }
+
         // Kontrollpunkte zeichnen
         for (int i = 0; i < pointList.size(); i++) {
             Point p = pointList.get(i);
@@ -51,7 +52,7 @@ public class PaintableSpline extends PaintableShape {
 
 
 
-    
+
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
         List<Point> pointList = spline.getPointList();

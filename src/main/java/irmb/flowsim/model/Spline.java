@@ -7,7 +7,10 @@ import Jama.Matrix;
 public class Spline extends PolyLine {
 
     private Matrix x;
+    private double minX1, minX2, maxX1, maxX2;
     
+
+
     public Point getPointOnSpline(double t) {
         //stelle in bezug zur gesamtlaenge n
         double offset = t * (getPointList().size() - 1);
@@ -32,7 +35,7 @@ public class Spline extends PolyLine {
         return new Point(px, py);
     }
 
-    
+
     private void calculateCoefficients() {
 
         if (getPointList().size() > 2) {
@@ -100,6 +103,46 @@ public class Spline extends PolyLine {
             }
             x = A.solve(b);
         }
+    }
+
+
+    private void calculateValues() {
+        calculateCoefficients();
+
+        minX2 = minX1 = Double.MAX_VALUE;
+        maxX1 = maxX2 = -Double.MAX_VALUE;
+        for (Point p : getPointList()) {
+            if (p.getX() < minX1) {
+                minX1 = p.getX();
+            }
+            if (p.getY() < minX2) {
+                minX2 = p.getY();
+            }
+            if (p.getX() > maxX1) {
+                maxX1 = p.getX();
+            }
+            if (p.getY() > maxX2) {
+                maxX2 = p.getY();
+            }
+        }
+    }
+
+    @Override
+    public void addPoint(Point point) {
+        super.addPoint(point);
+        calculateValues();
+    }
+
+    @Override
+    public void removeLastPoint() {
+        super.removeLastPoint();
+        calculateValues();
+    }
+
+    @Override
+    public void moveBy(double dx, double dy) {
+        super.moveBy(dx, dy);
+        calculateValues();
     }
 
     @Override
