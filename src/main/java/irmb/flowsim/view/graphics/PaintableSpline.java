@@ -20,6 +20,7 @@ public class PaintableSpline extends PaintableShape {
         this.trafo = trafo;
     }
 
+    
     @Override
     public void paint(Painter painter) {
         List<Point> pointList = spline.getPointList();
@@ -49,8 +50,6 @@ public class PaintableSpline extends PaintableShape {
             painter.paintLine(p_view.getX() + k, p_view.getY() - k, p_view.getX() - k, p_view.getY() + k);
         }
     }
-
-
 
 
     @Override

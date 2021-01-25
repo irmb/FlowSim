@@ -7,9 +7,7 @@ import Jama.Matrix;
 public class Spline extends PolyLine {
 
     private Matrix x;
-    private double minX1, minX2, maxX1, maxX2;
     
-
 
     public Point getPointOnSpline(double t) {
         //stelle in bezug zur gesamtlaenge n
