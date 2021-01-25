@@ -22,7 +22,7 @@ public class PaintableShapeFactoryImpl implements PaintableShapeFactory {
         else if (shape instanceof BezierCurve)
             return new PaintableBezierCurve((BezierCurve) shape, transformer);
         else if (shape instanceof PolyLine) return new PaintablePolyLine((PolyLine) shape);
-        else if (shape instanceof Spline) return new PaintableSpline((Spline) shape);
+        else if (shape instanceof Spline) return new PaintableSpline((Spline) shape, transformer);
         else return null;
     }
 }
