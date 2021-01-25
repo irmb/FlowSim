@@ -1,36 +1,37 @@
 package irmb.flowsim.model;
 
+import java.util.LinkedList;
 import java.util.List;
 
-public class Spline implements MultiPointShape {
+public class Spline extends PolyLine {
 
-    @Override
-    public void addPoint(Point point) {
-        //TODO
+    public Spline() {
+
     }
-
-    @Override
-    public void setLastPoint(Point point) {
+    
+    public LinkedList<Double> getGradientList(LinkedList<Double> values) {
         //TODO
-    }
-
-    @Override
-    public void removeLastPoint() {
-        //TODO
-    }
-
-    @Override
-    public List<Point> getPointList() {
         return null;
     }
 
-    @Override
-    public void moveBy(double dx, double dy) {
+
+    public LinkedList<Double> getListsforCalculation(LinkedList<Double> coordList, boolean partOfSolution) {
         //TODO
+        return null;
     }
 
-    @Override
-    public void accept(ShapeVisitor visitor) {
-        visitor.visit(this);
+
+    public LinkedList<Double> getSplineValues(double beginningCoord, double endingCoord, double beginningGradient,double endingGradient) {
+        //TODO
+        return null;
+    }
+
+    public LinkedList<Double> getPointOnSpline(LinkedList<Point> points, LinkedList<Double> gradientsX, LinkedList<Double> gradientsY, int i) {
+        //TODO
+        return null;
+    }
+
+    private void calculateValues() {
+        //TODO
     }
 }

@@ -1,5 +1,7 @@
 package irmb.flowsim.view.graphics;
 
+import java.util.LinkedList;
+
 import irmb.flowsim.model.Point;
 import irmb.flowsim.model.Shape;
 import irmb.flowsim.model.Spline;
@@ -11,6 +13,16 @@ public class PaintableSpline extends PaintableShape {
 
     public PaintableSpline(Spline spline) {
         this.spline = spline;
+    }
+
+    @Override
+    public void paint(Painter painter) {
+        //TODO
+    }
+
+    private void recursivePaint(Painter painter, LinkedList<Point> pointList, LinkedList<Double> gradientListX,
+    LinkedList<Double> gradientListY) {
+        //TODO
     }
 
     @Override
@@ -27,10 +39,5 @@ public class PaintableSpline extends PaintableShape {
     @Override
     public Point getDefinedPoint(Point point, double radius) {
         return null;
-    }
-
-    @Override
-    public void paint(Painter painter) {
-        //TODO
     }
 }
