@@ -65,4 +65,10 @@ public class Spline extends PolyLine {
         super.moveBy(dx, dy);
         calculateCoefficients();
     }
+
+    @Override
+    public void setLastPoint(Point point) {
+        super.setLastPoint(point);
+        calculateCoefficients();
+    }
 }
