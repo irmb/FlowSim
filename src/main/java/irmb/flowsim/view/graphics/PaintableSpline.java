@@ -23,7 +23,32 @@ public class PaintableSpline extends PaintableShape {
     
     @Override
     public void paint(Painter painter) {
-        //TODO
+        List<Point> pointList = spline.getPointList();
+        int numOfPoints = 100;
+        painter.setColor(Color.BLACK);
+        // Spline zeichnen
+        if (pointList.size() > 2) {
+            for (int i = 0; i < numOfPoints - 1; i++) {
+
+                double t1 = (i) / (double) (numOfPoints - 1);
+                double t2 = (i + 1.0) / (double) (numOfPoints - 1);
+
+                Point p1 = spline.getPointOnSpline(t1);
+                Point p2 = spline.getPointOnSpline(t2);
+
+                // draw line
+                painter.paintLine(p1, p2);
+            }
+        }
+
+        // Kontrollpunkte zeichnen
+        for (int i = 0; i < pointList.size(); i++) {
+            Point p = pointList.get(i);
+            int k = 4;
+            Point p_view = trafo.transformToPointOnScreen(p);
+            painter.paintLine(p_view.getX() - k, p_view.getY() - k, p_view.getX() + k, p_view.getY() + k);
+            painter.paintLine(p_view.getX() + k, p_view.getY() - k, p_view.getX() - k, p_view.getY() + k);
+        }
     }
 
 
