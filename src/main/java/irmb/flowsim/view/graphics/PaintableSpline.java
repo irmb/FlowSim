@@ -50,13 +50,12 @@ public class PaintableSpline extends PaintableShape {
     private void recursivePaint(Painter painter, List<Point> pointList, List<Double> gradientListX, List<Double> gradientListY) {
 
         for (int i = 0; i <= pointList.size() - 2; i++) {
-
-            double dist = trafo.scaleToScreenLength(getDistance(pointList.get(i), pointList.get(i + 1)));
+            Point first = pointList.get(i);
+            Point second = pointList.get(i+1);
+            double dist = trafo.scaleToScreenLength(getDistance(first, second));
 
             if (dist < 5) {
-                Point p1_view = trafo.transformToPointOnScreen(pointList.get(i));
-                Point p2_view = trafo.transformToPointOnScreen(pointList.get(i + 1));
-                painter.paintLine(p1_view, p2_view);
+                painter.paintLine(first, second);
                 return;
             }
 

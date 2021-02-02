@@ -39,6 +39,7 @@ public class PaintableBezierCurve extends PaintableShape {
         var screenDistance = transformer.scaleToScreenLength(getDistance(first, last));
         if (screenDistance <= 5) {
             painter.paintLine(first, last);
+            
             return;
         }
 
