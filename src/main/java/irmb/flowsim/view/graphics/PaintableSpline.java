@@ -7,6 +7,7 @@ import irmb.flowsim.model.Point;
 import irmb.flowsim.model.Shape;
 import irmb.flowsim.model.Spline;
 import irmb.flowsim.model.util.CoordinateTransformer;
+import irmb.flowsim.presentation.Color;
 import irmb.flowsim.presentation.Painter;
 
 public class PaintableSpline extends PaintableShape {
@@ -24,13 +25,31 @@ public class PaintableSpline extends PaintableShape {
     
     @Override
     public void paint(Painter painter) {
-        //TODO
+        painter.setColor(Color.BLACK);
+
+        if (spline.getPointList().size() >= 2) {
+
+            List<Point> pointList = spline.getPointList();
+
+            List<Double> gradientListX = spline.getGradientList(spline.splitPointList(pointList, "x"));
+            List<Double> gradientListY = spline.getGradientList(spline.splitPointList(pointList, "y"));
+
+            recursivePaint(painter, pointList, gradientListX, gradientListY);
+
+            // Kontrollpunkte zeichnen
+            for (int i = 0; i < pointList.size(); i++) {
+                Point p = pointList.get(i);
+                Point p_view = trafo.transformToPointOnScreen(p);
+                int k = 4;
+                painter.paintLine(p_view.getX() - k, p_view.getY() - k, p_view.getX() + k, p_view.getY() + k);
+                painter.paintLine(p_view.getX() + k, p_view.getY() - k, p_view.getX() - k, p_view.getY() + k);
+            }
+        }
     }
 
 
 
-    private void recursivePaint(Painter painter, LinkedList<Point> pointList, LinkedList<Double> gradientListX,
-    LinkedList<Double> gradientListY) {
+    private void recursivePaint(Painter painter, List<Point> pointList, List<Double> gradientListX, List<Double> gradientListY) {
         //TODO
     }
 
