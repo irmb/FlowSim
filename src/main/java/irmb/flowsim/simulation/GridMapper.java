@@ -76,4 +76,9 @@ public class GridMapper implements ShapeVisitor {
     private void bresenham(int xStart, int yStart, int xEnd, int yEnd) {
         //TODO
     }
+
+
+    private void floodfill(int x, int y) {
+        //TODO
+    }
 }

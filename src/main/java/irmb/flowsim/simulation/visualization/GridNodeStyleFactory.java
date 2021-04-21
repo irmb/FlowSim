@@ -21,6 +21,8 @@ public class GridNodeStyleFactory {
                 return new ArrowGridNodeStyle(5, transformer);
             case Info:
                 return new InfoDisplayGridNodeStyle(transformer);
+            case GridType:
+                return new GridTypeStyle(transformer);
             default:
                 return null;
         }
