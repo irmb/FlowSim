@@ -59,29 +59,6 @@ public class Main {
         presenter.setGraphicView(window.getGraphicView());
         window.setVisible(true);
 
-        // We're painting this line today
-        
-
-        var builder = builderFactory.makeShapeBuilder("Line");
-        builder.addPoint(new Point(0, 0));
-        builder.addPoint(new Point(1, 0.5));
-        PaintableShape paintableShape = builder.getShape();
-
-        var addShapeCommand = new AddPaintableShapeCommand(paintableShape, shapeList);
-        addShapeCommand.execute();
-        commandStack.add(addShapeCommand);
-
-        builder = builderFactory.makeShapeBuilder("PolyLine");
-        builder.addPoint(new Point(0.2, 0));
-        builder.addPoint(new Point(0.6, 0.2));
-        builder.addPoint(new Point(0.8, 0));
-        builder.addPoint(new Point(1, 0.5));
-        paintableShape = builder.getShape();
-
-        addShapeCommand = new AddPaintableShapeCommand(paintableShape, shapeList);
-        addShapeCommand.execute();
-        commandStack.add(addShapeCommand);
-
         window.repaint();
 
     }
