@@ -6,19 +6,22 @@ public class Circle implements TwoPointShape {
     private Point center;
 
     public Circle() {
-        //TODO
+        this.radius = 0.0;
+        this.center = new Point(0.0, 0.0);
     }
 
     public Circle(double radius, Point center) {
-        //TODO
+        this.radius = radius;
+        this.center = center;
     }
 
     public void setFirst(Point point) {
-        //TODO
+        this.center.setX(point.getX());
+        this.center.setY(point.getY());
     }
 
     public void setSecond(Point point) {
-        //TODO
+        this.radius = Math.sqrt(Math.pow(center.getX() - point.getX(), 2) + Math.pow(center.getY() - point.getY(), 2));
     }
 
     public Point getCenter() {
@@ -31,7 +34,8 @@ public class Circle implements TwoPointShape {
 
     @Override
     public void moveBy(double dx, double dy) {
-        //TODO
+        this.center.setX(this.center.getX() + dx);
+        this.center.setY(this.center.getY() + dy);
     }
 
     @Override

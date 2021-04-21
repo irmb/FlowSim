@@ -46,7 +46,6 @@ public class SwingGraphicView extends JPanel
             presenter
                     .getPaintableList()
                     .forEachRemaining(paintable -> {
-                        System.out.println("Painting a paintable");
                         paintable.paint(painter);
                     });
         }
