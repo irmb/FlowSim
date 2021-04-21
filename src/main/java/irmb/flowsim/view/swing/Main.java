@@ -58,9 +58,6 @@ public class Main {
         window.setPresenter(presenter);
         presenter.setGraphicView(window.getGraphicView());
         window.setVisible(true);
-
-        window.repaint();
-
     }
 
     private static void setLookAndFeel() {
