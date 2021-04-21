@@ -151,4 +151,12 @@ public class JFlowSimNavierStokesGridAdapter implements UniformGrid {
     public LBMNavierStokesGrid getJFlowSimGrid() {
         return grid;
     }
+
+    public int getGridCoordinatesX(double x) {
+        return (int) Math.floor((x - getTopLeft().getX()) / getDelta());
+    }
+
+    public int getGridCoordinatesY(double y) {
+        return (int) Math.floor((getTopLeft().getY() - y) / getDelta());
+    }
 }

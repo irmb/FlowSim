@@ -13,14 +13,13 @@ public class GridTypeStyle extends GridNodeStyle {
 
 
     public GridTypeStyle(CoordinateTransformer transformer) {
-        super(0, transformer);
+        super(-1, transformer);
         
     }
 
     @Override
     public void paintGridNode(Painter painter) {
 
-        System.out.println("Hello world!");
         double viewDelta, viewX, viewY;
         viewDelta = transformer.scaleToScreenLength(grid.getDelta());
         Point topLeft = transformer.transformToPointOnScreen(grid.getTopLeft());

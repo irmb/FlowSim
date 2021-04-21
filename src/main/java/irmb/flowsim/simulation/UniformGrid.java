@@ -6,6 +6,7 @@ import irmb.flowsim.model.Point;
  * Created by sven on 04.03.17.
  */
 public interface UniformGrid {
+
     void setHeight(double length);
 
     double getHeight();
@@ -53,4 +54,8 @@ public interface UniformGrid {
     double getHorizontalGravity();
 
     int getTimeStep();
+
+    int getGridCoordinatesX(double x);
+
+    int getGridCoordinatesY(double y);
 }
