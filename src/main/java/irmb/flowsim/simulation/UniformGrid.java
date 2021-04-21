@@ -53,4 +53,8 @@ public interface UniformGrid {
     double getHorizontalGravity();
 
     int getTimeStep();
+
+    int getGridCoordinatesX(double x);
+
+    int getGridCoordinatesY(double y);
 }
