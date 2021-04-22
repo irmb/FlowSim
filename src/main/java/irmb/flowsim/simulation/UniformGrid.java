@@ -6,6 +6,7 @@ import irmb.flowsim.model.Point;
  * Created by sven on 04.03.17.
  */
 public interface UniformGrid {
+
     void setHeight(double length);
 
     double getHeight();
