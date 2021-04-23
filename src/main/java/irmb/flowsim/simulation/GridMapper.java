@@ -25,15 +25,7 @@ public class GridMapper implements ShapeVisitor {
 
 
     private void floodfill(int x, int y) {
-        if (!grid.isSolid(x, y)) {
-
-            grid.setSolid(x, y);
-            
-            floodfill(x, y + 1); // unten
-            floodfill(x - 1, y); // links
-            floodfill(x, y - 1); // oben
-            floodfill(x + 1, y); // rechts
-        }
+        //TODO
     }
 
     public void mapShapes(List<PaintableShape> shapes) {
