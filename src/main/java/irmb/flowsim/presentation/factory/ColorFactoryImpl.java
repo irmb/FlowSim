@@ -11,6 +11,8 @@ public class ColorFactoryImpl implements ColorFactory {
         int r, g, b;
         r = b = g = 0;
 
+        //TODO: Calculate the appropriate color for <value> between <min> and <max>
+
         return new Color(r, g, b);
     }
 }
