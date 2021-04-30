@@ -24,6 +24,7 @@ public class ArrowGridNodeStyle extends GridNodeStyle {
 
     @Override
     public void paintGridNode(Painter painter) {
+        double viewDelta, viewX, viewY;
         //TODO
     }
 
