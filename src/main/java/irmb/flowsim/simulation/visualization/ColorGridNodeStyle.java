@@ -23,7 +23,29 @@ public class ColorGridNodeStyle extends GridNodeStyle {
 
     @Override
     public void paintGridNode(Painter painter) {
-        //TODO
+        double viewDelta, viewX, viewY;
+        viewDelta = transformer.scaleToScreenLength(grid.getDelta());
+        Point topLeft = transformer.transformToPointOnScreen(grid.getTopLeft());
+        viewX = topLeft.getX();
+        viewY = topLeft.getY();
+
+        getInitialMinMax();
+        double currentMin = min;
+        double currentMax = max;
+
+        min = Double.MAX_VALUE;
+        max = -Double.MAX_VALUE;
+
+        int size = grid.getHorizontalNodes() * grid.getVerticalNodes();
+        int x, y;
+        for (int i = 0; i < size; i++) {
+            x = i % grid.getHorizontalNodes();
+            y = i / grid.getHorizontalNodes();
+            adjustMinMax(x, y);
+            double velocity = grid.getVelocityAt(x, y);
+            painter.setColor(colorFactory.makeColorForValue(currentMin, currentMax, velocity));
+            painter.fillRectangle(viewX + x * viewDelta, viewY - grid.getHeight() + y * viewDelta, Math.ceil(viewDelta), Math.ceil(viewDelta));
+        }
     }
 
     private void getInitialMinMax() {
