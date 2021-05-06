@@ -24,7 +24,7 @@ public class GridNodeStyleFactory {
             case GridType:
                 return new GridTypeStyle(transformer);
             case Isoline:
-                return new IsolineGridNodeStyle(transformer);
+                return new IsolineGridNodeStyle(new ColorFactoryImpl(), transformer);
             default:
                 return null;
         }
