@@ -23,6 +23,8 @@ public class GridNodeStyleFactory {
                 return new InfoDisplayGridNodeStyle(transformer);
             case GridType:
                 return new GridTypeStyle(transformer);
+            case Isoline:
+                return new IsolineGridNodeStyle(transformer);
             default:
                 return null;
         }
