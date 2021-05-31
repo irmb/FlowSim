@@ -20,6 +20,7 @@ public class PaintableShapeFactoryImpl implements PaintableShapeFactory {
         else if (shape instanceof Triangle) return new PaintableTriangle((Triangle) shape);
         else if (shape instanceof Rectangle) return new PaintableRectangle((Rectangle) shape);
         else if (shape instanceof BezierCurve) return new PaintableBezierCurve((BezierCurve) shape, transformer);
+        else if (shape instanceof Delaunay) return new PaintableDelaunay((Delaunay) shape, transformer);
         else if (shape instanceof Spline) return new PaintableSpline((Spline) shape, transformer);
         else if (shape instanceof PolyLine) return new PaintablePolyLine((PolyLine) shape);
         else return null;
