@@ -135,46 +135,6 @@ public class Delaunay extends PolyLine {
             }
         }
         this.selectedPoint = null;
-
-        // Prüft ob Mausklick (x,y) auf einer Kante des Polygonzugs liegt
-//        double distance;
-//        int numOfPoints = 100;
-
-//        // Kurve zeichnen
-//        if (pointList.size() >= 2) {
-//            for (int i = 0; i < numOfPoints - 1; i++) {
-//
-//                double t1 = (i) / (double) (numOfPoints - 1);
-//                double t2 = (i + 1.0) / (double) (numOfPoints - 1);
-//
-//                Point p1 = getPointOnSpline(t1);
-//                Point p2 = getPointOnSpline(t2);
-//
-//                double xa = p1.getX();
-//                double ya = p1.getY();
-//                double xb = p2.getX();
-//                double yb = p2.getY();
-//                double t = 2.0 * x * xb - 2.0 * x * xa + 2.0 * y * yb - 2.0 * y * ya + ya * ya + xa * xa - yb * yb - xb * xb;
-//                t /= yb * yb - 2.0 * yb * ya + ya * ya + xb * xb - 2.0 * xb * xa + xa * xa;
-//
-//                if (Math.abs(t) <= 1.) {
-//                    double xd = xa * (0.5 - 0.5 * t) + xb * (0.5 + 0.5 * t);
-//                    double yd = ya * (0.5 - 0.5 * t) + yb * (0.5 + 0.5 * t);
-//
-//                    distance = Math.sqrt((xd - x) * (xd - x) + (yd - y) * (yd - y));
-//                } else // D liegt außerhalb Strecke AB
-//                {
-//                    double tmpDistance1 = Math.sqrt((xa - x) * (xa - x) + (ya - y) * (ya - y));
-//                    double tmpDistance2 = Math.sqrt((xb - x) * (xb - x) + (yb - y) * (yb - y));
-//
-//                    distance = Math.min(tmpDistance1, tmpDistance2);
-//                }
-//                if (distance <= r) {
-//                    return true;
-//                }
-//            }
-//        }
-
         return false;
     }
 
@@ -186,9 +146,7 @@ public class Delaunay extends PolyLine {
         edgeList.add(e);
     }
 
-    /******************************************************************************************/
-    /*  Triangulations-Routinen                                                               */
-    /******************************************************************************************/
+    //  Triangulations-Routinen                                                               
     private void triangulate() {
 
         if (pointList.size() < 3) {
@@ -219,44 +177,9 @@ public class Delaunay extends PolyLine {
                 }
             }
         }
-
-
-
-//        double edgeLength = this.maxX1 - this.minX1 + this.maxX2 - this.minX2 + 200;
-//        Point v1 = new Point(this.maxX1 + 100, this.minX2 - 100);
-//        Point v2 = new Point(this.maxX1 + 100, this.minX2 + edgeLength);
-//        Point v3 = new Point(this.maxX1 - edgeLength, this.minX2 - 100);
-//
-//        Edge e1 = new Edge(v1, v2);
-//        Edge e2 = new Edge(v2, v3);
-//        Edge e3 = new Edge(v1, v3);
-//
-//        DelaunayTriangle rootTriangle = new DelaunayTriangle(e1, e2, e3);
-//
-//        for (Point p : pointList) {
-//            DelaunayTriangle triangle = rootTriangle.find_triangle(p);
-//            if (triangle == null) {
-//                continue;
-//            }
-//            if (triangle.e1.isPointOnEdge(p)) {
-//                triangle.e1.splitEdge(p, this);
-//            } else if (triangle.e2.isPointOnEdge(p)) {
-//                triangle.e2.splitEdge(p, this);
-//            } else if (triangle.e3.isPointOnEdge(p)) {
-//                triangle.e3.splitEdge(p, this);
-//            } else {
-//                triangle.insertPoint(p, this);
-//            }
-//        }
     }
 
     public LinkedList<Point> getEdgeList() {
-
-//        ArrayList<Point> edgeList = new ArrayList<Point>();
-//        for (Edge e : this.edgeList) {
-//            edgeList.add(e.p1);
-//            edgeList.add(e.p2);
-//        }
         LinkedList<Point> list = new LinkedList<Point>();
         for (DelaunayTriangle tri : this.triangleList) {
             list.add(tri.e1.p1);
@@ -277,10 +200,6 @@ public class Delaunay extends PolyLine {
     public void accept(ShapeVisitor visitor) {
         visitor.visit(this);
     }
-
-    // -------------------------------------------------------------------- //
-    // Lokale Klasse Edge
-    // -------------------------------------------------------------------- //
 
 }
 
@@ -464,9 +383,10 @@ class Edge {
     }
 }
 
-// -------------------------------------------------------------------- //
-// Lokale Klasse DelaunayTriangle
-// -------------------------------------------------------------------- //
+
+
+
+
 class DelaunayTriangle {
 
     Edge e1, e2, e3;

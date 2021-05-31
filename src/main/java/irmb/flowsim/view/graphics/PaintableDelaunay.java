@@ -34,43 +34,13 @@ public class PaintableDelaunay extends PaintableShape {
             Point p1_view = transformer.transformToPointOnScreen(p1);
             Point p2_view = transformer.transformToPointOnScreen(p2);
 
-            // draw line
             painter.paintLine(p1_view, p2_view);
         }
-
-//        int numOfPoints = 100;
-
-//        // Spline zeichnen
-//        if (pointList.size() > 2) {
-//            for (int i = 0; i < numOfPoints - 1; i++) {
-//                g.setColor(color);
-//
-//                double t1 = (i) / (double) (numOfPoints - 1);
-//                double t2 = (i + 1.0) / (double) (numOfPoints - 1);
-//
-//                Point2D p1 = delaunay.getPointOnSpline(t1);
-//                Point2D p2 = delaunay.getPointOnSpline(t2);
-//
-//                int p1x_view = (int) trafo.transformWorldToViewXCoord(p1.getX(), p1.getY(), true);
-//                int p1y_view = (int) trafo.transformWorldToViewYCoord(p1.getX(), p1.getY(), true);
-//                int p2x_view = (int) trafo.transformWorldToViewXCoord(p2.getX(), p2.getY(), true);
-//                int p2y_view = (int) trafo.transformWorldToViewYCoord(p2.getX(), p2.getY(), true);
-//
-//                // draw line
-//                g.drawLine(p1x_view, p1y_view, p2x_view, p2y_view);
-//            }
-//        }
-
 
         // Kontrollpunkte zeichnen
         for (int i = 0; i < pointList.size(); i++) {
             Point p1 = pointList.get(i);
             Point p1_view = transformer.transformToPointOnScreen(p1);
-
-            // draw point
-//            int r = 2;
-//            g.setColor(Color.BLACK);
-//            g.fillOval(p1x_view - r, p1y_view - r, 2 * r, 2 * r);
 
             int k = 4;
             painter.setColor(Color.BLACK);
