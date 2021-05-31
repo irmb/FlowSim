@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class PolyLine implements MultiPointShape {
 
-    private List<Point> pointList = new LinkedList<>();
+    protected List<Point> pointList = new LinkedList<>();
 
     public List<Point> getPointList() {
         return pointList;

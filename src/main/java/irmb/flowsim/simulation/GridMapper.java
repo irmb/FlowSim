@@ -201,4 +201,9 @@ public class GridMapper implements ShapeVisitor {
             floodfill(x + 1, y); // rechts
         }
     }
+
+    @Override
+    public void visit(Delaunay delaunay) {
+       
+    }
 }

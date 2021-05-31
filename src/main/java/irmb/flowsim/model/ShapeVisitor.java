@@ -18,5 +18,7 @@ public interface ShapeVisitor {
 
     void visit(BezierCurve bezierCurve);
 
+    void visit(Delaunay delaunay);
+
     void visit(Spline spline);
 }
