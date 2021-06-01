@@ -31,10 +31,7 @@ public class PaintableDelaunay extends PaintableShape {
             i++;
             Point p2 = edgeList.get(i);
 
-            Point p1_view = transformer.transformToPointOnScreen(p1);
-            Point p2_view = transformer.transformToPointOnScreen(p2);
-
-            painter.paintLine(p1_view, p2_view);
+            painter.paintLine(p1, p2);
         }
 
         // Kontrollpunkte zeichnen
