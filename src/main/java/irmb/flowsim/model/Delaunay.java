@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Delaunay extends PolyLine {
+    
     private LinkedList<Edge> edgeList;
     private LinkedList<DelaunayTriangle> triangleList;
     private Point center;
@@ -19,6 +20,15 @@ public class Delaunay extends PolyLine {
         this.edgeList = new LinkedList<Edge>();
         this.triangleList = new LinkedList<DelaunayTriangle>();
     }
+
+
+    //  Triangulations-Routinen                                                               
+    private void triangulate() {
+        //TODO
+    }
+
+
+
 
     @Override
     public void addPoint(Point p) {
@@ -144,39 +154,6 @@ public class Delaunay extends PolyLine {
 
     public void addKante(Edge e) {
         edgeList.add(e);
-    }
-
-    //  Triangulations-Routinen                                                               
-    private void triangulate() {
-
-        if (pointList.size() < 3) {
-            return;
-        }
-
-        triangleList.clear();
-
-        for (Point p1 : pointList) {
-            for (Point p2 : pointList) {
-                for (Point p3 : pointList) {
-
-                    if (p1 != p2 && p2 != p3 && p1 != p3) {
-                        DelaunayTriangle tmpTriangle = new DelaunayTriangle(p1, p2, p3);
-                        boolean tester = true;
-                        for (Point p : pointList) {
-                            if (p != p1 && p != p2 && p != p3) {
-                                if (tmpTriangle.isPointInCircumCircle(p)) {
-                                    tester = false;
-                                }
-                            }
-                        }
-
-                        if (tester) {
-                            this.addTriangle(tmpTriangle);
-                        }
-                    }
-                }
-            }
-        }
     }
 
     public LinkedList<Point> getEdgeList() {
