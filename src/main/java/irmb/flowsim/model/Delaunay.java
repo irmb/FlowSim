@@ -445,7 +445,7 @@ class DelaunayTriangle {
             tmp = this.e1;
         }
         if (tmp.p1 == kante.p1 || tmp.p1 == kante.p2) {
-            return tmp.p2;
+            return tmp.p1;
         } else {
             return tmp.p2;
         }

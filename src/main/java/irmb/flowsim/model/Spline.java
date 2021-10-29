@@ -103,11 +103,11 @@ public class Spline extends PolyLine {
 
         List<Double> values = new LinkedList<Double>();
 
-        if (coord == "x") {
+        if (coord.equals("x")) {
             for (int i = 0; i <= points.size() - 1; i++) {
                 values.add(points.get(i).getX());
             }
-        } else if (coord == "y") {
+        } else if (coord.equals("y")) {
             for (int i = 0; i <= points.size() - 1; i++) {
                 values.add(points.get(i).getY());
             }
