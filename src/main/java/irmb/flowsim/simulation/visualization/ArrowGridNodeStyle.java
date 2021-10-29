@@ -109,9 +109,12 @@ public class ArrowGridNodeStyle extends GridNodeStyle {
             return false;
         }
 
-        ArrowGridNodeStyle other = (ArrowGridNodeStyle) o;
-
-        return other.offset == offset;
+        try {
+            ArrowGridNodeStyle other = (ArrowGridNodeStyle) o;
+            return other.offset == offset;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
 }

@@ -21,8 +21,10 @@ public class GridNodeStyleFactory {
                 return new ArrowGridNodeStyle(5, transformer);
             case Info:
                 return new InfoDisplayGridNodeStyle(transformer);
-            case NodeType:
+            case GridType:
                 return new GridTypeStyle(transformer);
+            case Isoline:
+                return new IsolineGridNodeStyle(new ColorFactoryImpl(), transformer);
             default:
                 return null;
         }

@@ -69,21 +69,19 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
     }
 
     private Matrix makeScaling(double s) {
-        return new Matrix(
-                new double[][] {
-                    {s, 0, 0},
-                    {0, -s, 0},
-                    {0, 0, 1},
-                });
+        return new Matrix(new double[][]{
+                {s, 0, 0},
+                {0, -s, 0},
+                {0, 0, 1},
+        });
     }
 
     private Matrix makeTranslation(double tx, double ty) {
-        return new Matrix(
-                new double[][] {
-                    {1, 0, 0},
-                    {0, 1, 0},
-                    {tx, ty, 1}
-                });
+        return new Matrix(new double[][]{
+                {1, 0, 0},
+                {0, 1, 0},
+                {tx, ty, 1}
+        });
     }
 
     private double getDelta(double min, double max) {
@@ -159,4 +157,5 @@ public class CoordinateTransformerImpl implements CoordinateTransformer {
         worldBottomRight.setY(worldBottomRight.getY() * zoom + deltaY);
         this.needsUpdate = true;
     }
+
 }

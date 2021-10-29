@@ -58,4 +58,8 @@ public interface UniformGrid {
     int getGridCoordinatesX(double x);
 
     int getGridCoordinatesY(double y);
+
+    double getWorldCoordinatesX(int x);
+
+    double getWorldCoordinatesY(int y);
 }
