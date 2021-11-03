@@ -41,6 +41,10 @@ public class ColorGridNodeStyle extends GridNodeStyle {
         for (int i = 0; i < size; i++) {
             x = i % grid.getHorizontalNodes();
             y = i / grid.getHorizontalNodes();
+
+            if(grid.isSolid(x, y))
+                continue;
+
             adjustMinMax(x, y);
             double velocity = grid.getVelocityAt(x, y);
             painter.setColor(colorFactory.makeColorForValue(currentMin, currentMax, velocity));
