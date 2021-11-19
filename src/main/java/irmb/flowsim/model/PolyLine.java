@@ -34,8 +34,4 @@ public class PolyLine implements MultiPointShape {
             p.setY(p.getY() + dy);
         }
     }
-
-    public void accept(ShapeVisitor visitor) {
-        visitor.visit(this);
-    }
 }
