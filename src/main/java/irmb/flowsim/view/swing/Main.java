@@ -24,9 +24,8 @@ public class Main {
         line.setSecond(new Point(1, 0.5));
         shapeList.add(new PaintableLine(line));
 
-
         var transformer = new CoordinateTransformerImpl();
-        transformer.setWorldBounds(new Point(0, 0.5), new Point(1, 0));
+        transformer.setWorldBounds(new Point(0, 0), new Point(1, 1));
         transformer.setViewBounds(new Point(0, 0), new Point(800, 600));
 
         var window = new MainWindow(transformer, null);
