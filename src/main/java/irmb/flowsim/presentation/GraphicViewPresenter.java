@@ -14,9 +14,16 @@ public class GraphicViewPresenter {
     protected GraphicView graphicView;
 
     protected List<PaintableShape> shapeList;
+    protected CommandStack commandStack;
 
-    public GraphicViewPresenter(List<PaintableShape> shapeList) {
+    public GraphicViewPresenter(CommandStack commandStack, List<PaintableShape> shapeList) {
         this.shapeList = shapeList;
+        this.commandStack = commandStack;
+        attachObserverToCommandStack();
+    }
+
+    protected void attachObserverToCommandStack() {
+        this.commandStack.addObserver((args) -> graphicView.update());
     }
 
     public void setGraphicView(GraphicView graphicView) {

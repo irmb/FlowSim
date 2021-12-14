@@ -14,8 +14,22 @@ public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
     private boolean running;
 
     public SimulationGraphicViewPresenter(
+            CommandStack commandStack,
             List<PaintableShape> shapeList) {
-        super(shapeList);
+        super(commandStack, shapeList);
+    }
+
+
+    protected void attachObserverToCommandStack() {
+        commandStack.addObserver(
+                args -> {
+                    updateGraphicViewAndSimulation();
+                });
+    }
+
+    private void updateGraphicViewAndSimulation() {
+        needsUpdate = true;
+        graphicView.update();
     }
 
 
