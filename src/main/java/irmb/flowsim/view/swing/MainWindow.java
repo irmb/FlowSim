@@ -53,7 +53,18 @@ public class MainWindow extends JFrame {
         ((SwingGraphicView) drawArea).setPresenter(presenter);
     }
 
-    private void initListeners() {}
+    private void initListeners() {
+        ActionListener undoListener = e -> presenter.undo();
+        ActionListener redoListener = e -> presenter.redo();
+        ActionListener clearListener = e -> presenter.clearAll();
+
+        undoButton.addActionListener(undoListener);
+        undoMenuItem.addActionListener(undoListener);
+        redoButton.addActionListener(redoListener);
+        redoMenuItem.addActionListener(redoListener);
+        clearButton.addActionListener(clearListener);
+        clearMenuItem.addActionListener(clearListener);
+    }
 
     private void setupUI(String[] shapes) {
         createContentPanelWithDrawArea();
@@ -75,9 +86,9 @@ public class MainWindow extends JFrame {
 
         // toolBar.add(new JToolBar.Separator());
 
-        // undoButton = addNewButtonToToolbar("Undo", "edit-undo", toolBar);
-        // redoButton = addNewButtonToToolbar("Redo", "edit-redo", toolBar);
-        // clearButton = addNewButtonToToolbar("Clear", "edit-clear", toolBar);
+        undoButton = addNewButtonToToolbar("Undo", "edit-undo", toolBar);
+        redoButton = addNewButtonToToolbar("Redo", "edit-redo", toolBar);
+        clearButton = addNewButtonToToolbar("Clear", "edit-clear", toolBar);
     }
 
     private void createContentPanelWithDrawArea() {
@@ -114,9 +125,9 @@ public class MainWindow extends JFrame {
         menuBar.add(fileMenu);
 
         JMenu editMenu = new JMenu("Edit");
-        // undoMenuItem = addNewMenuItem(editMenu, "Undo", "edit-undo");
-        // redoMenuItem = addNewMenuItem(editMenu, "Redo", "edit-redo");
-        // clearMenuItem = addNewMenuItem(editMenu, "Clear", "edit-clear");
+        undoMenuItem = addNewMenuItem(editMenu, "Undo", "edit-undo");
+        redoMenuItem = addNewMenuItem(editMenu, "Redo", "edit-redo");
+        clearMenuItem = addNewMenuItem(editMenu, "Clear", "edit-clear");
         menuBar.add(editMenu);
 
         JMenu shapesMenu = new JMenu("Shapes");

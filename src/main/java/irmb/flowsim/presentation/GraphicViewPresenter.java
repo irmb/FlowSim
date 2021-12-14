@@ -1,5 +1,7 @@
 package irmb.flowsim.presentation;
 
+import irmb.flowsim.presentation.command.ClearAllCommand;
+import irmb.flowsim.presentation.command.Command;
 import irmb.flowsim.view.graphics.Paintable;
 import irmb.flowsim.view.graphics.PaintableShape;
 
@@ -32,6 +34,21 @@ public class GraphicViewPresenter {
 
     public Iterator<? extends Paintable> getPaintableList() {
         return shapeList.iterator();
+    }
+
+    public void undo() {
+        commandStack.undo();
+    }
+
+    public void redo() {
+        commandStack.redo();
+    }
+
+    public void clearAll() {
+        Command clearAllCommand = new ClearAllCommand(shapeList);
+        clearAllCommand.execute();
+        commandStack.add(clearAllCommand);
+        graphicView.update();
     }
 
 }
