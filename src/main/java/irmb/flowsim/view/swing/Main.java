@@ -72,6 +72,26 @@ public class Main {
         moveShapeCommand.execute();
 
         commandStack.add(moveShapeCommand);
+
+        Thread.sleep(1000);
+        commandStack.undo();
+        Thread.sleep(1000);
+        commandStack.undo();
+        Thread.sleep(1000);
+        commandStack.undo();
+        Thread.sleep(1000);
+        commandStack.undo();
+
+        Thread.sleep(1000);
+        commandStack.redo();
+        Thread.sleep(1000);
+        commandStack.redo();
+        Thread.sleep(1000);
+        commandStack.redo();
+        Thread.sleep(1000);
+        commandStack.redo();
+
+
         window.repaint();
     }
 
