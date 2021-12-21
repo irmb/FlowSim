@@ -55,3 +55,13 @@ Compared to the last exercise, we now have the two new folders filled with class
 The task is implement the factory and builder classes. These classes were instantiated in the main.
 ### Expected behavior:
 A Line and a Polyline is painted and visible in the main window.
+
+## Exercise 4
+This exercise is based on the seventh lecture about the strategy design pattern.
+Compared to the last exercise, we now have the following folder filled with class stubs.
+
+    presentation/strategy/
+
+The task is implement BuildObjectMouseStrategy and MoveMouseStrategy.
+### Expected behavior:
+Shapes can be painted via the menu or the toolbar. Additionally, the shapes can be moved via the mouse, the window can be panned and zoomed. A right click should remove the shape.
