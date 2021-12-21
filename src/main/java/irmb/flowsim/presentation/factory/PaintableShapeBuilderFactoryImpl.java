@@ -31,6 +31,6 @@ public class PaintableShapeBuilderFactoryImpl implements PaintableShapeBuilderFa
 
     @Override
     public String[] getShapeChoices() {
-        return new String[]{"Line", "Circle", "Triangle", "Rectangle", "PolyLine"/*, "Bezier", "Spline"*/};
+        return new String[]{"Line", "Circle", "Triangle", "Rectangle", "PolyLine", "Bezier"/*, "Spline"*/};
     }
 }
