@@ -9,6 +9,9 @@ import irmb.flowsim.presentation.SimulationGraphicViewPresenter;
 import irmb.flowsim.presentation.command.*;
 import irmb.flowsim.view.graphics.PaintableLine;
 import irmb.flowsim.view.graphics.PaintableShape;
+import irmb.flowsim.presentation.factory.PaintableShapeBuilderFactoryImpl;
+import irmb.flowsim.presentation.factory.PaintableShapeFactoryImpl;
+import irmb.flowsim.presentation.factory.ShapeFactoryImpl;
 
 import javax.swing.*;
 import java.util.LinkedList;
@@ -26,12 +29,42 @@ public class Main {
         transformer.setWorldBounds(new Point(0, 0), new Point(1, 1));
         transformer.setViewBounds(new Point(0, 0), new Point(800, 600));
 
-        var window = new MainWindow(transformer, null);
+
+        var shapeFactory = new ShapeFactoryImpl();
+        var paintableShapeFactory = new PaintableShapeFactoryImpl(transformer);
+        var builderFactory =
+                new PaintableShapeBuilderFactoryImpl(shapeFactory, paintableShapeFactory);
+
+        var window = new MainWindow(transformer, builderFactory.getShapeChoices());
         var presenter = new SimulationGraphicViewPresenter(commandStack, shapeList);
 
         window.setPresenter(presenter);
         presenter.setGraphicView(window.getGraphicView());
         window.setVisible(true);
+
+
+        // Exercise 3:
+        var builder = builderFactory.makeShapeBuilder("Line");
+        builder.addPoint(new Point(0, 0));
+        builder.addPoint(new Point(1, 0.5));
+        PaintableShape paintableShape = builder.getShape();
+
+        var addShapeCommand = new AddPaintableShapeCommand(paintableShape, shapeList);
+        addShapeCommand.execute();
+        commandStack.add(addShapeCommand);
+
+        builder = builderFactory.makeShapeBuilder("PolyLine");
+        builder.addPoint(new Point(0.2, 0));
+        builder.addPoint(new Point(0.6, 0.2));
+        builder.addPoint(new Point(0.8, 0));
+        builder.addPoint(new Point(1, 0.5));
+        paintableShape = builder.getShape();
+
+        addShapeCommand = new AddPaintableShapeCommand(paintableShape, shapeList);
+        addShapeCommand.execute();
+        commandStack.add(addShapeCommand);
+
+        window.repaint();
     }
 
     private static void setLookAndFeel() {
