@@ -32,24 +32,36 @@ public class MoveMouseStrategy extends MouseStrategy {
 
     @Override
     public void onLeftClick(double x, double y) {
-        // TODO
+        super.onLeftClick(x, y);
+        clickedPoint = new Point(x, y);
+        prepareShapeMove(getPaintableShapeAt(x, y));
+    }
+
+    private void prepareShapeMove(PaintableShape paintableShape) {
+        if (paintableShape != null) {
+            double tolerance = getWorldLength(radius);
+            Point worldPoint = getWorldPoint(clickedPoint);
+            Point definedPoint = paintableShape.getDefinedPoint(worldPoint, tolerance);
+            makeMoveShapeCommand(paintableShape, definedPoint);
+        }
+    }
+
+    private void makeMoveShapeCommand(PaintableShape paintableShape, Point definedPoint) {
+        Shape shape = definedPoint != null ? definedPoint : paintableShape.getShape();
+        moveShapeCommand = new MoveShapeCommand(shape);
     }
 
     @Override
     public void onRightClick(double x, double y) {
-        // TODO
-    }
-
-    private void prepareShapeMove(PaintableShape paintableShape) {
-        // TODO
-    }
-
-    private void makeMoveShapeCommand(PaintableShape paintableShape, Point definedPoint) {
-        // TODO
+        PaintableShape shape = getPaintableShapeAt(x, y);
+        if (shape != null)
+            deleteShape(shape);
     }
 
     private void deleteShape(PaintableShape shape) {
-        // TODO
+        RemovePaintableShapeCommand command = makeRemoveCommand(shape);
+        command.execute();
+        notifyWithRemoveCommand(command);
     }
 
     private void notifyWithRemoveCommand(RemovePaintableShapeCommand command) {

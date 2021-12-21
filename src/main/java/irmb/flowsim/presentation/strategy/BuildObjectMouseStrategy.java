@@ -27,30 +27,37 @@ public class BuildObjectMouseStrategy extends MouseStrategy {
         super(shapeList, transformer);
         this.shapeBuilder = builder;
     }
-    
-    @Override
-    public void onLeftClick(double x, double y) {
-        //TODO
-    }
 
     @Override
-    public void onRightClick(double x, double y) {
-        //TODO
+    public void onLeftClick(double x, double y) {
+        Point point = getWorldPoint(x, y);
+        if (firstPoint()) addPointToShape(point);
+        needsNextPointOnMove = true;
+        notifyObserverWithMatchingArgs();
     }
 
     private boolean firstPoint() {
-        //TODO
-        return false;
+        return pointsAdded == 0;
     }
 
     private void addPointToShape(Point point) {
-        //TODO
+        shapeBuilder.addPoint(point);
+        pointsAdded++;
     }
 
     private void notifyObserverWithMatchingArgs() {
         StrategyState state = shapeBuilder.isObjectFinished() ? FINISHED : UPDATE;
         StrategyEventArgs args = makeStrategyEventArgs(state);
         if (state == FINISHED) args.setCommand(addPaintableShapeCommand);
+        notifyObservers(args);
+    }
+
+    @Override
+    public void onRightClick(double x, double y) {
+        StrategyEventArgs args = makeStrategyEventArgs(FINISHED);
+        if (shapeBuilder.isObjectPaintable())
+            if (shapeBuilder.isInfinite()) finishObject(args);
+            else undoAddShape();
         notifyObservers(args);
     }
 
