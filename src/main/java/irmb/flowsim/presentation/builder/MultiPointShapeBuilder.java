@@ -22,13 +22,14 @@ public class MultiPointShapeBuilder extends PaintableShapeBuilder {
 
     @Override
     public void addPoint(Point point) {
-        // TODO
+        shape.addPoint(point);
     }
 
     @Override
     public PaintableShape getShape() {
-        //TODO
-        return null;
+        if (paintable == null)
+            paintable = paintableShapeFactory.makePaintableShape(shape);
+        return paintable;
     }
 
     @Override
@@ -38,18 +39,17 @@ public class MultiPointShapeBuilder extends PaintableShapeBuilder {
 
     @Override
     public void setLastPoint(Point point) {
-        //TODO
+        shape.setLastPoint(point);
     }
 
     @Override
     public void removeLastPoint() {
-        //TODO
+        shape.removeLastPoint();
     }
 
     @Override
     public boolean isObjectPaintable() {
-        //TODO
-        return false;
+        return shape.getPointList().size() >= 2;
     }
 
     @Override

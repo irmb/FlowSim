@@ -12,39 +12,44 @@ public class PaintableTriangleBuilder extends PaintableShapeBuilder {
 
     @Override
     public void addPoint(Point point) {
-        //TODO
+        setPointByIndex(point);
+        pointsAdded++;
     }
 
     private void setPointByIndex(Point point) {
-        //TODO
+        if (pointsAdded == 0) triangle.setFirstPoint(point);
+        else if (pointsAdded == 1) triangle.setSecondPoint(point);
+        else if (pointsAdded == 2) triangle.setThirdPoint(point);
     }
 
     @Override
     public PaintableShape getShape() {
-        //TODO
-        return null;
+        return new PaintableTriangle(triangle);
     }
 
     @Override
     public boolean isObjectFinished() {
-        //TODO
-        return false;
+        return pointsAdded >= 3;
     }
 
     @Override
     public void setLastPoint(Point lastPoint) {
-        //TODO
+        if (pointsAdded == 1) triangle.setFirstPoint(lastPoint);
+        else if (pointsAdded == 2) triangle.setSecondPoint(lastPoint);
+        else triangle.setThirdPoint(lastPoint);
     }
 
     @Override
     public void removeLastPoint() {
-        //TODO
+        if (pointsAdded == 1) triangle.setFirstPoint(null);
+        else if (pointsAdded == 2) triangle.setSecondPoint(null);
+        else triangle.setThirdPoint(null);
+        pointsAdded--;
     }
 
     @Override
     public boolean isObjectPaintable() {
-        //TODO
-        return false;
+        return pointsAdded >= 2;
     }
 
     @Override
