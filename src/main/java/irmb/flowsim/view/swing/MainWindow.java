@@ -77,7 +77,7 @@ public class MainWindow extends JFrame {
         topPanel.add(menuBar, BorderLayout.NORTH);
         toolBar.add(new JToolBar.Separator());
 
-        // addShapesToToolBar(shapes, toolBar);
+        addShapesToToolBar(shapes, toolBar);
         // addSimulationButton = addNewButtonToToolbar("Add Simulation", "add-simulation", toolBar);
         // runSimulationButton = addNewButtonToToolbar("Run Simulation", "continue", toolBar);
         // pauseSimulationButton = addNewButtonToToolbar("Pause Simulation", "pause", toolBar);
@@ -150,9 +150,19 @@ public class MainWindow extends JFrame {
 
     private void addPlotStylesToMenu(JMenu visualizationMenu) {}
 
-    private void addShapesToToolBar(String[] shapes, JToolBar toolBar)  {}
+    private void addShapesToToolBar(String[] shapes, JToolBar toolBar) {
+        for (final var shape : shapes) {
+            var button = addNewButtonToToolbar(shape, shape, toolBar);
+            button.addActionListener(e -> presenter.beginPaint(shape));
+        }
+    }
 
-    private void addShapesToMenuBar(String[] shapes, JMenu shapesMenu) {}
+    private void addShapesToMenuBar(String[] shapes, JMenu shapesMenu) {
+        for (final var shape : shapes) {
+            JMenuItem item = addNewMenuItem(shapesMenu, shape, shape);
+            item.addActionListener(e -> presenter.beginPaint(shape));
+        }
+    }
 
     private JMenuItem addNewMenuItem(JMenu menu, String text, String imageName) {
         var item = new JMenuItem(text);

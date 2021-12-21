@@ -55,10 +55,17 @@ public class SwingGraphicView extends JPanel
     public void mouseClicked(MouseEvent e) {}
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+        if (e.getButton() == 1) presenter.handleLeftClick(e.getX(), e.getY());
+        else if (e.getButton() == 3) presenter.handleRightClick(e.getX(), e.getY());
+        else if (e.getButton() == MouseEvent.BUTTON2)
+            presenter.handleMiddleClick(e.getX(), e.getY());
+    }
 
     @Override
-    public void mouseReleased(MouseEvent e) {}
+    public void mouseReleased(MouseEvent e) {
+        presenter.handleMouseRelease();
+    }
 
     @Override
     public void mouseEntered(MouseEvent e) {}
@@ -67,11 +74,17 @@ public class SwingGraphicView extends JPanel
     public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mouseDragged(MouseEvent e) {}
+    public void mouseDragged(MouseEvent e) {
+        presenter.handleMouseDrag(e.getX(), e.getY());
+    }
 
     @Override
-    public void mouseMoved(MouseEvent e) {}
+    public void mouseMoved(MouseEvent e) {
+        if (presenter != null) presenter.handleMouseMove(e.getX(), e.getY());
+    }
 
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {}
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        presenter.handleScroll(e.getX(), e.getY(), -e.getWheelRotation());
+    }
 }

@@ -2,6 +2,9 @@ package irmb.flowsim.presentation;
 
 import irmb.flowsim.presentation.command.ClearAllCommand;
 import irmb.flowsim.presentation.command.Command;
+import irmb.flowsim.presentation.factory.MouseStrategyFactory;
+import irmb.flowsim.presentation.strategy.MouseStrategy;
+import irmb.flowsim.presentation.strategy.StrategyState;
 import irmb.flowsim.view.graphics.Paintable;
 import irmb.flowsim.view.graphics.PaintableShape;
 
@@ -15,13 +18,19 @@ public class GraphicViewPresenter {
 
     protected GraphicView graphicView;
 
+    private final MouseStrategyFactory factory;
+    protected MouseStrategy strategy;
+
     protected List<PaintableShape> shapeList;
     protected CommandStack commandStack;
 
-    public GraphicViewPresenter(CommandStack commandStack, List<PaintableShape> shapeList) {
+    public GraphicViewPresenter(MouseStrategyFactory strategyFactory, CommandStack commandStack, 
+                                List<PaintableShape> shapeList) {
+        this.factory = strategyFactory;
         this.shapeList = shapeList;
         this.commandStack = commandStack;
         attachObserverToCommandStack();
+        makeMoveStrategy();
     }
 
     protected void attachObserverToCommandStack() {
@@ -30,6 +39,58 @@ public class GraphicViewPresenter {
 
     public void setGraphicView(GraphicView graphicView) {
         this.graphicView = graphicView;
+    }
+
+    public void beginPaint(String objectType) {
+        makeBuildStrategy(objectType);
+    }
+
+    protected void makeMoveStrategy() {
+        strategy = factory.makeMoveStrategy();
+        addStrategyObserver();
+    }
+
+    protected void makeBuildStrategy(String objectType) {
+        strategy = factory.makeBuildStrategy(objectType);
+        addStrategyObserver();
+    }
+
+    protected void addStrategyObserver() {
+        strategy.addObserver((arg) -> {
+            if (arg.getState() == StrategyState.FINISHED)
+                makeMoveStrategy();
+            if (arg.getCommand() != null)
+                commandStack.add(arg.getCommand());
+            graphicView.update();
+        });
+    }
+
+    public void handleLeftClick(double x, double y) {
+        strategy.onLeftClick(x, y);
+    }
+
+    public void handleRightClick(double x, double y) {
+        strategy.onRightClick(x, y);
+    }
+
+    public void handleMouseMove(double x, double y) {
+        strategy.onMouseMove(x, y);
+    }
+
+    public void handleMouseDrag(double x, double y) {
+        strategy.onMouseDrag(x, y);
+    }
+
+    public void handleMouseRelease() {
+        strategy.onMouseRelease();
+    }
+
+    public void handleMiddleClick(double x, double y) {
+        strategy.onMiddleClick(x, y);
+    }
+
+    public void handleScroll(double x, double y, int delta) {
+        strategy.onScroll(x, y, delta);
     }
 
     public Iterator<? extends Paintable> getPaintableList() {

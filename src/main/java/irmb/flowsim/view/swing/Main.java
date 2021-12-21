@@ -9,6 +9,7 @@ import irmb.flowsim.presentation.SimulationGraphicViewPresenter;
 import irmb.flowsim.presentation.command.*;
 import irmb.flowsim.view.graphics.PaintableLine;
 import irmb.flowsim.view.graphics.PaintableShape;
+import irmb.flowsim.presentation.factory.MouseStrategyFactoryImpl;
 import irmb.flowsim.presentation.factory.PaintableShapeBuilderFactoryImpl;
 import irmb.flowsim.presentation.factory.PaintableShapeFactoryImpl;
 import irmb.flowsim.presentation.factory.ShapeFactoryImpl;
@@ -35,36 +36,15 @@ public class Main {
         var builderFactory =
                 new PaintableShapeBuilderFactoryImpl(shapeFactory, paintableShapeFactory);
 
+        var mouseStrategyFactory =
+                new MouseStrategyFactoryImpl(shapeList, builderFactory, transformer);
+
         var window = new MainWindow(transformer, builderFactory.getShapeChoices());
-        var presenter = new SimulationGraphicViewPresenter(commandStack, shapeList);
+        var presenter = new SimulationGraphicViewPresenter(mouseStrategyFactory, commandStack, shapeList);
 
         window.setPresenter(presenter);
         presenter.setGraphicView(window.getGraphicView());
         window.setVisible(true);
-
-
-        // Exercise 3:
-        var builder = builderFactory.makeShapeBuilder("Line");
-        builder.addPoint(new Point(0, 0));
-        builder.addPoint(new Point(1, 0.5));
-        PaintableShape paintableShape = builder.getShape();
-
-        var addShapeCommand = new AddPaintableShapeCommand(paintableShape, shapeList);
-        addShapeCommand.execute();
-        commandStack.add(addShapeCommand);
-
-        builder = builderFactory.makeShapeBuilder("PolyLine");
-        builder.addPoint(new Point(0.2, 0));
-        builder.addPoint(new Point(0.6, 0.2));
-        builder.addPoint(new Point(0.8, 0));
-        builder.addPoint(new Point(1, 0.5));
-        paintableShape = builder.getShape();
-
-        addShapeCommand = new AddPaintableShapeCommand(paintableShape, shapeList);
-        addShapeCommand.execute();
-        commandStack.add(addShapeCommand);
-
-        window.repaint();
     }
 
     private static void setLookAndFeel() {

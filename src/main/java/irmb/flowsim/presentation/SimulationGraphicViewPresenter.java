@@ -1,5 +1,6 @@
 package irmb.flowsim.presentation;
 
+import irmb.flowsim.presentation.factory.MouseStrategyFactory;
 import irmb.flowsim.view.graphics.Paintable;
 import irmb.flowsim.view.graphics.PaintableShape;
 
@@ -14,9 +15,10 @@ public class SimulationGraphicViewPresenter extends GraphicViewPresenter {
     private boolean running;
 
     public SimulationGraphicViewPresenter(
+            MouseStrategyFactory strategyFactory,
             CommandStack commandStack,
             List<PaintableShape> shapeList) {
-        super(commandStack, shapeList);
+        super(strategyFactory, commandStack, shapeList);
     }
 
 
