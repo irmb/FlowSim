@@ -32,48 +32,6 @@ public class Main {
         window.setPresenter(presenter);
         presenter.setGraphicView(window.getGraphicView());
         window.setVisible(true);
-
-        // We're painting this line today and adding a few commands
-        var line = new Line();
-        line.setFirst(new Point(0, 0));
-        line.setSecond(new Point(1, 0.5));
-        var paintableLine = new PaintableLine(line);
-
-        Thread.sleep(2000);
-
-        var addPaintableShapeCommand = new AddPaintableShapeCommand(paintableLine, shapeList);
-        addPaintableShapeCommand.execute();
-
-        commandStack.add(addPaintableShapeCommand);
-        window.repaint();
-
-        Thread.sleep(2000);
-
-        var zoomCommand = new ZoomCommand(transformer);
-        zoomCommand.setZoomFactor(-0.5);
-        zoomCommand.setZoomPoint(0, 0);
-        zoomCommand.execute();
-
-        commandStack.add(zoomCommand);
-        window.repaint();
-        Thread.sleep(2000);
-        
-        var panCommand = new PanWindowCommand(transformer);
-        panCommand.setDelta(-80, 50);
-        panCommand.execute();
-
-        commandStack.add(panCommand);
-        window.repaint();
-
-        Thread.sleep(2000);
-
-        var moveShapeCommand = new MoveShapeCommand(line);
-        moveShapeCommand.setDelta(0.2, -0.2);
-        moveShapeCommand.execute();
-
-        commandStack.add(moveShapeCommand);
-
-        window.repaint();
     }
 
     private static void setLookAndFeel() {
