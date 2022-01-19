@@ -1,5 +1,6 @@
 package irmb.flowsim.view.graphics;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import irmb.flowsim.model.Point;
@@ -23,32 +24,32 @@ public class PaintableSpline extends PaintableShape {
     
     @Override
     public void paint(Painter painter) {
-        List<Point> pointList = spline.getPointList();
-        int numOfPoints = 100;
         painter.setColor(Color.BLACK);
-        // Spline zeichnen
-        if (pointList.size() > 2) {
-            for (int i = 0; i < numOfPoints - 1; i++) {
 
-                double t1 = (i) / (double) (numOfPoints - 1);
-                double t2 = (i + 1.0) / (double) (numOfPoints - 1);
+        if (spline.getPointList().size() >= 2) {
 
-                Point p1 = spline.getPointOnSpline(t1);
-                Point p2 = spline.getPointOnSpline(t2);
+            List<Point> pointList = spline.getPointList();
 
-                // draw line
-                painter.paintLine(p1, p2);
+            List<Double> gradientListX = spline.getGradientList(spline.splitPointList(pointList, "x"));
+            List<Double> gradientListY = spline.getGradientList(spline.splitPointList(pointList, "y"));
+
+            recursivePaint(painter, pointList, gradientListX, gradientListY);
+
+            // Kontrollpunkte zeichnen
+            for (int i = 0; i < pointList.size(); i++) {
+                Point p = pointList.get(i);
+                Point p_view = trafo.transformToPointOnScreen(p);
+                int k = 4;
+                painter.paintLine(p_view.getX() - k, p_view.getY() - k, p_view.getX() + k, p_view.getY() + k);
+                painter.paintLine(p_view.getX() + k, p_view.getY() - k, p_view.getX() - k, p_view.getY() + k);
             }
         }
+    }
 
-        // Kontrollpunkte zeichnen
-        for (int i = 0; i < pointList.size(); i++) {
-            Point p = pointList.get(i);
-            int k = 4;
-            Point p_view = trafo.transformToPointOnScreen(p);
-            painter.paintLine(p_view.getX() - k, p_view.getY() - k, p_view.getX() + k, p_view.getY() + k);
-            painter.paintLine(p_view.getX() + k, p_view.getY() - k, p_view.getX() - k, p_view.getY() + k);
-        }
+
+
+    private void recursivePaint(Painter painter, List<Point> pointList, List<Double> gradientListX, List<Double> gradientListY) {
+        //TODO
     }
 
 
@@ -68,7 +69,7 @@ public class PaintableSpline extends PaintableShape {
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
         List<Point> pointList = spline.getPointList();
-        // Prüft ob Mausklick (x,y) auf einem Kontrollpunkt der Bezierkurve liegt
+        // Prüft ob Mausklick (x,y) auf einem Kontrollpunkt des Splines liegt
         for (Point p : pointList) {
             if ((Math.abs(point.getX() - p.getX()) < radius) && (Math.abs(point.getY() - p.getY()) < radius)) {
                 this.selectedPoint = p;
@@ -77,25 +78,27 @@ public class PaintableSpline extends PaintableShape {
         }
         this.selectedPoint = null;
 
-        // Prüft ob Mausklick (x,y) auf einer Kante des Polygonzugs liegt
+        // Prüft ob Mausklick (x,y) auf einer Kante der Bezierkurve liegt
         double distance;
-        int numOfPoints = 100;
 
         // Kurve zeichnen
         if (pointList.size() >= 2) {
-            for (int i = 0; i < numOfPoints - 1; i++) {
+            for (int i = 0; i < pointList.size() - 1; i++) {
 
-                double t1 = (i) / (double) (numOfPoints - 1);
-                double t2 = (i + 1.0) / (double) (numOfPoints - 1);
+                List<Double> gradientListX = spline.getGradientList(spline.splitPointList(pointList, "x"));
+                List<Double> gradientListY = spline.getGradientList(spline.splitPointList(pointList, "y"));
 
-                Point p1 = spline.getPointOnSpline(t1);
-                Point p2 = spline.getPointOnSpline(t2);
+                Point p1 = new Point(spline.getPointOnSpline(pointList, gradientListX, gradientListY, i).get(0),
+                        spline.getPointOnSpline(pointList, gradientListX, gradientListY, i).get(1));
+                Point p2 = new Point(spline.getPointOnSpline(pointList, gradientListX, gradientListY, i).get(0),
+                        spline.getPointOnSpline(pointList, gradientListX, gradientListY, i).get(1));
 
                 double xa = p1.getX();
                 double ya = p1.getY();
                 double xb = p2.getX();
                 double yb = p2.getY();
-                double t = 2.0 * point.getX() * xb - 2.0 * point.getX() * xa + 2.0 * point.getY() * yb - 2.0 * point.getY() * ya + ya * ya + xa * xa - yb * yb - xb * xb;
+                double t = 2.0 * point.getX() * xb - 2.0 * point.getX() * xa + 2.0 * point.getY() * yb - 2.0 * point.getY() * ya + ya * ya + xa * xa - yb * yb
+                        - xb * xb;
                 t /= yb * yb - 2.0 * yb * ya + ya * ya + xb * xb - 2.0 * xb * xa + xa * xa;
 
                 if (Math.abs(t) <= 1.) {
@@ -118,4 +121,5 @@ public class PaintableSpline extends PaintableShape {
 
         return false;
     }
+
 }
