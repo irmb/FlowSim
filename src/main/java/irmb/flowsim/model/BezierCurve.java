@@ -1,8 +1,6 @@
 package irmb.flowsim.model;
 
-import irmb.flowsim.presentation.Painter;
-
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,20 +10,40 @@ public class BezierCurve extends PolyLine {
 
 
     public List<Point> calculateCasteljau(List<Point> pointList, double t) {
-        //TODO
-        return null;
+        List<Point> tempList = new ArrayList<>(pointList);
+        List<Point> subList;
+        List<Point> results = new ArrayList<>();
+        results.add(tempList.get(0));
+        results.add(tempList.get(tempList.size() - 1));
+        int insertIndex = 1;
+        do {
+            subList = getSubPointList(t, tempList);
+            results.add(insertIndex, subList.get(0));
+            if (subList.size() > 1)
+                results.add(results.size() - insertIndex, subList.get(subList.size() - 1));
+            insertIndex++;
+            tempList = subList;
+        } while (subList.size() > 1);
+        return results;
     }
 
     private List<Point> getSubPointList(double t, List<Point> tempList) {
-        //TODO
-        return null;
+        List<Point> subList;
+        subList = new ArrayList<>();
+        for (int i = 0; i < tempList.size() - 1; i++) {
+            Point first = tempList.get(i + 1);
+            Point second = tempList.get(i);
+            Point subPoint = getSubPoint(t, first, second);
+            subList.add(i, subPoint);
+        }
+        return subList;
     }
 
     private Point getSubPoint(double t, Point first, Point second) {
-        //TODO
-        return null;
+        double dx = first.getX() - second.getX();
+        double dy = first.getY() - second.getY();
+        return new Point((second.getX() + t * dx), (second.getY() + t * dy));
     }
-
 
     public Point calculatePointWithBernstein(double t) {
         List<Point> pointList = getPointList();
