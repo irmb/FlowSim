@@ -48,8 +48,50 @@ public class PaintableSpline extends PaintableShape {
 
 
 
+
     private void recursivePaint(Painter painter, List<Point> pointList, List<Double> gradientListX, List<Double> gradientListY) {
-        //TODO
+
+        for (int i = 0; i <= pointList.size() - 2; i++) {
+            Point first = pointList.get(i);
+            Point second = pointList.get(i+1);
+            double dist = trafo.scaleToScreenLength(getDistance(first, second));
+
+            if (dist < 5) {
+                painter.paintLine(first, second);
+                return;
+            }
+
+            List<Point> leftPoints = new LinkedList<Point>();
+            List<Double> leftGradientsX = new LinkedList<Double>();
+            List<Double> leftGradientsY = new LinkedList<Double>();
+
+            List<Point> rightPoints = new LinkedList<Point>();
+            List<Double> rightGradientsX = new LinkedList<Double>();
+            List<Double> rightGradientsY = new LinkedList<Double>();
+
+            List<Double> splineValues;
+            splineValues = spline.getPointOnSpline(pointList, gradientListX, gradientListY, i);
+
+            leftPoints.add(pointList.get(i));
+            leftGradientsX.add(gradientListX.get(i) / 2);
+            leftGradientsY.add(gradientListY.get(i) / 2);
+
+            leftPoints.add(new Point(splineValues.get(0), splineValues.get(1)));
+            leftGradientsX.add(splineValues.get(2) / 2);
+            leftGradientsY.add(splineValues.get(3) / 2);
+
+            rightPoints.add(new Point(splineValues.get(0), splineValues.get(1)));
+            rightGradientsX.add(splineValues.get(2) / 2);
+            rightGradientsY.add(splineValues.get(3) / 2);
+
+            rightPoints.add(pointList.get(i + 1));
+            rightGradientsX.add(gradientListX.get(i + 1) / 2);
+            rightGradientsY.add(gradientListY.get(i + 1) / 2);
+
+            recursivePaint(painter, leftPoints, leftGradientsX, leftGradientsY);
+            recursivePaint(painter, rightPoints, rightGradientsX, rightGradientsY);
+
+        }
     }
 
 
