@@ -85,3 +85,16 @@ In this exercise we need to implement this new method in the following classes:
 
 ### Expected behavior:
 Bezier Curve can be painted as before.
+
+## Exercise 7
+This exercise is based on the tenth lecture about the spline interpolation method.
+In this exercise we need to implement this new interpolation method in the following classes:
+
+    model/Spline.java
+
+Additionally, the following class was added to the project:
+
+    view/graphics/PaintableSpline.java
+    
+### Expected behavior:
+Spline interpolation can be painted.
