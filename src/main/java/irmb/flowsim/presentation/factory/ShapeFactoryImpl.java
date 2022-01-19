@@ -15,7 +15,7 @@ public class ShapeFactoryImpl implements ShapeFactory {
             case "Rectangle" -> new Rectangle();
             case "PolyLine" -> new PolyLine();
             case "Bezier" -> new BezierCurve();
-            // case "Spline" -> new Spline();
+            case "Spline" -> new Spline();
             default -> null;
         };
     }
