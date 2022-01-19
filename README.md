@@ -98,3 +98,13 @@ Additionally, the following class was added to the project:
     
 ### Expected behavior:
 Spline interpolation can be painted.
+
+## Exercise 8
+This exercise is based on the eleventh lecture about a more effcient spline interpolation method.
+
+In this exercise we need to implement this new method in the following classes:
+    model/Spline.java
+    view/graphics/PaintableSpline.java
+    
+### Expected behavior:
+Spline interpolation can be painted as before.
