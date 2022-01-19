@@ -11,6 +11,22 @@ import java.util.List;
 public class BezierCurve extends PolyLine {
 
 
+    public List<Point> calculateCasteljau(List<Point> pointList, double t) {
+        //TODO
+        return null;
+    }
+
+    private List<Point> getSubPointList(double t, List<Point> tempList) {
+        //TODO
+        return null;
+    }
+
+    private Point getSubPoint(double t, Point first, Point second) {
+        //TODO
+        return null;
+    }
+
+
     public Point calculatePointWithBernstein(double t) {
         List<Point> pointList = getPointList();
         int size = pointList.size();

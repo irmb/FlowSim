@@ -66,7 +66,7 @@ The task is implement BuildObjectMouseStrategy and MoveMouseStrategy.
 ### Expected behavior:
 Shapes can be painted via the menu or the toolbar. Additionally, the shapes can be moved via the mouse, the window can be panned and zoomed. A right click should remove the shape.
 
-## Exercuse 5
+## Exercise 5
 This exercise is based on the eighth lecture about the bezier interpolation method.
 Compared to the last exercise, we now have the following folder filled with class stubs.
 
@@ -75,3 +75,13 @@ Compared to the last exercise, we now have the following folder filled with clas
 
 ### Expected behavior:
 Bezier Curve can be painted.
+
+## Exercise 6
+This exercise is based on the ninth lecture about the casteljau bezier interpolation method.
+In this exercise we need to implement this new method in the following classes:
+
+    model/BezierCurve.java
+    view/graphics/PaintableBezierCurve.java
+
+### Expected behavior:
+Bezier Curve can be painted as before.

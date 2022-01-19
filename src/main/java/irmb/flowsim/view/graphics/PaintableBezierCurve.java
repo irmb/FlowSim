@@ -23,20 +23,38 @@ public class PaintableBezierCurve extends PaintableShape {
 
     @Override
     public void paint(Painter painter) {
-        List<Point> pointList = bezierCurve.getPointList();
-        int numOfPoints = 100;
-        if (pointList.size() >= 2) {
-            for (int i = 0; i < numOfPoints-1; i++) {
-                double t1 = (i) / (double) (numOfPoints - 1);
-                double t2 = (i + 1.0) / (double) (numOfPoints - 1);
+        painter.setColor(Color.BLACK);
+        recursivePaint(painter, bezierCurve.getPointList());
 
-                Point p1 = bezierCurve.calculatePointWithBernstein(t1);
-                Point p2 = bezierCurve.calculatePointWithBernstein(t2);
-
-                painter.paintLine(new Point(p1.getX(), p1.getY()), new Point(p2.getX(), p2.getY()));
-            }
+        for (Point point : bezierCurve.getPointList()) {
+            Point viewPoint = transformer.transformToPointOnScreen(point);
+            painter.paintPoint(viewPoint.getX(), viewPoint.getY());
         }
     }
+
+    private void recursivePaint(Painter painter, List<Point> pointList) {
+        // TODO
+    }
+
+
+    // ## old paint method:
+    //
+    // @Override
+    // public void paint(Painter painter) {
+    //     List<Point> pointList = bezierCurve.getPointList();
+    //     int numOfPoints = 100;
+    //     if (pointList.size() >= 2) {
+    //         for (int i = 0; i < numOfPoints-1; i++) {
+    //             double t1 = (i) / (double) (numOfPoints - 1);
+    //             double t2 = (i + 1.0) / (double) (numOfPoints - 1);
+
+    //             Point p1 = bezierCurve.calculatePointWithBernstein(t1);
+    //             Point p2 = bezierCurve.calculatePointWithBernstein(t2);
+
+    //             painter.paintLine(new Point(p1.getX(), p1.getY()), new Point(p2.getX(), p2.getY()));
+    //         }
+    //     }
+    // }
 
     @Override
     public boolean isPointOnBoundary(Point point, double radius) {
