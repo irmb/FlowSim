@@ -41,4 +41,9 @@ public class Point implements Shape {
     public double distanceTo(Point p) {
         return Math.sqrt(Math.pow(this.x - p.x, 2) + Math.pow(this.y - p.y, 2));
     }
+
+    @Override
+    public void accept(ShapeVisitor visitor) {
+        visitor.visit(this);
+    }
 }

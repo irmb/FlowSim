@@ -37,4 +37,9 @@ public class Circle implements TwoPointShape {
         this.center.setX(this.center.getX() + dx);
         this.center.setY(this.center.getY() + dy);
     }
+
+    @Override
+    public void accept(ShapeVisitor visitor) {
+        visitor.visit(this);
+    }
 }

@@ -47,4 +47,9 @@ public class Triangle implements Shape {
         secondPoint.moveBy(dx, dy);
         thirdPoint.moveBy(dx, dy);
     }
+
+    @Override
+    public void accept(ShapeVisitor visitor) {
+        visitor.visit(this);
+    }
 }

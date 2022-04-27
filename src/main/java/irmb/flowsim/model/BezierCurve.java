@@ -69,4 +69,9 @@ public class BezierCurve extends PolyLine {
             sum *= i;
         return sum;
     }
+
+    @Override
+    public void accept(ShapeVisitor visitor) {
+        visitor.visit(this);
+    }
 }

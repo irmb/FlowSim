@@ -34,4 +34,9 @@ public class Line implements TwoPointShape {
         second.setX(second.getX() + dx);
         second.setY(second.getY() + dy);
     }
+
+    @Override
+    public void accept(ShapeVisitor visitor) {
+        visitor.visit(this);
+    }
 }

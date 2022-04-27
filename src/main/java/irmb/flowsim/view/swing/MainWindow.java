@@ -3,6 +3,7 @@ package irmb.flowsim.view.swing;
 import irmb.flowsim.model.util.CoordinateTransformer;
 import irmb.flowsim.presentation.GraphicView;
 import irmb.flowsim.presentation.SimulationGraphicViewPresenter;
+import irmb.flowsim.simulation.visualization.PlotStyle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,9 +55,22 @@ public class MainWindow extends JFrame {
     }
 
     private void initListeners() {
+        ActionListener addSimulationListener = e -> presenter.addSimulation();
+        ActionListener runSimulationListener = e -> presenter.runSimulation();
+        ActionListener pauseSimulationListener = e -> presenter.pauseSimulation();
+        ActionListener removeSimulationListener = e -> presenter.removeSimulation();
         ActionListener undoListener = e -> presenter.undo();
         ActionListener redoListener = e -> presenter.redo();
         ActionListener clearListener = e -> presenter.clearAll();
+
+        addSimulationButton.addActionListener(addSimulationListener);
+        runSimulationButton.addActionListener(runSimulationListener);
+        pauseSimulationButton.addActionListener(pauseSimulationListener);
+        removeSimulationButton.addActionListener(removeSimulationListener);
+        addSimulationMenuItem.addActionListener(addSimulationListener);
+        runSimulationMenuItem.addActionListener(runSimulationListener);
+        pauseSimulationMenuItem.addActionListener(pauseSimulationListener);
+        removeSimulationMenuItem.addActionListener(removeSimulationListener);
 
         undoButton.addActionListener(undoListener);
         undoMenuItem.addActionListener(undoListener);
@@ -78,13 +92,13 @@ public class MainWindow extends JFrame {
         toolBar.add(new JToolBar.Separator());
 
         addShapesToToolBar(shapes, toolBar);
-        // addSimulationButton = addNewButtonToToolbar("Add Simulation", "add-simulation", toolBar);
-        // runSimulationButton = addNewButtonToToolbar("Run Simulation", "continue", toolBar);
-        // pauseSimulationButton = addNewButtonToToolbar("Pause Simulation", "pause", toolBar);
-        // removeSimulationButton =
-        //         addNewButtonToToolbar("Remove Simulation", "remove-simulation", toolBar);
+        addSimulationButton = addNewButtonToToolbar("Add Simulation", "add-simulation", toolBar);
+        runSimulationButton = addNewButtonToToolbar("Run Simulation", "continue", toolBar);
+        pauseSimulationButton = addNewButtonToToolbar("Pause Simulation", "pause", toolBar);
+        removeSimulationButton =
+                addNewButtonToToolbar("Remove Simulation", "remove-simulation", toolBar);
 
-        // toolBar.add(new JToolBar.Separator());
+        toolBar.add(new JToolBar.Separator());
 
         undoButton = addNewButtonToToolbar("Undo", "edit-undo", toolBar);
         redoButton = addNewButtonToToolbar("Redo", "edit-redo", toolBar);
@@ -135,20 +149,26 @@ public class MainWindow extends JFrame {
         addShapesToMenuBar(shapes, shapesMenu);
 
         JMenu simulationMenu = new JMenu("Simulation");
-        // addSimulationMenuItem = addNewMenuItem(simulationMenu, "Add Simulation", "add-simulation");
-        // runSimulationMenuItem = addNewMenuItem(simulationMenu, "Run Simulation", "continue");
-        // pauseSimulationMenuItem = addNewMenuItem(simulationMenu, "Pause Simulation", "pause");
-        // removeSimulationMenuItem =
-        //         addNewMenuItem(simulationMenu, "Remove Simulation", "remove-simulation");
+        addSimulationMenuItem = addNewMenuItem(simulationMenu, "Add Simulation", "add-simulation");
+        runSimulationMenuItem = addNewMenuItem(simulationMenu, "Run Simulation", "continue");
+        pauseSimulationMenuItem = addNewMenuItem(simulationMenu, "Pause Simulation", "pause");
+        removeSimulationMenuItem =
+                addNewMenuItem(simulationMenu, "Remove Simulation", "remove-simulation");
         menuBar.add(simulationMenu);
 
         JMenu visualizationMenu = new JMenu("Visualization");
-        // addPlotStylesToMenu(visualizationMenu);
+        addPlotStylesToMenu(visualizationMenu);
         menuBar.add(visualizationMenu);
         return menuBar;
     }
 
-    private void addPlotStylesToMenu(JMenu visualizationMenu) {}
+    private void addPlotStylesToMenu(JMenu visualizationMenu) {
+        for (final var style : PlotStyle.values()) {
+            JCheckBoxMenuItem item = new JCheckBoxMenuItem(style.toString());
+            item.addActionListener(e -> presenter.togglePlotStyle(style));
+            visualizationMenu.add(item);
+        }
+    }
 
     private void addShapesToToolBar(String[] shapes, JToolBar toolBar) {
         for (final var shape : shapes) {

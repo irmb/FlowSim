@@ -14,6 +14,9 @@ import irmb.flowsim.presentation.factory.PaintableShapeBuilderFactoryImpl;
 import irmb.flowsim.presentation.factory.PaintableShapeFactoryImpl;
 import irmb.flowsim.presentation.factory.ShapeFactoryImpl;
 
+import irmb.flowsim.simulation.SimulationFactoryImpl;
+import irmb.flowsim.simulation.visualization.GridNodeStyleFactory;
+
 import javax.swing.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -40,7 +43,10 @@ public class Main {
                 new MouseStrategyFactoryImpl(shapeList, builderFactory, transformer);
 
         var window = new MainWindow(transformer, builderFactory.getShapeChoices());
-        var presenter = new SimulationGraphicViewPresenter(mouseStrategyFactory, commandStack, shapeList);
+
+        var simulationFactory = new SimulationFactoryImpl();
+        var gridNodeStyleFactory = new GridNodeStyleFactory(transformer);
+        var presenter = new SimulationGraphicViewPresenter(mouseStrategyFactory, commandStack, shapeList, simulationFactory, gridNodeStyleFactory);
 
         window.setPresenter(presenter);
         presenter.setGraphicView(window.getGraphicView());
