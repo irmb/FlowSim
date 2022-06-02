@@ -8,7 +8,7 @@ FlowSim was developed as a Bachelor thesis to study test driven development.
 
 
 ## Exercise 1
-The first exercise is based on fourth lecture about linear transformation. 
+The first exercise is based on fourth lecture about linear transformation.
 In this exercise we will implement the transformation of simple geometrical shapes. So far we can instantiate shapes in the main method (view/swing/Main.java) like the 2DLine. Notice that this object is put into the shapeList of type PaintableShape. However, while running the application we can only see parts of the line in the top left corner. Our task is now to implement the following class:
 
     model/util/CoordinateTransformerImpl.java
@@ -40,7 +40,7 @@ Compared with the last exercise the following classes are added to the project:
 
 
 The task is to implement the behavior of the commands and the command stack.
-At the bottom of the main method (view/swing/Main.java) several commands were instantiated. Between the execution of the commands is a 2 second delay. 
+At the bottom of the main method (view/swing/Main.java) several commands were instantiated. Between the execution of the commands is a 2 second delay.
 
 ### Expected behavior:
 The commands are executed correctly. After the execution we can undo and redo the commands.
@@ -95,16 +95,28 @@ In this exercise we need to implement this new interpolation method in the follo
 Additionally, the following class was added to the project:
 
     view/graphics/PaintableSpline.java
-    
+
 ### Expected behavior:
 Spline interpolation can be painted.
 
-## Exercise 8
+## Exercise 7.2
 This exercise is based on the eleventh lecture about a more effcient spline interpolation method.
 
 In this exercise we need to implement this new method in the following classes:
     model/Spline.java
     view/graphics/PaintableSpline.java
-    
+
 ### Expected behavior:
 Spline interpolation can be painted as before.
+
+
+## Exercise 8
+In this exercise we are going to implement the bresenham line drawing and the floodfill filling algorithm.
+
+Compared to the last exercises, there is now the LBM simulation behaviour available located in lbm/* and simulation/*
+
+In this exercise we need to implement floodfill() and the bresenham() method in the following class:
+    simulation/GridMapper.java
+
+## Exercise 9
+In this exercise we are going to implement the visulation of the numerical simulation.
