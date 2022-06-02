@@ -19,13 +19,63 @@ public class GridMapper implements ShapeVisitor {
     }
 
 
+
     private void bresenham(int xStart, int yStart, int xEnd, int yEnd) {
-       // TODO
+        int x, y, t, dx, dy, incx, incy, pdx, pdy, ddx, ddy, es, el, err;
+
+        dx = xEnd - xStart;
+        dy = yEnd - yStart;
+
+        incx = dx < 0 ? -1 : 1;
+        incy = dy < 0 ? -1 : 1;
+        if (dx < 0) dx = -dx;
+        if (dy < 0) dy = -dy;
+
+        if (dx > dy) {
+            pdx = incx;
+            pdy = 0;
+            ddx = incx;
+            ddy = incy;
+            es = dy;
+            el = dx;
+        } else {
+            pdx = 0;
+            pdy = incy;
+            ddx = incx;
+            ddy = incy;
+            es = dx;
+            el = dy;
+        }
+
+        x = xStart;
+        y = yStart;
+        err = el / 2;
+        grid.setSolid(x, y);
+        for (t = 0; t < el; ++t) {
+            err -= es;
+            if (err < 0) {
+                err += el;
+                x += ddx;
+                y += ddy;
+            } else {
+                x += pdx;
+                y += pdy;
+            }
+            grid.setSolid(x, y);
+        }
     }
 
 
     private void floodfill(int x, int y) {
-        // TODO
+        if (!grid.isSolid(x, y)) {
+
+            grid.setSolid(x, y);
+
+            floodfill(x, y + 1);
+            floodfill(x - 1, y);
+            floodfill(x, y - 1);
+            floodfill(x + 1, y);
+        }
     }
 
     public void mapShapes(List<PaintableShape> shapes) {
