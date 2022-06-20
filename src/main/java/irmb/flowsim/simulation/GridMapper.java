@@ -203,4 +203,9 @@ public class GridMapper implements ShapeVisitor {
     public void visit(Spline spline) {
 
     }
+
+    @Override
+    public void visit(Delaunay delaunay) {
+
+    }
 }
